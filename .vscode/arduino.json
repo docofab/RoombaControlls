@@ -1,0 +1,6 @@
+{
+    "port": "COM9",
+    "board": "arduino:avr:uno",
+    "programmer": "AVRISP mkII",
+    "sketch": "Arduino\\RoombaControll\\RoombaControll.ino"
+}

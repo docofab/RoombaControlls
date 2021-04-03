@@ -7,21 +7,23 @@
 #ifndef ROOMBA_SERIAL_CONTROLLER_HPP_INCLUDED
 #define ROOMBA_SERIAL_CONTROLLER_HPP_INCLUDED
 
-#include <SoftwareSerial.h>;
+#include <SoftwareSerial.h>
 
-class c{
+class RoombaSerialController
+{
     public:
         RoombaSerialController();
         ~RoombaSerialController();
         /* Setters */
-        void setSerialInterface( SoftwareSerial& serialInterface );
+        void setSerialInterface( SoftwareSerial* serialInterface );
         /* Functions */
+        void Start( void );
         void DriveMotors( const int leftPwm , const int rightPwm );
         void TurnOnLed( void );
         void TurnOffLed( void );
     private:
         bool isSerialInterfaceExist();
         SoftwareSerial* p_serialIF;
-}
+};
 
 #endif

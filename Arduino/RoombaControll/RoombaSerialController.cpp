@@ -6,7 +6,6 @@
 
 #include "RoombaSerialController.hpp"
 
-
 RoombaSerialController::RoombaSerialController(){
     p_serialIF = nullptr;
 }
@@ -14,13 +13,18 @@ RoombaSerialController::~RoombaSerialController(){
 
 }
 /* Setters */
-void RoombaSerialController::setSerialInterface( SoftwareSerial& serialInterface )
+void RoombaSerialController::setSerialInterface( SoftwareSerial* serialInterface )
 {
     p_serialIF = serialInterface;
 }
 
 /* Functions */
-void RoombaSerialController::DriveMotors( const int leftPwm , const int rightPwm )
+void RoombaSerialController::Start( void )
+{
+    
+}
+
+void RoombaSerialController::DriveMotors( const int leftPwm, const int rightPwm )
 {
 
 }
