@@ -26,3 +26,25 @@
 | | 5 BRC Baud Rate Change |
 | GND  | 6 GND  Roomba battery ground | 
 | | 7 GND Roomba battery ground |
+
+# Arduinoサンプル
+
+```
+#include <SoftwareSerial.h>;
+SoftwareSerial serial(10, 11); // RX, TX
+void setup() {
+  // put your setup code here, to run once:
+  serial.begin(115200);
+  byte buffer[] = {
+    byte(128), // Start Opcode: 128 Data Bytes: 0
+    byte(129), // Baud  Opcode: 129 Data Bytes: 1
+    byte(7)    //       7: 19200bps
+  };
+  serial.write(buffer, sizeof(buffer));
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+}
+```

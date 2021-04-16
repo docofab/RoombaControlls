@@ -51,3 +51,23 @@
   * Fullモード時にOIにコマンドを送信しない場合、すべてのモーターとLEDをオフにして待機し、ボタンを押したり他のセンサー入力に反応しません。
   * Fullモードに入ると充電が終了します。
 
+# Arduinoサンプル
+
+```
+#include <SoftwareSerial.h>;
+SoftwareSerial serial(10, 11);  // RX, TX
+void setup() {
+  // put your setup code here, to run once:
+  serial.begin(115200);
+  byte buffer[] = {
+    byte(128), // Start Opcode: 128 Data Bytes: 0
+    byte(131)  // Safe  Opcode: 131 Data Bytes: 0 
+  };
+  serial.write(buffer, sizeof(buffer));
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+}
+```
