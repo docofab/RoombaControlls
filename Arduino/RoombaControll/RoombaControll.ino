@@ -1,8 +1,11 @@
+
 #include <SoftwareSerial.h>
 
 #include "RoombaSerialController.hpp"
 
-SoftwareSerial device(10, 11);//RX ,TX.
+//SoftwareSerial device(10, 11);//RX ,TX.
+SoftwareSerial device( 2, 5);//RX ,TX. M5Stack.
+
 
 RoombaSerialController roomba;
 
