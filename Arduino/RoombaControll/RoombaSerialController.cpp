@@ -26,7 +26,12 @@ void RoombaSerialController::Start( void )
 
 void RoombaSerialController::DriveMotors( const int leftPwm, const int rightPwm )
 {
+    /* null check */
+    if( isSerialInterfaceExist() == false ){
+        return;
+    }
 
+    
 }
 void RoombaSerialController::TurnOnLed( void )
 {
@@ -36,11 +41,12 @@ void RoombaSerialController::TurnOffLed( void )
 {
 
 }
-/* ErrorChecker */
+/* SerialInterfaceChecker */
 bool RoombaSerialController::isSerialInterfaceExist()
 {
     if( p_serialIF == nullptr ){
         return false;
     }
+    
     return true;
 }
