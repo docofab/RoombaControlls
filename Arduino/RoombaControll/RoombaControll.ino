@@ -3,8 +3,11 @@
 
 #include "RoombaSerialController.hpp"
 
-//SoftwareSerial device(10, 11);//RX ,TX.
-SoftwareSerial device( 2, 5);//RX ,TX. M5Stack.
+#ifdef ARDUINO_M5Stack_Core_ESP32
+  SoftwareSerial device( 2, 5);//RX ,TX. M5Stack.
+#else
+  SoftwareSerial device(10, 11);//RX ,TX.
+#endif
 
 
 RoombaSerialController roomba;
