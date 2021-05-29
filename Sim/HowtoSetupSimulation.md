@@ -16,16 +16,21 @@ https://demura.net/robot/hard/20405.html
 ```
 
 
-##　1. Docker を入れる
+## 1.Docker を入れる
 
 ### Windows
- 
+
+1.1.win WSL2 を導入する
+
+1.2.winWindows 10 Home で WSL 2 + Docker を使う
+https://qiita.com/KoKeCross/items/a6365af2594a102a817b
+
 ### Linux
 ``` bash
 
 ``` 
 
-## 2. 既存イメーじをpullする
+## 2. 既存イメージをpullする
 
 ## 3. Roombaの操作ライブラリをインストールする。
 
