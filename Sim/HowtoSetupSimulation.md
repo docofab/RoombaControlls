@@ -16,4 +16,21 @@ https://demura.net/robot/hard/20405.html
 ```
 
 
-1. Docker for Windows
+##　1. Docker を入れる
+
+### Windows
+ 
+### Linux
+``` bash
+
+``` 
+
+## 2. 既存イメーじをpullする
+
+## 3. Roombaの操作ライブラリをインストールする。
+
+## 4. ビルドを通す
+
+## 5. 完成
+
+
