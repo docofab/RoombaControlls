@@ -25,6 +25,28 @@ https://demura.net/robot/hard/20405.html
 1.2.winWindows 10 Home で WSL 2 + Docker を使う
 https://qiita.com/KoKeCross/items/a6365af2594a102a817b
 
+#### ※wslのメモリ制限の設定
+
+Powershellで
+``` bash
+code %USERPROFILE%\.wslconfig
+``` 
+として、.wslconfigファイルを作成
+``` bash
+[wsl2]
+memory=3GB
+processors=2
+``` 
+を記載する。(記載はプロセッサー数も制限している)
+
+``` bash
+wsl --shutdown
+``` 
+
+
+参考：WSL2のメモリ割り当て量を変えたい
+https://qiita.com/Ischca/items/121d91eb3b1a0a1cd8a8
+
 ### Linux
 ``` bash
 
