@@ -15,7 +15,7 @@
 
 | HOST | GuestOS | ROS Melodic | Gazebo | Notes |
 |------|------------|--------|-----|----|
-| Raspberry Pi4 | Ubuntu 18.04 LTS Server + desktop| OK | OK |  |
+| Raspberry Pi4(4GB) | Ubuntu 18.04 LTS Server + desktop| OK | OK |  |
 | Windows10 | Ubuntu 18.04 LTS(VMware Player 16) | OK | OK |export SVGA_VGPU10=0の設定が必要|
 | Widnows10 | Docker Desktop | OK | OK |  |
 | Mac M1 | Docker Desktop | NG(turtleでsegv) | NG(segv) |  |
@@ -26,7 +26,7 @@
 
 | HOST | GuestOS | ROS2 Foxy | Webots | Notes |
 |------|------------|--------|-----|----|
-| Raspberry Pi4 | Ubuntu Mate 20.03 |未確認 | 未確認 |  |
+| Raspberry Pi4(4GB) | Ubuntu Mate 20.03 |未確認 | 未確認 |  |
 | Windows10 | Ubuntu 20.03LTS(VMware Player 16) | 未確認 | 未確認 |  |
 | Widnows10 | Docker Desktop | OK | OK |  |
 | Mac M1 | Ubuntu 20.03(Parallels Desktop 16) | NG | NG |  |
