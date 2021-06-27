@@ -13,7 +13,7 @@
 
 ### ROS Melodic
 
-| HOST | GuestOS | ROS Melodic | Gazebo | Notes |
+| HOST | GuestOS | ROS Melodic (+Turtlesim) | Gazebo | Notes |
 |------|------------|--------|-----|----|
 | Raspberry Pi4(4GB) | Ubuntu 18.04 LTS Server + desktop| OK | OK |  |
 | Windows10 | Ubuntu 18.04 LTS(VMware Player 16) | OK | OK |export SVGA_VGPU10=0の設定が必要|
@@ -24,7 +24,7 @@
 
 ### ROS2 Foxy
 
-| HOST | GuestOS | ROS2 Foxy | Webots | Notes |
+| HOST | GuestOS | ROS2 Foxy (+Turtlesim) | Webots | Notes |
 |------|------------|--------|-----|----|
 | Raspberry Pi4(4GB) | Ubuntu Mate 20.04 | OK | NG(Exec format error) |  |
 | Windows10 | Ubuntu 20.04 LTS(VMware Player 16) | OK | OK |  |
