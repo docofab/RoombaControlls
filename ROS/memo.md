@@ -18,7 +18,7 @@
 | Raspberry Pi4(4GB) | Ubuntu 18.04 LTS Server + desktop| OK | OK |  |
 | Windows10 | Ubuntu 18.04 LTS(VMware Player 16) | OK | OK |export SVGA_VGPU10=0の設定が必要|
 | Widnows10 | Docker Desktop | OK | OK |  |
-| Mac M1 | Docker Desktop | NG(turtleでsegv) | NG(segv) |  |
+| Mac M1 | Docker Desktop | OK | NG(internal compiler error) | tiryoh/ros-desktop-vnc:melodic-arm64を使用 |
 
 ※Mac M1のParallels Desktop 16ではUbuntu18.04はサポートしていない。
 
