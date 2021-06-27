@@ -7,7 +7,7 @@ echo "[Update the package]"
 sudo apt-get update
 
 echo "[Upgrade the package]"
-sudo apt-get upgrade
+sudo apt-get upgrade -y
 
 echo "[Installing ROS python and qt4 Packages]"
 sudo apt-get install -y python-rosdep python-catkin-tools libqt4-dev
@@ -32,6 +32,10 @@ cd ~/catkin_ws/src/create_autonomy
 git checkout a522e080f267253fa2cba237ad32df5132c9aeb5
 
 echo "[Download the RTIMULib]"
+cd ~/catkin_ws
+./src/create_autonomy/sensors/ca_imu/scripts/install_rtimulib.sh
+
+echo "[Download the etc.]"
 cd ~/catkin_ws
 sudo apt install -y python3-vcstool
 vcs import src < src/create_autonomy/dependencies.repos
