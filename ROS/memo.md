@@ -9,7 +9,7 @@
 * ROS Melodicのインストールまではできる。https://demura.net/robot/16518.html
 * Gazeboシミュレータは動いた。https://demura.net/robot/hard/20405.html
 
-## 動作確認結果(2021/6/19現在)
+## 動作確認結果(2021/6/29現在)
 
 ### ROS Melodic
 
@@ -30,4 +30,4 @@
 | Windows10 | Ubuntu 20.04 LTS(VMware Player 16) | OK | OK |  |
 | Widnows10 | Docker Desktop | OK | OK |  |
 | Mac M1 | Ubuntu 20.04 LTS(Parallels Desktop 16) | OK | NG(Segv) |  |
-| Mac M1 | Docker Desktop | NG | NG |  |
+| Mac M1 | Docker Desktop | OK | NG | tiryoh/ros2-desktop-vnc:foxy-arm64  |
