@@ -54,7 +54,26 @@ https://qiita.com/Ischca/items/121d91eb3b1a0a1cd8a8
 
 ## 2. 既存イメージをpullする
 
+ROS1/melodic
+``` bash
+docker pull tiryoh/ros-desktop-vnc:melodic
+``` 
+
 ## 3. Roombaの操作ライブラリをインストールする。
+
+シェルスクリプト使用　以下をDL
+https://github.com/docofab/RoombaControlls/blob/main/ROS/install-gazebo-roomba.sh
+
+``` bash
+cd (スクリプトをDLしたpath)
+``` 
+
+``` bash
+chmod 755 install-gazebo-roomba.sh
+``` 
+``` bash
+./install-gazebo-roomba.sh
+``` 
 
 ## 4. ビルドを通す
 
