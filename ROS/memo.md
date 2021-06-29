@@ -30,4 +30,4 @@
 | Windows10 | Ubuntu 20.04 LTS(VMware Player 16) | OK | OK |  |
 | Widnows10 | Docker Desktop | OK | OK |  |
 | Mac M1 | Ubuntu 20.04 LTS(Parallels Desktop 16) | OK | NG(Segv) |  |
-| Mac M1 | Docker Desktop | OK | NG | tiryoh/ros2-desktop-vnc:foxy-arm64  |
+| Mac M1 | Docker Desktop | OK | NG(process has died) | tiryoh/ros2-desktop-vnc:foxy-arm64  |
