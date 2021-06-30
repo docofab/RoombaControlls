@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+# for Raspberry Pi 4GB
+
 # Reference sites
 # https://demura.net/education/18077.html
 
@@ -10,8 +12,7 @@ fi
 
 echo "[Update the package]"
 sudo apt-get update
-sudo apt install -y curl
-curl -sSL 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xC1CF6E31E6BADE8868B172B4F42ED6FBAB17C654' | sudo apt-key add -
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
 sudo apt update
 sudo apt upgrade -y

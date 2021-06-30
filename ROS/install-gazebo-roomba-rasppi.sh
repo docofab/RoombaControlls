@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-# for Raspberry Pi
+# for Raspberry Pi 4GB
 
 # Reference sites
 # https://demura.net/robot/hard/20405.html
@@ -19,7 +19,7 @@ mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws
 source /opt/ros/melodic/setup.bash
 catkin init
-catkin build
+catkin build -j 2
 
 echo "[Download the libcreate]"
 cd ~/catkin_ws/src
@@ -49,7 +49,7 @@ rm -rf ~/catkin_ws/src/viso2
 
 echo "[Build the workspace for Raspberry Pi 4]"
 cd ~/catkin_ws
-catkin build -DCMAKE_BUILD_TYPE=Release -DARM_CROSS_COMPILATION=ON
+catkin build -DCMAKE_BUILD_TYPE=Release -DARM_CROSS_COMPILATION=ON -j 2
 
 echo "[Setup environment.]"
 cat << EOS >> ~/.bashrc
