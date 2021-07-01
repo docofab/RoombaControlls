@@ -31,6 +31,8 @@ LABEL=system-boot       /boot/firmware  vfat    defaults        0       1
 
 ## セットアップスクリプトをダウンロード
 
+GitHubからクローンする。
+
 ```
 cd ~
 mkdir git
