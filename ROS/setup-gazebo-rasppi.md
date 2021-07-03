@@ -18,8 +18,8 @@ sudo apt install openssh-server
 
 ## 作業用ユーザアカウントの登録
 
-  * Setting->Users/groups: 任意のユーザを登録。administratorに設定すること
-  * 登録が終わったら、一度ログアウトしてから、作成したユーザでログインする。
+  * Setting->Users and groups: 任意のユーザを登録。登録時にadministratorに設定すること
+  * 登録が終わったら、一度再起動して、作成したユーザでログインする。
 
 ## xfceデスクトップ環境の設定
 
