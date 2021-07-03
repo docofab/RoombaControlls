@@ -16,6 +16,11 @@ sudo apt install xubuntu-desktop
 sudo apt install openssh-server
 ```
 
+## 作業用ユーザアカウントの登録
+
+  * Setting->Users/groups: 任意のユーザを登録。administratorに設定すること
+  * 登録が終わったら、一度ログアウトしてから、作成したユーザでログインする。
+
 ## xfceデスクトップ環境の設定
 
 * キーボードレイアウトの設定
@@ -57,7 +62,7 @@ cd RoombaControlls/ROS
 chmod 755 *.sh
 ```
 
-## ROSのインストール
+## ROS melodicのインストール
 
 ```
 cd ~/git/RoombaControlls/ROS
@@ -81,5 +86,5 @@ roslaunch ca_gazebo create_empty_world.launch
 ```
 roslaunch ca_tools keyboard_teleop.launch
 ```
-キーボードでRoombaがコントロールできる。
+キーボードでシュミレータのRoombaがコントロールできる。
 
