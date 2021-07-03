@@ -1,5 +1,7 @@
 # Roombaのシミュレーション環境のセットアップ(Raspberry Pi 4)
 
+参考サイト：https://demura.net/education/17957.html
+
 ## Ubuntu 18.04 LTSのインストール
 
 1. ubuntu-18.04.5-preinstalled-server-arm64+raspi4.img.xzをダウンロード
@@ -13,6 +15,17 @@ sudo apt upgrade
 sudo apt install xubuntu-desktop
 sudo apt install openssh-server
 ```
+
+## xfceデスクトップ環境の設定
+
+* キーボードレイアウトの設定
+  * Settings->Keyboard->Layout: Keyboard layout: Add -> Japanese (OADG 109A)
+  * Keyboard model: Sun Type 7 USB(Japanese)/Japanese 106-key
+* タイムゾーンの設定
+  * Settings->Time and Data Settings: Time zone: Asia/Tokyo
+* 日本語化設定
+  * Settings -> Language Support: 日本語を追加
+  * Keyboard Input method system: fcitxを設定
 
 ## swapの追加
 
@@ -28,6 +41,8 @@ LABEL=writable  /        ext4   defaults        0 0
 LABEL=system-boot       /boot/firmware  vfat    defaults        0       1
 /swapfile none swap sw 0 0
 ```
+
+設定したらrebootする。
 
 ## セットアップスクリプトをダウンロード
 
@@ -58,7 +73,13 @@ cd ~/git/RoombaControlls/ROS
 
 ## シュミレーターの起動
 
+新たにターミナルを起動する
 ```
 roslaunch ca_gazebo create_empty_world.launch
+```
+もう一つターミナルを起動する。
+```
 roslaunch ca_tools keyboard_teleop.launch
 ```
+キーボードでRoombaがコントロールできる。
+
