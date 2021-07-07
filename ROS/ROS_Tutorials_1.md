@@ -29,13 +29,13 @@ $ printenv | grep ROS
 
 注：チュートリアルの中では、rosbuildとcatkinについて言及しています。rosbuildはもう推奨されていませんし、メンテナンスもされていませんが、レガシーのために保管されています。 catkinはコードを整理するための推奨された方法で、より標準的なCMakeの規約を使用し、特に外部のコードベースを統合したい人や、自分のソフトウェアをリリースしたい人のために、より柔軟性を提供します。詳しい説明は catkin や rosbuild をご覧ください。
 
-ROSをUbuntuのaptからインストールしたばかりなら、setup.*shファイルが「/opt/ros/<distro>/」にあるはずで、以下のようにソースを作成することができます。
+ROSをUbuntuのaptからインストールしたばかりなら、setup.*shファイルが「/opt/ros/\<distro\>/」にあるはずで、以下のようにソースを作成することができます。
 
 ```
 $ source /opt/ros/<distro>/setup.bash
 ```
 
-<distro>（「<>」を含む）は、ROSのディストリビューション名に置き換えてください（例：indigo、kinetic、lunarなど）。
+\<distro\>（「<>」を含む）は、ROSのディストリビューション名に置き換えてください（例：indigo、kinetic、lunarなど）。
 ROS Kineticをインストールした場合は、次のようになります。
 
 ```
@@ -69,7 +69,7 @@ $ catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
 
 これで catkin_make が Python 3 で設定されます。以降のビルドには catkin_make だけを使うことができます。
 
-さらに、カレントディレクトリを見ると、「build」と「devel」フォルダがあるはずです。「devel」フォルダの中には、いくつかのsetup.*shファイルがあるのがわかります。これらのファイルのいずれかをソースとすると、このワークスペースが環境の上にオーバーレイされます。これについて詳しく知りたい場合は、一般的な catkin のドキュメントを参照してください。続ける前に、新しい setup.*sh ファイルをsourceします。
+さらに、カレントディレクトリを見ると、「build」と「devel」フォルダがあるはずです。「devel」フォルダの中には、いくつかのsetup.\*shファイルがあるのがわかります。これらのファイルのいずれかをソースとすると、このワークスペースが環境の上にオーバーレイされます。これについて詳しく知りたい場合は、一般的な catkin のドキュメントを参照してください。続ける前に、新しい setup.\*sh ファイルをsourceします。
 
 ```
 $ source devel/setup.bash
@@ -94,7 +94,7 @@ $ echo $ROS_PACKAGE_PATH
 $ sudo apt-get install ros-<distro>-ros-tutorials
 ```
 
-<distro>（「<>」を含む）は、ROSのディストリビューション名に置き換えてください（例：indigo、kinetic、lunarなど）。
+\<distro\>（「<>」を含む）は、ROSのディストリビューション名に置き換えてください（例：indigo、kinetic、lunarなど）。
 
 ## ファイルシステムの概念の簡単な概要
 
@@ -294,7 +294,7 @@ ROSツールのネーミングにはパターンがあることにお気づき�
 ```
 rospack = ros + pack(age)
 roscd = ros + cd
-rosls = ros + ls 
+rosls = ros + ls
 ```
 
 この命名パターンは、ROSツールの多くに当てはまります。
