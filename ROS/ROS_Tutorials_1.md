@@ -1,5 +1,8 @@
 # ROS環境のインストールと設定
 
+Reference sites: http://wiki.ros.org/ROS/Tutorials
+Creative Commons Attribution 3.0
+
 このチュートリアルでは、ROSのインストールと、コンピュータ上でのROS環境の設定について説明します。
 
 ## ROSのインストール
