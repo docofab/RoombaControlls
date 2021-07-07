@@ -8,7 +8,7 @@ ROSのインストールは終わっているものとして進めます。
 
 ## 環境の管理
 
-ROSのインストール中に、いくつかのsetup.*shファイルのうちの1つをソースにするか、あるいはシェルのスタートアップスクリプトにこの「ソース」を追加するように促されることがわかります。これは、ROSがシェル環境を使ってスペースを結合するという概念に依存しているからです。これにより、異なるバージョンのROSや異なるパッケージのセットに対する開発が容易になります。
+ROSのインストール中に、 いくつかあるsetup.*shファイルのうちの一つをsourceコマンドで実行するよう指示が出たり、このsourceコマンドの手順をシェルの起動スクリプトに追加するよう促されたりすることがあるでしょう。これは、ROSがシェル環境を使ってファイル空間を結合するという考えによるからです。これにより、異なるバージョンのROSや異なるパッケージのセットに対する開発が容易になります。
 
 ROSのパッケージが見つからない、使えないという場合は、環境が正しく設定されているかどうかを確認してください。ROS_ROOTやROS_PACKAGE_PATHなどの環境変数が設定されているかどうかを確認するのが良い方法です。
 
@@ -16,9 +16,9 @@ ROSのパッケージが見つからない、使えないという場合は、�
 $ printenv | grep ROS
 ```
 
-もし設定されていなければ、setup.*shファイルをsourceする必要があるかもしれません。
+もし環境変数が設定されていなければ、setup.*shファイルをsourceコマンドで実行する必要があるかもしれません。
 
-環境設定ファイルは、あなたのために生成されますが、さまざまな場所から来ることができます。
+環境設定ファイルは、さまざまな場所において提供されることがあります。
 
 * パッケージマネージャでインストールされたROSパッケージはsetup.*shファイルを提供します。
 * rosbuildのワークスペースは、roswsのようなツールを使ってsetup.*shファイルを提供します。
@@ -32,8 +32,7 @@ ROSをUbuntuのaptからインストールしたばかりなら、setup.*shフ�
 $ source /opt/ros/<distro>/setup.bash
 ```
 
-<distro>の代わりにROSディストリビューションのショートネームを使う
-
+<distro>（「<>」を含む）は、ROSのディストリビューション名に置き換えてください（例：indigo、kinetic、lunarなど）。
 ROS Kineticをインストールした場合は、次のようになります。
 
 ```
@@ -58,13 +57,14 @@ $ catkin_make
 
 catkin_make コマンドは、catkin ワークスペースで作業するための便利なツールです。ワークスペースで最初に実行すると、'src'フォルダにCMakeLists.txtのリンクが作成されます。
 
-ROS Melodic以前のPython 3ユーザー：注意してほしいのは、Python 3の互換性を実現するためにROSをソースからビルドしていて、システムを適切にセットアップしている（つまり、catkinなどの必要なROSのPythonパッケージのPython 3バージョンがインストールされている）場合、クリーンなcatkinワークスペースでの最初のcatkin_makeコマンドは次のようにしなければならないということです。
+ROS Melodic以前のPython 3ユーザーへの注意：
+ROSをビルドしていて、システムを適切にセットアップしている（つまり、catkinなどの必要なROSのPythonパッケージのPython 3バージョンがインストールされている）場合、クリーンなcatkinワークスペースでの最初のcatkin_makeコマンドは次のようにしなければならないということです。
 
 ```
-catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3 $ catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
+$ catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
 ```
 
-これで catkin_make が Python 3 で設定されます。これで catkin_make に Python 3 が設定され、以降のビルドには catkin_make だけを使うことができます。
+これで catkin_make が Python 3 で設定されます。以降のビルドには catkin_make だけを使うことができます。
 
 さらに、カレントディレクトリを見ると、「build」と「devel」フォルダがあるはずです。「devel」フォルダの中には、いくつかのsetup.*shファイルがあるのがわかります。これらのファイルのいずれかをソースとすると、このワークスペースが環境の上にオーバーレイされます。これについて詳しく知りたい場合は、一般的な catkin のドキュメントを参照してください。続ける前に、新しい setup.*sh ファイルをsourceします。
 
@@ -232,7 +232,7 @@ cmake launch package.xml srv
 まずは入力してみましょう。
 
 ```
-$ roscd roscpp_tut<< now push the TAB key >>>と入力します。
+$ roscd roscpp_tut<<ここでTABキーを押してください>>>と入力します。
 ```
 
 TABキーを押すと、あとはコマンドラインが補完してくれます。
@@ -246,7 +246,7 @@ roscpp_tutで始まるROSパッケージは現在のところroscpp_tutorialsだ
 では、次のように入力してみてください。
 
 ```
-$ roscd tur<<今度はTABキーを押してください>>。
+$ roscd tur<<ここでTABキーを押してください>>。
 ```
 
 TABキーを押した後、コマンドラインができるだけ埋まるようにします。
@@ -267,7 +267,7 @@ turtle_actionlib/ turtlesim/ turtle_tf/...
 $ roscd turtle
 ```
 
-次にturtleの後にsを入力してTABを押します。
+次にturtleの後にsを入力してTABキーを押します。
 
 ```
 $ roscd turtles<< now push the TAB key >>>.
