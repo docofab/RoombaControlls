@@ -145,7 +145,7 @@ $ rosrun turtlesim turtlesim_node
 
 すると、turtlesimのウィンドウが表示されます。
 
-turtlesim.png 
+<img src="http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes?action=AttachFile&do=get&target=turtlesim.png">
 
 注： turtlesimのウィンドウでは、カメが違って見えるかもしれません。気にしないでください。亀にはたくさんの種類がありますし、あなたの亀も驚きです。
 
