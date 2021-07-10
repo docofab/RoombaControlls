@@ -1,8 +1,5 @@
 # ROS環境のインストールと設定
 
-Reference sites: http://wiki.ros.org/ROS/Tutorials
-Creative Commons Attribution 3.0
-
 このチュートリアルでは、ROSのインストールと、コンピュータ上でのROS環境の設定について説明します。
 
 ## ROSのインストール
@@ -300,3 +297,10 @@ rosls = ros + ls
 この命名パターンは、ROSツールの多くに当てはまります。
 
 さて、ROSを使いこなせるようになったところで、パッケージを作ってみましょう。
+
+
+Except where otherwise noted, the ROS wiki is licensed under the Creative Commons Attribution 3.0
+
+Wiki: [ROS/Tutorials/InstallingandConfiguringROSEnvironment](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment) (最終更新日時 2020-06-15 18:56:17 更新者 KatherineScott)
+
+Wiki: [ROS/Tutorials/NavigatingTheFilesystem](http://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem) (最終更新日時 2020-09-21 17:34:03 更新者 Himanshu)

@@ -1,7 +1,6 @@
 # ROSパッケージの作成
 
-Reference sites: http://wiki.ros.org/ROS/Tutorials
-Creative Commons Attribution 3.0
+
 
 このチュートリアルでは、roscreate-pkgまたはcatkinを使用して新しいパッケージを作成し、rospackを使用してパッケージの依存関係をリストアップする方法を説明します。
 
@@ -282,3 +281,7 @@ rospy
 メタ情報を含むpackage.xmlがパッケージに合わせて作成されたので、チュートリアルを進める準備ができました。catkin_create_pkgによって作成されたCMakeLists.txtファイルは、後のROSコードのビルドに関するチュートリアルで取り上げられます。
 
 さて、新しいROSパッケージを作ったところで、ROSパッケージをビルドしてみましょう。
+
+
+Reference sites: http://wiki.ros.org/ROS/Tutorials
+Creative Commons Attribution 3.0
