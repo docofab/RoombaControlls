@@ -207,6 +207,6 @@ xmlrpc reply from http://aqy:42235/     time=1.127958ms
 
 ROSのノードの動作を理解したところで、ROSのトピックの動作を見てみましょう。また、turtlesim_nodeを停止するにはCtrl-Cを自由に押してください。
 
-Except where otherwise noted, the ROS wiki is licensed under the Creative Commons Attribution 3.0
+Except where otherwise noted, the ROS wiki is licensed under the  [Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/)
 
 Wiki: [ROS/Tutorials/UnderstandingNodes](http://wiki.ros.org/ROS/Tutorials/UnderstandingNodes) (最終更新日時 2019-06-05 23:41:12 更新者 LukeMeier)

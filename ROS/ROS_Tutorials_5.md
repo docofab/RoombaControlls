@@ -515,6 +515,6 @@ ROSトピックの仕組みを理解したところで、サービスとパラ�
 https://www.youtube.com/embed/Yx_vGAt74sk
 
 
-Except where otherwise noted, the ROS wiki is licensed under the Creative Commons Attribution 3.0
+Except where otherwise noted, the ROS wiki is licensed under the [Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/)
 
 Wiki: [ROS/Tutorials/UnderstandingTopics](http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics) (最終更新日時 2019-07-18 19:55:02 更新者 AnisKoubaa)

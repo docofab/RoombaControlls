@@ -1,7 +1,5 @@
 # ROSパッケージの作成
 
-
-
 このチュートリアルでは、roscreate-pkgまたはcatkinを使用して新しいパッケージを作成し、rospackを使用してパッケージの依存関係をリストアップする方法を説明します。
 
 ## catkin パッケージとは何ですか？
@@ -282,6 +280,6 @@ rospy
 
 さて、新しいROSパッケージを作ったところで、ROSパッケージをビルドしてみましょう。
 
+Except where otherwise noted, the ROS wiki is licensed under the  [Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/)
 
-Reference sites: http://wiki.ros.org/ROS/Tutorials
-Creative Commons Attribution 3.0
+Wiki: [ROS/Tutorials/CreatingPackage](http://wiki.ros.org/ROS/Tutorials/CreatingPackage) (最終更新日時 2021-01-19 21:25:56 更新者 TullyFoote)
