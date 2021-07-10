@@ -35,15 +35,14 @@ $ rosrun turtlesim turtlesim_node
 
 ```
 $ rosrun turtlesim turtle_teleop_key
-[ INFO] 1254264546.878445000: Started node [/teleop_turtle], pid [5528], bound on [aqy], xmlrpc port [43918], tcpros port [55936], logging to [~/ros/ros/log/teleop_turtle_5528.log], using [real] time
 Reading from keyboard
 ---------------------------
-Use arrow keys to move the turtle.
+Use arrow keys to move the turtle. 'q' to quit.
 ```
 
 キーボードの矢印キーを使って、亀を走らせることができます。カメを走らせることができない場合は、turtle_teleop_keyのターミナルウィンドウを選択して、入力したキーが記録されていることを確認してください。
 
-    turtle_key.png 
+<img src="http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics?action=AttachFile&do=get&target=turtle_key.png">
 
 カメを走らせることができたので、今度は舞台裏を見てみましょう。
 
