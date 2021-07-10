@@ -512,6 +512,7 @@ ROSトピックの仕組みを理解したところで、サービスとパラ�
 
 次のビデオは、ROSノードとROSトピック上でturtlesimを使った小さなチュートリアルです。
 
+<iframe width="480" height="270" src="https://www.youtube.com/embed/Yx_vGAt74sk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Except where otherwise noted, the ROS wiki is licensed under the Creative Commons Attribution 3.0
 
