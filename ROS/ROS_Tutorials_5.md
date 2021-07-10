@@ -207,6 +207,7 @@ $ rostopic list -v
 これにより、パブリッシュおよびサブスクライブするトピックとそのタイプの詳細なリストが表示されます。
 
 ROS Hydro以降では、以下のようになります。
+
 ```
 Published topics:
  * /turtle1/color_sensor [turtlesim/Color] 1 publisher
@@ -251,7 +252,7 @@ rostopic type [topic]
 
 ROS Hydro以降の場合。
 
-    試してみてください。
+試してみてください。
 
 ```
 $ rostopic type /turtle1/cmd_vel
