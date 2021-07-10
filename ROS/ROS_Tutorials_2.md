@@ -77,7 +77,7 @@ catkin_create_pkg にはより高度な機能もあり、それは catkin/comman
 
 ```
 $ cd ~/catkin_ws
-$ cd ~/catkin_ws $ catkin_make
+$ catkin_make
 ```
 
 ワークスペースがビルドされると、devel サブフォルダ内に通常の /opt/ros/$ROSDISTRO_NAME の下にあるのと同様の構造が作成されます。
