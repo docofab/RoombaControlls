@@ -94,7 +94,7 @@ $ . ~/catkin_ws/devel/setup.bash
 以前にcatkin_create_pkgを使用したとき、いくつかのパッケージ依存関係が提供されていました。これらの一次依存関係を rospack ツールで確認できるようになりました。
 
 ```
-$ rospack depends1 beginner_tutorials 
+$ rospack depends1 beginner_tutorials
 roscpp
 rospy
 std_msgs
@@ -104,7 +104,7 @@ std_msgs
 
 ```
 $ roscd beginner_tutorials
-$ roscd beginner_tutorials $ cat package.xml
+$ cat package.xml
 
 <package format="2">
 ...
