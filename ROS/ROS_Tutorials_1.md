@@ -299,7 +299,7 @@ rosls = ros + ls
 さて、ROSを使いこなせるようになったところで、パッケージを作ってみましょう。
 
 
-Except where otherwise noted, the ROS wiki is licensed under the Creative Commons Attribution 3.0
+Except where otherwise noted, the ROS wiki is licensed under the  [Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/)
 
 Wiki: [ROS/Tutorials/InstallingandConfiguringROSEnvironment](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment) (最終更新日時 2020-06-15 18:56:17 更新者 KatherineScott)
 
