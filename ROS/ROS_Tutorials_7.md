@@ -20,8 +20,15 @@ rqt_consoleはROSのロギングフレームワークに取り付けて、ノー
 
 では、rqt_consoleでturtlesimの出力を見て、rqt_logger_levelでロガーレベルを切り替えながらturtlesimを使ってみましょう。turtlesimを起動する前に、2つの新しいターミナルでrqt_consoleとrqt_logger_levelを起動します。
 
+1つめのターミナル
+
 ```
 $ rosrun rqt_console rqt_console
+```
+
+2つめのターミナル
+
+```
 $ rosrun rqt_logger_level rqt_logger_level
 ```
 
@@ -85,7 +92,7 @@ $ roslaunch [package] [filename.launch]
 $ roscd beginner_tutorials
 ```
 
-roscdがroscdと似たようなことを言っていたら。No such package/stack 'beginner_tutorials' , create_a_workspace チュートリアルの最後に行ったように、環境設定ファイルをソースにする必要があります。
+ここで、パッケージが見つからないというエラー（No such package/stack 'beginner_tutorials' , create_a_workspace）が表示された場合は、チュートリアルの最後に行ったように、環境設定ファイルをsourceにする必要があります。
 
 ```
 $ cd ~/catkin_ws
@@ -107,22 +114,22 @@ $ cd launch
 それでは、turtlemimic.launchという起動ファイルを作成し、以下のように貼り付けてみましょう。
 
 ```
- 1 <launch>
- 2
- 3   <group ns="turtlesim1">
- 4     <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
- 5   </group>
- 6
- 7   <group ns="turtlesim2">
- 8     <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
- 9   </group>
-10
-11   <node pkg="turtlesim" name="mimic" type="mimic">
-12     <remap from="input" to="turtlesim1/turtle1"/>
-13     <remap from="output" to="turtlesim2/turtle1"/>
-14   </node>
-15
-16 </launch>
+<launch>
+
+  <group ns="turtlesim1">
+    <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+  </group>
+
+  <group ns="turtlesim2">
+    <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+  </group>
+
+  <node pkg="turtlesim" name="mimic" type="mimic">
+    <remap from="input" to="turtlesim1/turtle1"/>
+    <remap from="output" to="turtlesim2/turtle1"/>
+  </node>
+
+</launch>
 ```
 
 ### 起動ファイルの説明
@@ -131,7 +138,7 @@ $ cd launch
 行番号表示/非表示切替
 
 ```
-1 <launch>
+   1 <launch>
 ```
 
 ここでは、launchタグで起動ファイルを開始し、起動ファイルであることがわかるようにしています。
@@ -196,7 +203,7 @@ $ rqt_graph
 <img src="http://wiki.ros.org/ROS/Tutorials/UsingRqtconsoleRoslaunch?action=AttachFile&do=get&target=mimiclaunch.jpg">
 
 
-rqt_consoleとroslaunchの使用に成功したところで、ROSのエディタオプションについて学びましょう。次のチュートリアルでは必要ありませんので、TurtlesimsはすべてCtrl-Cしてください。
+rqt_consoleとroslaunchの使用に成功したところで、ROSのエディタオプションについて学びましょう。次のチュートリアルでは必要ありませんので、TurtlesimsはすべてCtrl-Cで停止してください。
 
 Except where otherwise noted, the ROS wiki is licensed under the
 [Creative Commons Attribution 3.0](http://creativecommons.org/licenses/by/3.0/)
