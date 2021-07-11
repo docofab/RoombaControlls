@@ -50,8 +50,6 @@ Use arrow keys to move the turtle. 'q' to quit.
 
 turtlesim_nodeとturtle_teleop_keyノードは、ROSトピックを介して相互に通信しています。turtle_teleop_keyはキーストロークをトピックに公開し、turtlesimは同じトピックを購読してキーストロークを受け取ります。現在稼働しているノードとトピックを表示するrqt_graphを使ってみましょう。
 
-注：Electric以前のバージョンを使用している場合、rqtは使用できません。代わりにrxgraphを使います。
-
 ### rqt_graphの使い方
 
 rqt_graphは、システムで起こっていることを示すダイナミックなグラフを作成します。すでにインストールしていなければ、次のように実行します。
@@ -61,7 +59,7 @@ $ sudo apt-get install ros-<distro>-rqt
 $ sudo apt-get install ros-<distro>-rqt-common-plugins
 ```
 
-\<distro\>をROSのディストリビューション名に置き換えます（例：indigo、jade、kinetic、lunar ...）。
+\<distro\>をROSのディストリビューション名に置き換えます（例：melodic）。
 
 新しいターミナルで
 
@@ -118,21 +116,15 @@ rostopic echo [topic]
 
 turtle_teleop_keyノードで公開されているコマンドベロシティデータを見てみましょう。
 
-ROS Hydro以降では、このデータは/turtle1/cmd_velトピックで公開されています。新しいターミナルで、次のように実行します。
+このデータは/turtle1/cmd_velトピックで公開されています。新しいターミナルで、次のように実行します。
 
 ```
 $ rostopic echo /turtle1/cmd_vel
 ```
 
-ROS Groovy以前のバージョンでは、このデータは/turtle1/command_velocityトピックで公開されています。新しいターミナルで、実行します。
-
-```
-$ rostopic echo /turtle1/command_velocity
-```
-
 おそらく何も起こらないでしょう。なぜなら、このトピックではデータが公開されていないからです。turtle_teleop_keyが矢印キーを押してデータを発行するようにしてみましょう。もし亀が動かなかったら、もう一度turtle_teleop_keyターミナルを選択する必要があることを覚えておいてください。
 
-ROS Hydro以降では、アップキーを押すと以下のように表示されるようになっています。
+アップキーを押すと以下のように表示されます。
 
 ```
 linear: 
@@ -153,26 +145,6 @@ angular:
   y: 0.0
   z: 0.0
 ---
-```
-
-ROS Groovy以前のバージョンでは、アップキーを押したときに以下のように表示されるようになりました。
-
-```
----
-linear: 2.0
-angular: 0.0
----
-linear: 2.0
-angular: 0.0
----
-linear: 2.0
-angular: 0.0
----
-linear: 2.0
-angular: 0.0
----
-linear: 2.0
-angular: 0.0
 ```
 
 では、再びrqt_graphを見てみましょう。左上の更新ボタンを押すと、新しいノードが表示されます。ここでは赤で示されているrostopic echoがturtle1/command_velocityのトピックにもサブスクライブされているのがわかります。
@@ -206,8 +178,6 @@ $ rostopic list -v
 
 これにより、パブリッシュおよびサブスクライブするトピックとそのタイプの詳細なリストが表示されます。
 
-ROS Hydro以降では、以下のようになります。
-
 ```
 Published topics:
  * /turtle1/color_sensor [turtlesim/Color] 1 publisher
@@ -219,21 +189,6 @@ Published topics:
 Subscribed topics:
  * /turtle1/cmd_vel [geometry_msgs/Twist] 1 subscriber
  * /rosout [rosgraph_msgs/Log] 1 subscriber
- ```
-
-ROS Groovy以前のバージョンの場合。
-
-```
-Published topics:
- * /turtle1/color_sensor [turtlesim/Color] 1 publisher
- * /turtle1/command_velocity [turtlesim/Velocity] 1 publisher
- * /rosout [roslib/Log] 2 publishers
- * /rosout_agg [roslib/Log] 1 publisher
- * /turtle1/pose [turtlesim/Pose] 1 publisher
-
-Subscribed topics:
- * /turtle1/command_velocity [turtlesim/Velocity] 1 subscriber
- * /rosout [roslib/Log] 1 subscriber
  ```
  
 ## ROSメッセージ
@@ -278,28 +233,6 @@ geometry_msgs/Vector3 angular
   float64 z
 ```
 
-ROS Groovy以前のバージョンの場合。
-
-試してみてください。
-
-```
-$ rostopic type /turtle1/command_velocity
-```
-
-次の結果が得られるはずです。
-
-```
-turtlesim/velocity
-```
-
-rosmsg を使って、メッセージの詳細を見ることができます。
-
-```
-$ rosmsg show turtlesim/Belocity
-float32 linear
-float32 angular
-```
-
 turtlesimが期待するメッセージの種類がわかったので、カメにコマンドを発行できるようになりました。
 
 ## ROSトピックの続き
@@ -316,16 +249,10 @@ rostopic pubは、現在アドバタイズされているトピックにデー�
 rostopic pub [topic] [msg_type] [args].
 ```
 
-ROS Hydro以降では以下のようになります。
+以下のようになります。
 
 ```
 $ rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'
-```
-
-ROS Groovy以前のバージョンでは、以下のようになります。
-
-```
-$ rostopic pub -1 /turtle1/command_velocity turtlesim/Velocity -- 2.0 1.8
 ```
 
 前述のコマンドは、直線速度2.0、角速度1.8で動くようにturtlesimに1つのメッセージを送ります。
@@ -333,8 +260,6 @@ $ rostopic pub -1 /turtle1/command_velocity turtlesim/Velocity -- 2.0 1.8
 <img src="http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics?action=AttachFile&do=get&target=turtle%28rostopicpub%29.png">
 
 これはかなり複雑な例なので、各引数を詳しく見てみましょう。
-
-ROS Hydro以降で使用しています。
 
 * このコマンドは、指定されたトピックにメッセージを公開します。
 
@@ -372,56 +297,10 @@ geometry_msgs/Twist
 '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]' 
 ```
 
-ROS Groovyおよびそれ以前のバージョン用。
-
-* このコマンドは、与えられたトピックにメッセージを公開します。
-
-```
-rostopic pub
-```
-
-* このオプション(dash-one)を指定すると、rostopicはメッセージを1つだけ発行して終了します。
-
-```
- -1 
-```
-
-* これは公開するトピックの名前です。
-
-```
-/turtle1/command_velocity
-```
-
-* これは、トピックに公開するときに使うメッセージタイプです。
-
-```
-turtlesim/Velocity
-```
-
-* このオプション(ダブルダッシュ)は、オプションパーサーに、以下の引数のどれもオプションではないことを伝えます。これは、負の数のように、引数の先頭にダッシュ-がついている場合に必要です。
-
-```
---
-```
-
-前述のように、turtlesim/Belocityのmsgは、linearとangularの2つの浮動小数点要素を持っています。この場合、2.0がリニア値、1.8がアンギュラー値となります。これらの引数は実際にはYAML構文で、YAMLコマンドライン・ドキュメントで詳しく説明されています。
-
-```
-2.0 1.8 
-```
-
-これは、カメが動き続けるために、1Hzの定常的なコマンドの流れを必要としているからです。rostopic pub -rコマンドを使って、安定したコマンドの流れを発行することができます。
-
-ROS Hydro以降の場合
+カメが動き続けるために、1Hzの定常的なコマンドの流れが必要です。rostopic pub -rコマンドを使って、安定したコマンドの流れを発行することができます。
 
 ```
 $ rostopic pub /turtle1/cmd_vel geometry_msgs/Twist -r 1 -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, -1.8]'
-```
-
-ROS Groovy以前のバージョンの場合。
-
-```
-$ rostopic pub /turtle1/command_velocity turtlesim/elocity -r 1 -- 2.0 -1.8
 ```
 
 これは、velocityトピックに1Hzの速度でvelocityコマンドをパブリッシュします。
@@ -472,23 +351,13 @@ average rate: 59.463
 
 これで、turtlesimが60Hzのレートでカメのデータを公開していることがわかりました。rosmsg showと一緒にrostopic typeを使うことで、トピックに関する詳細な情報を得ることもできます。
 
-ROS Hydro以降の場合
-
 ```
 $ rostopic type /turtle1/cmd_vel | rosmsg show
-```
-
-ROS Groovyおよびそれ以前のバージョンの場合。
-
-```
-$ rostopic type /turtle1/command_velocity | rosmsg show
 ```
 
 rostopicを使ってトピックを調べたので、別のツールを使ってturtlesimで公開されたデータを見てみましょう。
 
 ### rqt_plotを使う
-
-注意：Electric以前のバージョンをお使いの場合、rqtは使用できません。代わりにrxplotを使用してください。
 
 rqt_plotは、トピックで公開されているデータをスクロールしてタイムプロットを表示します。ここでは、rqt_plotを使って、「/turtle1/pose」トピックで公開されているデータをプロットしてみます。まず、次のように入力してrqt_plotを起動します。
 
