@@ -335,7 +335,7 @@ $ catkin_make
 $ cd -
 ```
 
-msg ディレクトリにある .msg ファイルは、サポートされているすべての言語で使用できるコードを生成します。C++メッセージのヘッダファイルは、~/catkin_ws/devel/include/beginner_tutorials/に生成されます。Python スクリプトは ~/catkin_ws/devel/lib/python2.7/dist-packages/beginner_tutorials/msg に作成されます。lispファイルは、~/catkin_ws/devel/share/common-lisp/ros/beginner_tutorials/msg/に表示されます。
+msg ディレクトリにある .msg ファイルは、サポートされているすべての言語で使用できるコードを生成します。C++メッセージのヘッダファイルは、\~/catkin_ws/devel/include/beginner_tutorials/に生成されます。Python スクリプトは \~/catkin_ws/devel/lib/python2.7/dist-packages/beginner_tutorials/msg に作成されます。lispファイルは、\~/catkin_ws/devel/share/common-lisp/ros/beginner_tutorials/msg/に表示されます。
 
 同様に、srv ディレクトリにあるすべての .srv ファイルには、サポートされている言語のコードが生成されます。C++の場合は、メッセージヘッダファイルと同じディレクトリにヘッダファイルが生成されます。Python と Lisp の場合は、「msg」フォルダの隣に「srv」フォルダがあります。
 
