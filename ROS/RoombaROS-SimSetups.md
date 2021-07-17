@@ -54,6 +54,8 @@ https://qiita.com/Ischca/items/121d91eb3b1a0a1cd8a8
 
 ## 2. 既存イメージをpullする
 
+
+
 ## 3. Roombaの操作ライブラリをインストールする。
 
 ## 4. ビルドを通す
