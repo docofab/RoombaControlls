@@ -99,7 +99,7 @@ docker run -p 6080:80 --shm-size=512m tiryoh/ros-desktop-vnc:melodic
 [7]:https://github.com/Tiryoh/docker-ros-desktop-vnc
 
 - ### CreateAutonomy
-  - [HARD2021: Gazeboシミュレータでルンバを動かそう！][7]
+  - [HARD2021: Gazeboシミュレータでルンバを動かそう！][8]
 
-[7]:https://demura.net/robot/hard/20405.html
+[8]:https://demura.net/robot/hard/20405.html
 
