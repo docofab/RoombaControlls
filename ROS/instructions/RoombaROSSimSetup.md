@@ -71,12 +71,11 @@ docker run -p 6080:80 --shm-size=512m tiryoh/ros-desktop-vnc:melodic
 
 (デフォルトなら)ブラウザで[http://127.0.0.1:6080](http://127.0.0.1:6080) にアクセス
 
-## 3. Roombaの操作ライブラリをインストールする。
+## 3a. スクリプトを使用してインストールする
 
-## 4. ビルドを通す
+[スクリプトを使用](https://github.com/docofab/RoombaControlls/blob/main/ROS/scripts/install-gazebo-roomba.sh)
 
-## 5. 完成
-
+## 3b. 
 
 ## 参考サイト
 - ### DockerTips
