@@ -48,7 +48,6 @@ def main_loop():
                 set_vel(vel_msg, meter / move_time, 0)
                 isLinear = True
             total_time = 0.0
-            rate.sleep()
 
 if __name__ == '__main__':
         main_loop()
