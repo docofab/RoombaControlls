@@ -12,19 +12,22 @@ def set_vel(vel_msg, lv, av):
     vel_msg.angular.y = 0
     vel_msg.angular.z = av
 
-rospy.init_node('move')
-vel_publisher = rospy.Publisher('/create1/cmd_vel', Twist, queue_size=10)
-hz = 1
-rate = rospy.Rate(hz)
 back = False
 
-def main_loop():
+def main():
     global back
-    sub = rospy.Subscriber('/create1/bumper', Bumper, callback)
+
+    rospy.init_node('move')
+    vel_publisher = rospy.Publisher('/create1/cmd_vel', Twist, queue_size=10)
 
     vel_msg = Twist()
     set_vel(vel_msg, 0, 0)
     print("Let's move your robot")
+
+    hz = 1
+    rate = rospy.Rate(hz)
+
+    sub = rospy.Subscriber('/create1/bumper', Bumper, callback)
 
     while not rospy.is_shutdown():
         vel_publisher.publish(vel_msg)
@@ -47,4 +50,4 @@ def callback(bumper):
 
 
 if __name__ == '__main__':
-    main_loop()
+    main()
