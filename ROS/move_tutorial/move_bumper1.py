@@ -24,10 +24,10 @@ def main():
     set_vel(vel_msg, 0, 0)
     print("Let's move your robot")
 
-    sub = rospy.Subscriber('/create1/bumper', Bumper, callback)
-
     hz = 1
     rate = rospy.Rate(hz)
+
+    sub = rospy.Subscriber('/create1/bumper', Bumper, callback)
 
     while not rospy.is_shutdown():
         vel_publisher.publish(vel_msg)
