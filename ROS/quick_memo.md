@@ -12,6 +12,12 @@ $ roscore
 $ rosrun turtlesim turtlesim_node
 ```
 
+## turtlesimをキーボードで動かす
+
+```
+$ rosrun turtlesim turtle_teleop_key
+```
+
 ## gazeboの起動
 
 ```
