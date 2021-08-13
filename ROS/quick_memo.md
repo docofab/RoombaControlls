@@ -17,8 +17,13 @@ $ rosrun turtlesim turtlesim_node
 ```
 $ rosrun turtlesim turtle_teleop_key
 ```
+## turtlesimの亀をリセットする
 
-## gazeboの起動
+```
+$ rosservice call reset
+```
+
+## Gazeboの起動
 
 ```
 $ export RVIZ=false     (RVIZを使わない場合)
