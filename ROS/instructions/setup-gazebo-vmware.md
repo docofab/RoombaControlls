@@ -2,7 +2,7 @@
 
 ## VMware Workstation Playerのインストール
 
-1. VMWareのサイトからVMWare Workstation Playerをダウンロードしてインストールする。
+1. VMwareのサイトからVMware Workstation Playerをダウンロードしてインストールする。
 
 ## Lubuntu 18.04のインストール
 
@@ -10,17 +10,17 @@
 1. 仮想マシンの作成中にユーザ登録、言語設定、キーボードレイアウトなど聞かれるのでお好みで設定する。
 1. 仮想マシンが起動したら登録したユーザでログインする。
 1. 以下のように入力する
-```
-$ sudo apt update
-$ sudo apt upgrade
-```
+    ```
+    $ sudo apt update
+    $ sudo apt upgrade
+    ```
 
 ## ROS Melodicセットアップスクリプトをダウンロード
 
 1. karaageさんのjetson nano用のスクリプトがそのまま使えるので、githubからクローンする。
 
     ```
-    $ cd ~
+    $ cd
     $ mkdir git
     $ cd git
     $ git clone https://github.com/karaage0703/jetson-nano-tools.git
@@ -68,7 +68,7 @@ $ sudo apt upgrade
 
 ## .bashrcの設定
 
-1. VMWare Workstation playerはでGazeboを動かす場合は以下の環境変数を.bashrcに追加する。
+1. VMware Workstation playerでGazeboを動かす場合は以下の環境変数を.bashrcに追加する。
 
     ```
     export SVGA_VGPU10=0
