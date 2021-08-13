@@ -13,6 +13,7 @@
     ```
     $ sudo apt update
     $ sudo apt upgrade
+    $ sudo apt install git
     ```
 
 ## ROS Melodicセットアップスクリプトをダウンロード
@@ -61,14 +62,14 @@
     ```
     $ cd ~/git
     $ git clone https://github.com/docofab/RoombaControlls.git
-    $ cd RoombaControlls/ROS
+    $ cd RoombaControlls/ROS/scripts
     $ chmod 755 *.sh
     $ ./install-gazebo-roomba.sh
     ```
 
 ## .bashrcの設定
 
-1. VMware Workstation playerでGazeboを動かす場合は以下の環境変数を.bashrcに追加する。
+1. VMware Workstation PlayerでGazeboを動かす場合は以下の設定を.bashrcに追加する。
 
     ```
     export SVGA_VGPU10=0
