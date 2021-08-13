@@ -42,7 +42,7 @@ $ roslaunch ca_driver create_2.launch
 例
 * x軸方向に0.2m/s
 * z軸まわりに0rad/s
-* オプション-rは配信する周期[Hz](デフォルトは10Hz)
+* オプション-rは配信する周期Hz(デフォルトは10Hz)
 
 ```
 $ rostopic pub /create1/cmd_vel geometry_msgs/Twist '{linear: {x: 0.2}, angular: {z: 0.0}}' -r 100
