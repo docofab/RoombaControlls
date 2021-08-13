@@ -4,6 +4,7 @@
   - setup-gazebo-rasppi.md Roombaのシミュレーション環境のセットアップ(Raspberry Pi 4)
   - setup-gazebo-rasppi.md Roomba実機を動かす環境のセットアップ(Raspberry Pi 4)
   - setup-gazebo-docker.md Roombaのシミュレーション環境のセットアップ (PCでのDockerのセットアップからROSのGazebo環境設置まで)
+  - setup-gazebo-vmware.md Roombaのシミュレーション環境のセットアップ (PCでのVMware Workstation PlayerのlubuntuでROS MelodicとGazebo環境設置まで)
 
 - ## [scripts][2]
   - install-gazebo-roomba-rasppi.sh Raspberry Pi 4のMelodic環境にGazeboをインストールするスクリプト
