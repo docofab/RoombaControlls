@@ -36,15 +36,12 @@ def main_loop():
 
     while not rospy.is_shutdown():
         if isLinear:
-            vel_msg.angular.z = 0
-            vel_msg.linear.x  = linear_vel
-            vel_publisher.publish(vel_msg)
-            rospy.loginfo("Velocity: Linear=%s Angular=%s", vel_msg.linear.x, vel_msg.angular.z)
+            set_vel(vel_msg, linear_vel, 0)
         else:
-            vel_msg.angular.z = angular_vel
-            vel_msg.linear.x  = 0
-            vel_publisher.publish(vel_msg)
-            rospy.loginfo("Velocity: Linear=%s Angular=%s", vel_msg.linear.x, vel_msg.angular.z)
+            set_vel(vel_msg, 0, angular_vel)
+
+        vel_publisher.publish(vel_msg)
+        rospy.loginfo("Velocity: Linear=%s Angular=%s", vel_msg.linear.x, vel_msg.angular.z)
 
         count = count + 1
         if count > 100:
