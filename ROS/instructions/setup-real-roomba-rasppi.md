@@ -66,8 +66,8 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
 ## RoombaとシリアルUSBを接続する
 
 1. RoombaとシリアルUSBを接続する。
-接続図は以下の通り
 
+    接続は以下の通り
     ```
     FT232(5V)   Roomba
     GND ------- 6,7 GND
@@ -79,11 +79,13 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     ```
     ルンバのコネクタを上からみた図
     ```
-    　 　(1)　(2)
-          =====
-    　(3) ===== (4)
+                      (1) (2)
+                       =====
+    FT232 TXD <----(3) ===== (4)----> FT232 RXD
 
-       (5) (6) (7)
+                    (5) (6) (7)
+                         |
+                        GND
     ```
 1. Roombaの電源を入れる。
 1. シリアルUSBのデバイスのパーミッションのotherがrwになっていることを確認する。
@@ -101,11 +103,12 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
 
 ## Roombaを動かす
 
+1. Roombaの電源を入れる
 1. 別にターミナルを１つ立ち上げて以下のコマンドを入力する。
     ```
     $  roslaunch ca_driver create_2.launch
     ```
-1. 以下のような画面になることを確認する。
+1. 以下のような画面になることを確認する。正常に接続できるとRoombaから音が鳴る。
     ```
     roslaunch ca_driver create_2.launch
     ... logging to /home/ocha/.ros/log/9446b7ae-dbc3-11eb-a1eb-dca632721712/roslaunch-ubuntu-3710.log
