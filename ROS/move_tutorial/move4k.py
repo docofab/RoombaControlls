@@ -18,36 +18,39 @@ def main_loop():
     vel_msg = Twist()
     set_vel(vel_msg, 0, 0)
     print("Let's move your robot")
-    Length  = input("Input length [m] :")
+    length  = input("Input length [m] :")
     #time    = input("Input time [s] :")
     #linear_vel  = input("Input linear velocity [m/s] :")
     #angular_vel = input("Input angular velocity [rad/s] :")
 
-    # 360[deg] = 2pi[rad] 
-    # angular[rad/s] = 2pi / time[s]
-    # linear[m/s] = radius[m] x angular[rad/s]
+    # 90[deg] = pi/4[rad] 
+    # angular[rad/s] = pi/4 / time[s]
+    # linear[m/s] = length / time[s]
 
-    # example
-    #  deg=360,r=1[m],t=10[sec]
-    #  angular = 2pi/10 = 0.628[rad/s]
-    #  linear  = 1 x (2pi/10) = 0.628[m/s]
- 
-    angular_vel = math.pi / 2
-    linear_vel  = length
+    angular_vel = math.pi / 2.0 / 10.0  # 1/10sec (100count)
+    linear_vel  = length / 10.0        # 1/10sec (100count)
 
-    rate = rospy.Rate(1)
+    rate = rospy.Rate(10)        # 10Hz=100ms=1/10sec
+    isLinear = True
+    count = 0
 
     while not rospy.is_shutdown():
-        vel_msg.angular.z = 0
-        vel_msg.linear.x  = linear_vel
-        vel_publisher.publish(vel_msg)
-        rospy.loginfo("Velocity: Linear=%s Angular=%s", vel_msg.linear.x, vel_msg.angular.z)
-        rate.sleep()
+        if isLinear:
+            vel_msg.angular.z = 0
+            vel_msg.linear.x  = linear_vel
+            vel_publisher.publish(vel_msg)
+            rospy.loginfo("Velocity: Linear=%s Angular=%s", vel_msg.linear.x, vel_msg.angular.z)
+        else:
+            vel_msg.angular.z = angular_vel
+            vel_msg.linear.x  = 0
+            vel_publisher.publish(vel_msg)
+            rospy.loginfo("Velocity: Linear=%s Angular=%s", vel_msg.linear.x, vel_msg.angular.z)
 
-        vel_msg.angular.z = angular_vel
-        vel_msg.linear.x  = 0
-        vel_publisher.publish(vel_msg)
-        rospy.loginfo("Velocity: Linear=%s Angular=%s", vel_msg.linear.x, vel_msg.angular.z)
+        count = count + 1
+        if count > 100:
+            isLinear = not isLinear
+            count = 0
+
         rate.sleep()
 
 
