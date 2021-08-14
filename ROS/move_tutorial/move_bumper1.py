@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-# Reference sites
-# https://demura.net/robot/hard/20101.html
-
 import rospy
 from geometry_msgs.msg import Twist
+from ca_msgs.msg import Bumper
 
 def set_vel(vel_msg, lv, av):
     vel_msg.linear.x  = lv
@@ -15,22 +12,42 @@ def set_vel(vel_msg, lv, av):
     vel_msg.angular.y = 0
     vel_msg.angular.z = av
 
-def main_loop():
+back = False
+
+def main():
+    global back
+
     rospy.init_node('move')
     vel_publisher = rospy.Publisher('/create1/cmd_vel', Twist, queue_size=10)
+
     vel_msg = Twist()
     set_vel(vel_msg, 0, 0)
     print("Let's move your robot")
-    linear_vel  = input("Input linear velocity [m/s] :")
-    angular_vel = input("Input angular velocity [rad/s] :")
-    vel_msg.linear.x  = linear_vel
-    vel_msg.angular.z = angular_vel
-    rate = rospy.Rate(10)
+
+    hz = 1
+    rate = rospy.Rate(hz)
+
+    sub = rospy.Subscriber('/create1/bumper', Bumper, callback)
 
     while not rospy.is_shutdown():
         vel_publisher.publish(vel_msg)
         rospy.loginfo("Velocity: Linear=%s Angular=%s", vel_msg.linear.x, vel_msg.angular.z)
+        if back:
+            set_vel(vel_msg, -0.2, -0.5)
+        else:
+            set_vel(vel_msg, 0.2, 0)
+
         rate.sleep()
 
+
+def callback(bumper):
+    # print bumper
+    global back
+    if bumper.is_left_pressed or bumper.is_right_pressed:
+        back = True
+    else:
+        back = False
+
+
 if __name__ == '__main__':
-        main_loop()
+    main()
