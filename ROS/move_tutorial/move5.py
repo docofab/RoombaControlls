@@ -35,8 +35,7 @@ def main_loop():
     angular_vel = 2 * math.pi / time
     linear_vel  = angular_vel * radius
 
-    vel_msg.angular.z = angular_vel
-    vel_msg.linear.x  = linear_vel
+    set_vel(vel_msg, linear_vel, angular_vel)
 
     rate = rospy.Rate(10)
 
