@@ -156,7 +156,7 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     ```
     $ roslaunch ca_tools keyboard_teleop.launch
     ```
-1. 以下のような画面になれば、Gazeboシュミレータと同様にキーボードでRoombaの実機が制御できる状態になる。
+1. 以下のような画面になれば、Gazeboシミュレータと同様にキーボードでRoombaの実機が制御できる状態になる。
     ```
     $ roslaunch ca_tools keyboard_teleop.launch
     ... logging to /home/ocha/.ros/log/9446b7ae-dbc3-11eb-a1eb-dca632721712/roslaunch-ubuntu-3779.log

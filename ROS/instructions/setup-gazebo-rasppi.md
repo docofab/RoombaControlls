@@ -98,7 +98,7 @@ $ cd ~/git/RoombaControlls/ROS
 $ ./install-gazebo-roomba-rasppi.sh
 ```
 
-## Gazeboシュミレーターの起動
+## Gazeboシミュレーターの起動
 
 1. 新たにターミナルを起動して以下のコマンドを入力する。
     ```
@@ -108,5 +108,5 @@ $ ./install-gazebo-roomba-rasppi.sh
     ```
     $ roslaunch ca_tools keyboard_teleop.launch
     ```
-1. キーボードでシュミレータのRoombaがコントロールできることを確認する。
+1. キーボードでシミュレータのRoombaがコントロールできることを確認する。
 
