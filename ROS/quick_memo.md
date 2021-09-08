@@ -68,3 +68,9 @@ $ roslaunch <パッケージ名>　<Launchファイル名>
 ```
 $ roslaunch ca_gazebo create_empty_world.launch
 ```
+
+
+##  グラフを表示
+```
+$ rqt_graph
+```
