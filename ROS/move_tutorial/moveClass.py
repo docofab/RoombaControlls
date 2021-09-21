@@ -28,6 +28,7 @@
 
 import rospy # rospy http://docs.ros.org/en/jade/api/rospy/html/rospy-module.html
 from geometry_msgs.msg import Twist 
+import time
 
 class MotionController:
     """
@@ -52,7 +53,7 @@ class MotionController:
         self.HZ = HZ
         self.rate = rate
         self.logger = logger
-    # move function
+    # Utility function
     def set_vel(self, lv, av):
         """
         @fn 
@@ -69,7 +70,7 @@ class MotionController:
         self.vel_msg.angular.z = av
 
         ## Actually Speed limit is needed, but omitted.
-    # move operation
+    # Basic Move Operation
     def move_stop(self):
         """
         @fn 
@@ -81,7 +82,6 @@ class MotionController:
         """
         self.set_vel(0,0)
         self.vel_publisher.publish(self.vel_msg)
-
     def move_advance(self,target_distance,maxspeed):
         """
         @fn 
@@ -106,7 +106,7 @@ class MotionController:
             self.rate.sleep()
 
         self.move_stop()
-
+        self.rate.sleep()
     def move_turn(self, target_angle,maxspeed):
         """
         @fn 
@@ -120,7 +120,7 @@ class MotionController:
         period = 1.0 / self.HZ
         angle = 0
 
-        self.set_vel(0,speed)
+        self.set_vel(0,-speed)
 
         while not self.rospy_shutdown:
             angle += speed * period
@@ -133,7 +133,26 @@ class MotionController:
 
         self.move_stop()
         self.rate.sleep()
-        
+    # Sequential Move Operation
+    def move_rectangle(self, vertical_length, horizontal_length):
+        # Only Counter clockwise
+        self.move_advance(vertical_length,1)
+        time.sleep(5)
+        self.move_turn(1.57, 1)
+        time.sleep(5)
+        self.move_advance(horizontal_length,1)
+        time.sleep(5)
+        self.move_turn(1.57, 1)
+        time.sleep(5)
+        self.move_advance(vertical_length,1)
+        time.sleep(5)
+        self.move_turn(1.57, 1)
+        time.sleep(5)
+        self.move_advance(horizontal_length,1)
+        time.sleep(5)
+        self.move_turn(1.57, 1)
+        time.sleep(5)
+
 def main_loop():
     rospy.init_node( 'move' )
     vel_publisher = rospy.Publisher( '/create1/cmd_vel', Twist, queue_size=10 )
@@ -151,18 +170,10 @@ def main_loop():
 
     #advance_length = input("Input advance length [m]:")
 
-    #motionController1.move_advance(advance_length, 1)
-    motionController1.move_turn(3.14, 1)
-
-    # vertical_length = input("Input vertical length of rectangle [m]:")
-    # horizontal_length = input("Input horizontal length of rectangle [m]:")
+    vertical_length = input("Input vertical length of rectangle [m]:")
+    horizontal_length = input("Input horizontal length of rectangle [m]:")
     
-    # linear_vel  = 1 #[m/s]
-    # angular_vel = 0.3 #[rad/s]
-
-    # vel_msg.linear.x = linear_vel
-    # vel_msg.angular.z = angular_vel
-
+    motionController1.move_rectangle( vertical_length, horizontal_length)
 
 if __name__ == '__main__':
     main_loop()
