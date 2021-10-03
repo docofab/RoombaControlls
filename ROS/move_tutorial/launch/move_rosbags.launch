@@ -1,0 +1,6 @@
+<launch>
+<include file="$(find ca_gazebo)/launch/create_empty_world.launch"> />
+ </include>
+  <node name="rosbag_recorder" pkg="rosbag" type="record" args="record -a -o /home/aki-local/rosbag/." />
+  <node name="move" pkg="move" type="moveClass.py" required="true" />
+</launch>
