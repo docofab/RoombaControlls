@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#
+# 4.正方形を描く
+#  １辺がx[m]の正方形の軌跡を描くようにロボットを動かそう。
+
 import rospy
 import math
 from geometry_msgs.msg import Twist
