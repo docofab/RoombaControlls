@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#
+# 5.円を描く
+#  半径x[m]の円の軌跡を描くようにロボットを動かそう。
+
 import rospy
 import math
 from geometry_msgs.msg import Twist
