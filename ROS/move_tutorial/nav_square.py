@@ -31,8 +31,21 @@
 import rospy
 from geometry_msgs.msg import Twist, Point, Quaternion
 import tf
-from rbx1_nav.transform_utils import quat_to_angle, normalize_angle
+import PyKDL
+#from rbx1_nav.transform_utils import quat_to_angle, normalize_angle
 from math import radians, copysign, sqrt, pow, pi
+
+def quat_to_angle(quat):
+    rot = PyKDL.Rotation.Quaternion(quat.x, quat.y, quat.z, quat.w)
+    return rot.GetRPY()[2]
+        
+def normalize_angle(angle):
+    res = angle
+    while res > pi:
+        res -= 2.0 * pi
+    while res < -pi:
+        res += 2.0 * pi
+    return res
 
 class NavSquare():
     def __init__(self):
