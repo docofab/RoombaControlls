@@ -16,7 +16,7 @@ from math import radians, copysign, sqrt, pow, pi
 class NavSquare():
     def __init__(self):
         # Give the node a name
-        rospy.init_node('nav_square', anonymous=False)
+        rospy.init_node('move', anonymous=False)
         
         # Set rospy to execute a shutdown function when terminating the script
         rospy.on_shutdown(self.shutdown)
@@ -72,7 +72,7 @@ class NavSquare():
             # 現在のオドメトリの値を初期位置・姿勢に代入します。
             # Get the starting position values
             (position, rotation) = self.get_odom()
-                        
+            
             x_start = position.x
             y_start = position.y
             
@@ -84,6 +84,7 @@ class NavSquare():
                 # Publish the Twist message and sleep 1 cycle
                 # 速度をパブリッシュして、1サイクルだけスリープします。
                 self.cmd_vel.publish(move_cmd)
+                rospy.loginfo("Velocity: Linear=%s Angular=%s", move_cmd.linear.x, move_cmd.angular.z)
                 
                 r.sleep()
         
@@ -100,6 +101,7 @@ class NavSquare():
             # ロボットを止めて90度回転します。
             move_cmd = Twist()
             self.cmd_vel.publish(move_cmd)
+            rospy.loginfo("Velocity: Linear=%s Angular=%s", move_cmd.linear.x, move_cmd.angular.z)
             rospy.sleep(1.0)
             
             # Set the movement command to a rotation
@@ -118,7 +120,8 @@ class NavSquare():
                 # Publish the Twist message and sleep 1 cycle
                 # 速度をパブリッシュして、1サイクルだけスリープします。
                 self.cmd_vel.publish(move_cmd)
-                
+                rospy.loginfo("Velocity: Linear=%s Angular=%s", move_cmd.linear.x, move_cmd.angular.z)
+    
                 r.sleep()
                 
                 # Get the current rotation
