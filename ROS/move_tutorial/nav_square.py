@@ -3,10 +3,31 @@
 #
 # nav_square.py
 # http://dailyrobottechnology.blogspot.com/2014/12/793-navsquarepy.html
+# https://github.com/pirobot/ros-by-example/blob/master/rbx_vol_1/rbx1_nav/nodes/nav_square.py
 #
 # 4.正方形を描く
 #  １辺がx[m]の正方形の軌跡を描くようにロボットを動かそう。
 #
+
+""" nav_square.py - Version 0.1 2012-03-24
+    A basic demo of the using odometry data to move the robot
+    along a square trajectory.
+    Created for the Pi Robot Project: http://www.pirobot.org
+    Copyright (c) 2012 Patrick Goebel.  All rights reserved.
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.5
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details at:
+    
+    http://www.gnu.org/licenses/gpl.html
+      
+"""
+
 import rospy
 from geometry_msgs.msg import Twist, Point, Quaternion
 import tf
@@ -121,7 +142,7 @@ class NavSquare():
                 # 速度をパブリッシュして、1サイクルだけスリープします。
                 self.cmd_vel.publish(move_cmd)
                 rospy.loginfo("Velocity: Linear=%s Angular=%s", move_cmd.linear.x, move_cmd.angular.z)
-    
+                
                 r.sleep()
                 
                 # Get the current rotation
@@ -134,3 +155,32 @@ class NavSquare():
                 
                 turn_angle += delta_angle
                 last_angle = rotation
+
+            move_cmd = Twist()
+            self.cmd_vel.publish(move_cmd)
+            rospy.sleep(1.0)
+            
+        # Stop the robot when we are done
+        self.cmd_vel.publish(Twist())
+        
+    def get_odom(self):
+        # Get the current transform between the odom and base frames
+        try:
+            (trans, rot)  = self.tf_listener.lookupTransform(self.odom_frame, self.base_frame, rospy.Time(0))
+        except (tf.Exception, tf.ConnectivityException, tf.LookupException):
+            rospy.loginfo("TF Exception")
+            return
+
+        return (Point(*trans), quat_to_angle(Quaternion(*rot)))
+            
+    def shutdown(self):
+        # Always stop the robot when shutting down the node
+        rospy.loginfo("Stopping the robot...")
+        self.cmd_vel.publish(Twist())
+        rospy.sleep(1)
+
+if __name__ == '__main__':
+    try:
+        NavSquare()
+    except rospy.ROSInterruptException:
+        rospy.loginfo("Navigation terminated.")
