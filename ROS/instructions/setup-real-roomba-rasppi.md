@@ -6,7 +6,7 @@
 
 以下を参考にROSとcreate_autonomyをインストールしたRaspberry Pi 4(4GB)環境を準備する。
 
-https://github.com/docofab/RoombaControlls/blob/main/ROS/setup-gazebo-rasppi.md
+https://github.com/docofab/RoombaControlls/blob/main/ROS/instructions/setup-gazebo-rasppi.md
 
 ## Raspberry Piの準備
 
