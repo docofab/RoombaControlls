@@ -6,7 +6,7 @@
 
 以下を参考にROSとcreate_autonomyをインストールしたRaspberry Pi 4(4GB)環境を準備する。
 
-https://github.com/docofab/RoombaControlls/blob/main/ROS/setup-gazebo-rasppi.md
+https://github.com/docofab/RoombaControlls/blob/main/ROS/instructions/setup-gazebo-rasppi.md
 
 ## Raspberry Piの準備
 
@@ -14,7 +14,7 @@ https://github.com/docofab/RoombaControlls/blob/main/ROS/setup-gazebo-rasppi.md
 1. デスクトップが表示されたらログインする。
 1. WiFiに接続し、割り当てられたIPアドレスを確認する。
    ```
-   $ ip address
+   ip address
    ```
 
 ## Raspberry Piにsshログイン
@@ -26,9 +26,13 @@ https://github.com/docofab/RoombaControlls/blob/main/ROS/setup-gazebo-rasppi.md
 
 Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使用する。
 
-1. Raspberry Pi 4とUSBシリアルでRoombaを接続すると、OSでUSBシリアルが認識される。今回は/dev/ttyUSB0で認識された。
+1. Raspberry Pi 4とUSBシリアルでRoombaを接続すると、OSでUSBシリアルが認識されているか確認する。
     ```
-    $ ls -l /dev/ttyUSB*
+    ls -l /dev/ttyUSB*
+    ```
+1. 今回は/dev/ttyUSB0で認識したので、以下のように表示された。  
+（実行例）
+    ```
     crw-rw---- 1 root dialout 188, 0 May 28 00:28 /dev/ttyUSB0
     ```
 
@@ -36,8 +40,12 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
 
 シリアルUSBデバイスをどのユーザからも読み書きできるように設定する。（毎回chmodでの設定が不要になるように）
 
-1. lsusbコマンドでシリアルUSBデバイスのベンダーIDとプロダクトIDをメモする。今回のシリアルUSBはFT232を使用している。
-
+1. lsusbコマンドを入力する。
+    ```
+    lsusb
+    ```
+1. シリアルUSBデバイスのベンダーIDとプロダクトIDをメモする。今回のシリアルUSBはFT232を使用している。  
+（実行例）
     ```
     $ lsusb
     Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
@@ -48,7 +56,11 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
     ```
 
-1. sudo vi /etc/udev/rules.d/77-roomba.rulesで、以下のように書き込む。
+1. 以下のコマンドを実行する。
+    ```
+    sudo vi /etc/udev/rules.d/77-roomba.rules
+    ```
+1. 以下のように書き込む。
     ```
     KERNEL=="ttyUSB*", ATTRS{idVendor}=="ベンダーID", ATTRS{idProduct}=="プロダクトID", GROUP="dialout", MODE="0666"
     ```
@@ -57,7 +69,12 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     KERNEL=="ttyUSB*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", GROUP="dialout", MODE="0666"
     ```
 1. RoombaのUSBシリアルケーブルを一度抜き、再度差し込む。
-1. udevの設定が行われ、パーミッションのotherがrwになっていることを確認する。
+1. デバイスファイルを確認する。
+    ```
+    ls -l /dev/ttyUSB*
+    ```
+1. udevの設定が行われ、パーミッションのotherがrwになっていることを確認する。  
+（実行例）
     ```
     $ ls -l /dev/ttyUSB*
     crw-rw-rw- 1 root dialout 188, 0 Jul  3 14:45 /dev/ttyUSB0
@@ -88,16 +105,22 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
                         GND
     ```
 1. Roombaの電源を入れる。
-1. シリアルUSBのデバイスのパーミッションのotherがrwになっていることを確認する。
+1. シリアルUSBのデバイスのパーミッションのotherがrwになっていることを確認する。  
+（実行例）
     ```
     $ ls -l /dev/ttyUSB0
     crw-rw-rw- 1 root dialout 188, 0 Jul  3 14:45 /dev/ttyUSB0
     ```
 1. 以下のコマンドを入力して、/dev/roomba でアクセスできるようにする。
     ```
-    $ cd /dev
-    $ sudo ln -s ttyUSB0 roomba
-    $ ls -l /dev/roomba 
+    cd /dev
+    sudo ln -s ttyUSB0 roomba
+    ls -l /dev/roomba 
+    ```
+1. 以下のように表示されることを確認する。  
+（実行例）
+    ```
+    $ ls -l /dev/roomba
     lrwxrwxrwx 1 root root 7 Jul  3 14:57 /dev/roomba -> ttyUSB0
     ```
 
@@ -106,9 +129,10 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
 1. Roombaの電源を入れる
 1. 別にターミナルを１つ立ち上げて以下のコマンドを入力する。
     ```
-    $  roslaunch ca_driver create_2.launch
+    roslaunch ca_driver create_2.launch
     ```
-1. 以下のような画面になることを確認する。正常に接続できるとRoombaから音が鳴る。
+1. 以下のような画面になることを確認する。正常に接続できるとRoombaから音が鳴る。  
+    （実行例）
     ```
     roslaunch ca_driver create_2.launch
     ... logging to /home/ocha/.ros/log/9446b7ae-dbc3-11eb-a1eb-dca632721712/roslaunch-ubuntu-3710.log
@@ -154,9 +178,10 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     ```
 1. もう一つターミナルを立ち上げて以下のコマンドを入力する。
     ```
-    $ roslaunch ca_tools keyboard_teleop.launch
+    roslaunch ca_tools keyboard_teleop.launch
     ```
-1. 以下のような画面になれば、Gazeboシミュレータと同様にキーボードでRoombaの実機が制御できる状態になる。
+1. 以下のような画面になれば、Gazeboシミュレータと同様にキーボードでRoombaの実機が制御できる状態になる。  
+    （実行例）
     ```
     $ roslaunch ca_tools keyboard_teleop.launch
     ... logging to /home/ocha/.ros/log/9446b7ae-dbc3-11eb-a1eb-dca632721712/roslaunch-ubuntu-3779.log
