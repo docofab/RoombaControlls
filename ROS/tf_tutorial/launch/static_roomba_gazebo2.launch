@@ -1,0 +1,9 @@
+<launch>
+
+　<node pkg="tf" type="static_transform_publisher" name="base_to_bumper" args="0.0 0.0 0.0 0.0 0.0 0.0 1.0 create1/base_link create1/bumper_link 10" />
+　<node pkg="tf" type="static_transform_publisher" name="base_footprint_to_wheelleft" args="0 0.1175 0.036 -0.1422114324 0.69265858 0.69265858 0.1422114324 create1/base_footprint create1/wheel_left_link 10" />
+　<node pkg="tf" type="static_transform_publisher" name="base_footprint_to_wheelright" args="0 -0.1175 0.036 0.2910434589 0.6444328553 0.6444328553 -0.2910434589 create1/base_footprint create1/wheel_right_link 10" />
+　<node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0.3922437657 0.2127300054 0 0 0 -0.01511040775 0.9998858313 map create1/odom 10" />
+　<node pkg="tf" type="static_transform_publisher" name="odom_to_base_footprint" args="-0.9239296319 7.233293193 0 0 0 0.1028968855 0.9946920282 create1/odom create1/base_footprint 10" />
+
+</launch>
