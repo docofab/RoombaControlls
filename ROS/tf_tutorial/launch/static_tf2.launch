@@ -1,0 +1,6 @@
+<launch>
+
+  <node pkg="tf" type="static_transform_publisher" name="robot_to_sensor" args="0.2 0 0.1 0 0 0 robot sensor 10" />
+　<node pkg="tf" type="static_transform_publisher" name="map_to_robot" args="1.0 0.5 0 0 0 0 map robot 10" />
+
+</launch>
