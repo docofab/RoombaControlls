@@ -9,7 +9,7 @@ mv catkin_ws catkin_ws_save
 mkdir -p ~/catkin_ws/src
 cd catkin_ws
 catkin_make
-source devel/setup.bash
+bash devel/setup.bash
 
 # Install libfreenect
 cd ~/git/
@@ -29,7 +29,7 @@ git clone https://github.com/ros-drivers/rgbd_launch.git
 git clone https://github.com/ros-drivers/freenect_stack.git
 cd ~/catkin_ws
 catkin_make
-source ~/.bashrc
+bash ~/.bashrc
 
 # Install RTAB-Map standalone library
 cd ~/git
