@@ -1,5 +1,7 @@
 # Roombaのシミュレーション環境でのSLAMとNavigation
 
+* 参考ページ：https://demura.net/robot/hard/20061.html
+
 ## STEP1. シミュレータ環境の準備
 
 Roombaのシミュレーション環境は以下の４つのパターンがあるので利用できるものを準備する。
@@ -24,7 +26,7 @@ Roombaのシミュレーション環境は以下の４つのパターンがあ�
     ```
     roslaunch ca_tools keyboard_teleop.launch
     ```
-1. キーボードを動かして地図を作る。
+1. Rvizを見ながらキーボードを動かして地図を作る。
 
 ## STEP3. 地図の保存
 
@@ -39,7 +41,7 @@ Roombaのシミュレーション環境は以下の４つのパターンがあ�
 1. 作成したmymap.worldファイルを所定のディレクトリに配置する。
 
     ```
-    cp ~/mymap.world ~/catkin_ws/src/create_autonomy/ca_gazebo/worlds/.
+    cp ~/mymap.world ~/catkin_ws/src/create_autonomy/ca_gazebo/worlds
     ```
 
 1. 作成した地図ファイル(mymap.pgm, mymap.yaml)を所定のディレクトリに配置する。
