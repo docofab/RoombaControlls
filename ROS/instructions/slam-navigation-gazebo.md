@@ -9,7 +9,7 @@ Roombaのシミュレーション環境は以下の４つのパターンがあ�
 * パターン1 [Raspberry Pi 4にUbuntu+ROSをいれてLinux PC替わりに使う。](../instructions/setup-gazebo-rasppi.md)（ちと重い）
 * パターン2 [Dockerで動かす。](../instructions/setup-gazebo-docker.md) (ただし、M1 MacはGazeboが動かない）
 * パターン3 [VMWare workstation playerにUbuntu+ROSをいれて動かす。](../instructions/setup-gazebo-vmware.md)（ただし、M1 MacはGazeboが動かない）
-* パターン4 [UbuntuをインストールしたPCでROSを動かす。](../instructions/setup-gazebo-vmware.md)（一番高速） 
+* パターン4 [UbuntuをインストールしたPCでROSを動かす。](../instructions/setup-gazebo-ubuntu.md)（一番高速） 
 
 ## STEP2. 新しいWorldの作成と地図の取得
 
