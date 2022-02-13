@@ -1,10 +1,13 @@
 ### ROSを使ってRoombaを動かしてみようというサブプロジェクト
 
 - ## [instructions][1] 
-  - setup-gazebo-rasppi.md Roombaのシミュレーション環境のセットアップ(Raspberry Pi 4)
-  - setup-gazebo-rasppi.md Roomba実機を動かす環境のセットアップ(Raspberry Pi 4)
-  - setup-gazebo-docker.md Roombaのシミュレーション環境のセットアップ (PCでのDockerのセットアップからROSのGazebo環境設置まで)
-  - setup-gazebo-vmware.md Roombaのシミュレーション環境のセットアップ (PCでのVMware Workstation PlayerのlubuntuでROS MelodicとGazebo環境設置まで)
+  - [setup-gazebo-rasppi.md](instructions/setup-gazebo-rasppi.md) Roombaのシミュレーション環境のセットアップ (Raspberry Pi 4にUbuntu+ROS+Gazebo環境設置まで)
+  - [setup-gazebo-docker.md](instructions/setup-gazebo-docker.md) Roombaのシミュレーション環境のセットアップ (PCでのDockerのセットアップからROSのGazebo環境設置まで)
+  - [setup-gazebo-vmware.md](instructions/setup-gazebo-vmware.md) Roombaのシミュレーション環境のセットアップ (PCでのVMware Workstation PlayerのlubuntuでROS MelodicとGazebo環境設置まで)
+  - [setup-gazebo-ubuntu.md](instructions/setup-gazebo-ubuntu.md) Roombaのシミュレーション環境のセットアップ (Ubuntu18.04LTSをインストールしたPCでROS MelodicとGazebo環境設置まで)
+  - [slam-navigation-gazebo.md](instructions/slam-navigation-gazebo.md) Roombaのシミュレーション環境でのSLAMとNavigationの動かし方
+  - [setup-real-roomba-rasppi.md](instructions/setup-real-roomba-rasppi.md) Roomba実機を動かす環境のセットアップ(Raspberry Pi 4)
+  - [setup-real-roomba-rasppi_3.md](instructions/setup-real-roomba-rasppi_3.md) Roomba実機を動かす環境のセットアップ(Raspberry Pi 3 B+)
 
 - ## [scripts][2]
   - install-gazebo-roomba-rasppi.sh Raspberry Pi 4のMelodic環境にGazeboをインストールするスクリプト
