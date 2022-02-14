@@ -48,6 +48,7 @@ Roombaのシミュレーション環境は以下の４つのパターンがあ�
     ```
     cp ~/mymap.pgm ~/mymap.yaml ~/catkin_ws/src/create_autonomy/navigation/ca_move_base/maps
     ```
+## STEP5. 作成したWorldと地図でNavigationをする。
 
 1. envパラメタにmymapを指定してGazeboとRvizを起動する。mymap.world, mymap.pgm, mymap.yamlが読み込まれ、Gazeboにworldが、Rvizにmapが表示される。
     ```
@@ -59,8 +60,3 @@ Roombaのシミュレーション環境は以下の４つのパターンがあ�
 1. Rvizを見ながらkeyboard_teleop.launchのターミナルからキーボードを操作してルンバの位置を上下左右、回転等少しずつ動かすと、ルンバはセンサの情報を収集し、地図上の位置が同定される。
 
 1. 地図上の位置が同定されたあとに、Rvizの2D Nav Goalをクリックし、移動先の地点を指定するとルンバがそこまで移動します。
-
-
-
-
-
