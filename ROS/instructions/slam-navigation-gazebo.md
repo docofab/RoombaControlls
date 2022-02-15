@@ -53,6 +53,7 @@ Roombaのシミュレーション環境は以下の４つのパターンがあ�
 1. envパラメタにmymapを指定してGazeboとRvizを起動する。mymap.world, mymap.pgm, mymap.yamlが読み込まれ、Gazeboにworldが、Rvizにmapが表示される。
     ```
     export LOCALIZATION=amcl
+    export RVIZ_CONFIG=navigation
     roslaunch ca_gazebo create_empty_world.launch env:=mymap
     ```
 1. Rvizの2D Pose Estimationをクリックし、ルンバの位置と向きを地図を合わせる。実際のルンバの位置をマウスポインタで指定し、緑の矢印をルンバの向きに合うようにドラッグし、大まかな位置を合わせる。（ここがなぜか動かない。ヒントがあったら教えてください。）
