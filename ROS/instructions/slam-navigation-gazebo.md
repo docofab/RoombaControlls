@@ -56,8 +56,9 @@ Roombaのシミュレーション環境は以下の４つのパターンがあ�
     export RVIZ_CONFIG=navigation
     roslaunch ca_gazebo create_empty_world.launch env:=mymap
     ```
-1. Rvizの2D Pose Estimationをクリックして、実際のルンバの位置をマウスポインタで指定し、緑の矢印をルンバの向きに合うようにドラッグすることで、大まかな位置を合わせる。（ここがなぜか動かない。ヒントがあったら教えてください。）
-
+1. RvizのPanels -> Tool Propertiesにチェックを入れる。
+1. Tool Propertiesパネルが表示されるので、2D Pose EstimateのTopicを /initialpose から /create1/initialpose に変更し、2D Nav GoalのTopicを /move_base_simple/goal から /create1/move_base_simple/goal に変更する。
+1. Rvizの2D Pose Estimationをクリックして、実際のルンバの位置をマウスポインタで指定し、緑の矢印をルンバの向きに合うようにドラッグすることで、大まかな位置を合わせる。
 1. Rvizを見ながらkeyboard_teleop.launchのターミナルからキーボードを操作してルンバの位置を上下左右や回転などを行い少しずつ動かすと、ルンバはセンサの情報を収集し、地図上の位置が同定される。
 
 1. 地図上の位置が同定されたあとに、Rvizの2D Nav Goalをクリックし、移動先の地点を指定するとルンバがその場所まで移動する。
