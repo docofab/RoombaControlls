@@ -7,36 +7,36 @@
 ## システム構成
 
 ```mermaid
-flowchart LR
-  subgraph Roomba
-    direction TB
-    subgraph C2[rplidar]
-        direction BT
-    end
-    subgraph C1[ca_driver]
-        direction RL
-    end
-  end
+flowchart TB
   subgraph PC
     direction TB
     subgraph B1[roscore]
-        direction RL
+        direction TB
     end
     subgraph B3[Rviz]
-        direction BT
+        direction TB
     end
     subgraph B2[Gazebo]
-        direction BT
+        direction TB
     end
     subgraph B4[keyboard teleop]
-        direction BT
+        direction TB
     end
   end
-  B4 -- /create1/cmd_vel --> B2
-  B4 -- /create1/cmd_vel --> C1
-  PC <--> WiFi
-  Roomba <--> WiFi
-  ```
+  subgraph Roomba
+    direction TB
+    subgraph C2[rplidar]
+        direction TB
+    end
+    subgraph C1[ca_driver]
+        direction TB
+    end
+  end
+B4 -- /create1/cmd_vel --> B2
+B4 -- /create1/cmd_vel --> C1
+PC <--> WiFi
+Roomba <--> WiFi
+```
 
 
 ## リモートPCのセットアップ
