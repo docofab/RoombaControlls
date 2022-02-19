@@ -7,12 +7,15 @@
   - [setup-gazebo-ubuntu.md](instructions/setup-gazebo-ubuntu.md) Roombaのシミュレーション環境のセットアップ (Ubuntu18.04LTSをインストールしたPCでROS MelodicとGazebo環境設置まで)
   - [slam-navigation-gazebo.md](instructions/slam-navigation-gazebo.md) Roombaのシミュレーション環境でのSLAMとNavigationの動かし方
   - [setup-real-roomba-rasppi.md](instructions/setup-real-roomba-rasppi.md) Roomba実機を動かす環境のセットアップ(Raspberry Pi 4)
-  - [setup-real-roomba-rasppi_3.md](instructions/setup-real-roomba-rasppi_3.md) Roomba実機を動かす環境のセットアップ(Raspberry Pi 3 B+)
+  - [setup-real-roomba-rasppi_3.md](instructions/setup-real-roomba-rasppi_3.md) Roomba実機を動かす環境のセットアップ(Raspberry Pi 3 B+ + PC)
 
 - ## [scripts][2]
-  - install-gazebo-roomba-rasppi.sh Raspberry Pi 4のMelodic環境にGazeboをインストールするスクリプト
-  - install-gazebo-roomba.sh  PCのMelodic環境にGazeboをインストールするスクリプト
-  - install-ros-melodic-rasppi.sh  Raspberry Pi 4にROS Melodicをインストールするスクリプト 
+  - [install-gazebo-roomba.sh](scripts/install-gazebo-roomba.sh) PCのMelodic環境にGazeboをインストールするスクリプト
+  - [install-ros-melodic-rasppi.sh](scripts/install-ros-melodic-rasppi.sh) Raspberry Pi 4にROS Melodicをインストールするスクリプト
+  - [install-gazebo-roomba-rasppi.sh](scripts/install-gazebo-roomba-rasppi.sh) Raspberry Pi 4のMelodic環境にGazeboをインストールするスクリプト
+  - [install-ros-melodic-rasppi-nogui.sh](scripts/install-ros-melodic-rasppi-nogui.sh) Raspberry Pi 3にROS Melodicをインストールするスクリプト
+  - [install-real-roomba-rasppi_3.sh](scripts/install-real-roomba-rasppi_3.sh) Raspberry Pi 3のMelodic環境にRoomba ROS Driverをインストールするスクリプト
+  - [install-kinect-rtabmap-build.sh](scripts/install-kinect-rtabmap-build.sh) Kinect環境のインストールスクリプト 
 
 - ## [tutorials][3]
   -
