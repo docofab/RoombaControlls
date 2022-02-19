@@ -8,38 +8,35 @@
 
 ```mermaid
 flowchart LR
+  subgraph Roomba
+    direction TB
+    subgraph C2[rplidar]
+        direction BT
+    end
+    subgraph C1[ca_driver]
+        direction RL
+    end
+  end
   subgraph PC
     direction TB
     subgraph B1[roscore]
         direction RL
     end
-    subgraph B2[Gazebo]
+    subgraph B3[Rviz]
         direction BT
     end
-    subgraph B3[Rviz]
+    subgraph B2[Gazebo]
         direction BT
     end
     subgraph B4[keyboard teleop]
         direction BT
     end
   end
-  subgraph Roomba
-    direction TB
-    subgraph C1[ca_driver]
-        direction RL
-    end
-    subgraph C2[rplidar]
-        direction BT
-    end
-  end
-  B1 <--> B2
-  B1 <--> B3
-  B4 --> B1
-  C1 <--> B1
-  C2 --> B1
+  B4 -- /create1/cmd_vel --> B2
+  B4 -- /create1/cmd_vel --> C1
   PC <--> WiFi
   Roomba <--> WiFi
-```
+  ```
 
 
 ## リモートPCのセットアップ
