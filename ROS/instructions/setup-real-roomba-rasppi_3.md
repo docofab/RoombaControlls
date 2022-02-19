@@ -64,7 +64,7 @@ https://github.com/docofab/RoombaControlls/blob/main/ROS/instructions/setup-gaze
 
 ## Raspberry Pi 3のセットアップ
 
-このRaspberry PiにはRoombaのROSドライバノードとLiDARノードを動かします。WiFiネットワークを介してPCのroscoreに接続します。
+このRaspberry PiにはRoombaのROSドライバノードとLiDARノードを動かします。WiFiネットワークを介してPCのrosmasterに接続します。
 
 ### Ubuntu 18.04 LTSのインストール
 
@@ -174,12 +174,9 @@ https://github.com/docofab/RoombaControlls/blob/main/ROS/instructions/setup-gaze
     source ~/.bashrc
     ```
 
-### Shutdownする
-
-1. 環境構築が完了した時点で、電源をバッテリに切り替えるためRaspberry Piをshutdownする。
-
 ### Raspberry Piの準備
 
+1. 電源をバッテリに切り替えるためRaspberry Piをshutdownする。
 1. Raspberry Piの電源をモバイルバッテリーに接続し、ディスプレイ、キーボードを接続して起動する。
 1. login: が表示されたらubuntuでログインする。
 1. WiFi接続で割り当てられたIPアドレスを確認する。
@@ -199,12 +196,15 @@ https://github.com/docofab/RoombaControlls/blob/main/ROS/instructions/setup-gaze
 ### リモートPCからRaspberry Piにsshログイン
 
 1. リモートPCからRaspberry PiのIPアドレスに対してsshで接続する。
+    ```
+    ssh ubuntu@192.168.100.101
+    ```
 
 ### Raspberry PiにシリアルUSBを接続
 
 Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使用する。
 
-1. Raspberry Pi 4とUSBシリアルでRoombaを接続すると、OSでUSBシリアルが認識されているか確認する。
+1. Raspberry PiとUSBシリアルを接続し、OSでUSBシリアルが認識されているか確認する。
     ```
     ls -l /dev/ttyUSB*
     ```
@@ -246,7 +246,7 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     ```
     KERNEL=="ttyUSB*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", GROUP="dialout", MODE="0666"
     ```
-1. RoombaのUSBシリアルケーブルを一度抜き、再度差し込む。
+1. Raspberry PiからUSBシリアルケーブルを一度抜き、再度差し込む。
 1. デバイスファイルを確認する。
     ```
     ls -l /dev/ttyUSB*
