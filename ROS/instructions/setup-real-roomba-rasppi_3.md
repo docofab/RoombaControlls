@@ -8,8 +8,8 @@
 
 ```mermaid
   graph TD;
-      WiFi-->Roomba;
-      WiFi-->PC;
+      WiFi<-->Roomba(Raspberry Pi);
+      WiFi<-->Ubuntu PC(rosmaster);
 ```
 
 
