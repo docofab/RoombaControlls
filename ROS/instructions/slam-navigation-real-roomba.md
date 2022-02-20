@@ -42,7 +42,8 @@
 
 1. 作成した地図ファイル(mymap.pgm, mymap.yaml)を所定のディレクトリに配置する。
     ```
-    cp ~/mymap.pgm ~/mymap.yaml ~/catkin_ws/src/create_autonomy/navigation/ca_move_base/maps
+    cd
+    cp mymap.pgm mymap.yaml ~/catkin_ws/src/create_autonomy/navigation/ca_move_base/maps/
     ```
 ## STEP5. 作成した地図でNavigationをする。
 
@@ -52,7 +53,7 @@
     export RVIZ=true
     export LASER=rplidar
     export RVIZ_CONFIG=navigation
-    roslaunch ca_gazebo create_empty_world.launch env:=mymap
+    roslaunch ca_move_base navigate.launch env:=mymap
     ```
 1. RvizのPanels -> Tool Propertiesにチェックを入れる。
 1. Tool Propertiesパネルが表示されるので、2D Pose EstimateのTopicを /initialpose から /create1/initialpose に変更し、2D Nav GoalのTopicを /move_base_simple/goal から /create1/move_base_simple/goal に変更する。
