@@ -2,7 +2,8 @@
 
 ## Ubuntu 18.04 LTSのインストール
 
-1. UbuntuのサイトからUbuntu 18.04 LTSをダウンロードしてインストールする。
+1. UbuntuのサイトからUbuntu 18.04 LTSをダウンロードしてインストールします。Ubuntu Desktop 日本語 Remixの利用をお勧めします。  
+https://www.ubuntulinux.jp/download/ja-remix
 1. Ubuntuが起動したら登録したユーザでログインする。
 1. 以下のように入力する
     ```
@@ -60,6 +61,22 @@
     cd RoombaControlls/ROS/scripts
     chmod 755 *.sh
     ./install-gazebo-roomba.sh
+    ```
+
+## VMware Workstation Playerを利用する場合
+
+1. VMware Workstation PlayerでUbuntuを動かしている場合は以下の設定を.bashrcに追加する。これを行わないとGazeboが動きません。
+
+    ```
+    export SVGA_VGPU10=0
+    ```
+
+    参考：https://answers.gazebosim.org//question/13214/virtual-machine-not-launching-gazebo/
+
+1. 再度.bashrcを読み込む。
+
+    ```
+    source ~/.bashrc 
     ```
 
 ## Gazeboシミュレーターの起動
