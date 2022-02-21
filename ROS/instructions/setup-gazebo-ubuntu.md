@@ -63,21 +63,17 @@ https://www.ubuntulinux.jp/download/ja-remix
     ./install-gazebo-roomba.sh
     ```
 
-## VMware Workstation Playerを利用する場合
+## 環境変数の追加設定（VMware Workstation Playerを利用する場合のみ）
 
-1. VMware Workstation PlayerでUbuntuを動かしている場合は以下の設定を.bashrcに追加する。これを行わないとGazeboが動きません。
+1. VMware Workstation PlayerでUbuntuを動かしている場合は以下のコマンドを入力して環境変数を設定する。これを行わないとGazeboが動きません。
 
     ```
-    export SVGA_VGPU10=0
+    echo "export SVGA_VGPU10=0" >> ~/.bashrc
+    source ~/.bashrc
     ```
 
     参考：https://answers.gazebosim.org//question/13214/virtual-machine-not-launching-gazebo/
 
-1. 再度.bashrcを読み込む。
-
-    ```
-    source ~/.bashrc 
-    ```
 
 ## Gazeboシミュレーターの起動
 
