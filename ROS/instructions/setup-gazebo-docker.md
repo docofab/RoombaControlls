@@ -82,24 +82,36 @@ docker run -p 6080:80 --shm-size=512m tiryoh/ros-desktop-vnc:melodic
 1. 以下のコマンドを入力する。
 
     ``` bash
-    cd ~/git
+    cd
     git clone https://github.com/docofab/RoombaControlls.git
     cd RoombaControlls/ROS/scripts
     chmod 755 *.sh
     ./install-gazebo-roomba.sh
     ```
 
-注）Intel Mac のDocker環境では、install-gazebo-roomba.sh の 47行目の部分を修正してから実行してください。
+注）Intel Mac のDocker環境でビルド中にエラーとなる場合があります。
+```
+Errors     << octomap_server:make /home/ubuntu/catkin_ws/logs/octomap_server/build.make.000.log
+c++: internal compiler error: Killed (program cc1plus)
+Please submit a full bug report,
+  :
+```
 
-（現在）
-  ``` bash
-  catkin build -DCMAKE_BUILD_TYPE=Release
-  ```
-    
-（修正後）
-  ``` bash
-  catkin build -DCMAKE_BUILD_TYPE=Release -j1
-  ```
+この場合は次のどちらかの方法で対処してください。
+1. エラーが発生するoctomap_mappingのディレクトリを適当な場所に移動してビルド対象から外す。
+    ```
+    cd ~/catkin_ws/src
+    mv octomap_mapping/ ~/.
+    ```
+1. install-gazebo-roomba.sh の 47行目を修正して並列実行しないようにする。  
+    （修正前）
+      ``` bash
+      catkin build -DCMAKE_BUILD_TYPE=Release
+      ```
+    （修正後）
+      ``` bash
+      catkin build -DCMAKE_BUILD_TYPE=Release -j1
+      ```
 
 ### 3b. 
 
