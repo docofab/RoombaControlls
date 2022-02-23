@@ -73,13 +73,15 @@ docker run -p 6080:80 --shm-size=512m tiryoh/ros-desktop-vnc:melodic
 
 ### 3a. スクリプトを利用してGazeboをインストールする
 
-    以下のコマンドを入力する。
+1. 以下のコマンドを入力する。
 
+    ```
     cd ~/git
     git clone https://github.com/docofab/RoombaControlls.git
     cd RoombaControlls/ROS/scripts
     chmod 755 *.sh
     ./install-gazebo-roomba.sh
+    ```
 
 ### 3b. 
 
