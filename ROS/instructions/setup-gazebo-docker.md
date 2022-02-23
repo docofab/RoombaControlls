@@ -67,7 +67,7 @@ docker run -p 6080:80 --shm-size=512m tiryoh/ros-desktop-vnc:melodic
 
 ``` 
 
-### アクセス確認
+## 3. アクセス確認
 
 (デフォルトなら)ブラウザで[http://127.0.0.1:6080](http://127.0.0.1:6080) にアクセス
 
@@ -76,6 +76,19 @@ docker run -p 6080:80 --shm-size=512m tiryoh/ros-desktop-vnc:melodic
 [スクリプトを使用](https://github.com/docofab/RoombaControlls/blob/main/ROS/scripts/install-gazebo-roomba.sh)
 
 ## 3b. 
+
+## 4. Gazeboシミュレーターの起動
+
+1. 新たにターミナルを起動して以下のコマンドを入力する。
+    ```
+    roslaunch ca_gazebo create_empty_world.launch
+    ```
+1. もう一つターミナルを起動して以下のコマンドを入力する。
+    ```
+    roslaunch ca_tools keyboard_teleop.launch
+    ```
+1. キーボードでシミュレータのRoombaがコントロールできることを確認する。
+
 
 ## 参考サイト
 - ### DockerTips
