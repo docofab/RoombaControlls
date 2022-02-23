@@ -97,21 +97,21 @@ Please submit a full bug report,
   :
 ```
 
-この場合は次のどちらかの方法で対処してください。
-1. エラーが発生するoctomap_mappingのディレクトリを適当な場所に移動してビルド対象から外す。
+この場合は次のどちらかの方法で対処してください。  
+* エラーが発生するoctomap_mappingのディレクトリを適当な場所に移動してビルド対象から外す。（推奨）
     ```
     cd ~/catkin_ws/src
     mv octomap_mapping/ ~/.
     ```
-1. install-gazebo-roomba.sh の 47行目を修正して並列実行しないようにする。  
-    （修正前）
-      ``` bash
-      catkin build -DCMAKE_BUILD_TYPE=Release
-      ```
-    （修正後）
-      ``` bash
-      catkin build -DCMAKE_BUILD_TYPE=Release -j1
-      ```
+* install-gazebo-roomba.sh の 47行目を修正して並列実行しないようにする。（ただし、この方法ではエラーが回避できない場合もあるようです。）  
+  （修正前）
+    ``` bash
+    catkin build -DCMAKE_BUILD_TYPE=Release
+    ```
+  （修正後）
+    ``` bash
+    catkin build -DCMAKE_BUILD_TYPE=Release -j1
+    ```
 
 ### 3b. 
 
