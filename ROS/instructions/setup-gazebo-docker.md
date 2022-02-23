@@ -47,6 +47,12 @@ sudo systemctl restart docker
 exit
 ``` 
 
+### Mac
+
+公式サイトの情報に従ってください。
+
+* [Mac に Docker Desktop をインストール](https://docs.docker.jp/docker-for-mac/install.html)
+
 ## 2. 既存イメージをpullする
 @ref:[Docker上でGUIのROS1/ROS2を一瞬でセットアップする方法][5],
 [ROS/ROS2のGUIをWebブラウザ経由でお手軽に試せるDockerfileを公開しました][6]
@@ -75,13 +81,25 @@ docker run -p 6080:80 --shm-size=512m tiryoh/ros-desktop-vnc:melodic
 
 1. 以下のコマンドを入力する。
 
-    ```
+    ``` bash
     cd ~/git
     git clone https://github.com/docofab/RoombaControlls.git
     cd RoombaControlls/ROS/scripts
     chmod 755 *.sh
     ./install-gazebo-roomba.sh
     ```
+
+注）Intel Mac のDocker環境では、install-gazebo-roomba.sh の 47行目の部分を修正してから実行してください。
+
+（現在）
+  ``` bash
+  catkin build -DCMAKE_BUILD_TYPE=Release
+  ```
+    
+（修正後）
+  ``` bash
+  catkin build -DCMAKE_BUILD_TYPE=Release -j1
+  ```
 
 ### 3b. 
 
