@@ -97,8 +97,9 @@ Please submit a full bug report,
   :
 ```
 
-この場合は次のどちらかの方法で対処してください。  
-* エラーが発生するoctomap_mappingのディレクトリを適当な場所に移動してビルド対象から外す。（推奨）
+この場合は次のどちらかの方法で対処してください。 
+* Docker desktopの設定でメモリ量を標準の2GBから3GBに増やす。 （推奨）
+* エラーが発生するoctomap_mappingのディレクトリを適当な場所に移動してビルド対象から外す。（ただし、この方法ではエラーが回避できない場合もあるようです。）
     ```
     cd ~/catkin_ws/src
     mv octomap_mapping/ ~/.
