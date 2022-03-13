@@ -46,30 +46,9 @@ PC <--> WiFi
 Roomba <--> WiFi
 ```
 
-
-## リモートPCのセットアップ
-
-このPCでroscore, gazebo, Rviz等を動かし、Roombaを制御します。
-
-1. PCにUbuntu 18.04 LTS DesktopとROS Melodicをインストールする  
-https://github.com/docofab/RoombaControlls/blob/main/ROS/instructions/setup-gazebo-ubuntu.md
-1. IPアドレスを確認する。
-    ```
-    ip address
-    ```
-1. 環境変数設定を~/.bashrcに追記する。(PCのIPアドレスを192.168.100.100とした場合)
-    ```
-    export ROS_MASTER_URI=http://192.168.100.100:11311
-    export ROS_HOSTNAME=192.168.100.100
-    ```
-1. 環境変数を反映する。
-    ```
-    source ~/.bashrc
-    ```
-
 ## Raspberry Piのセットアップ
 
-このRaspberry PiではRoombaのROSドライバノードとLiDARノードを動かします。WiFiネットワークを介してPCのrosmasterに接続します。
+このRaspberry PiではRoombaのROSドライバノードとLiDARノードを動かします。最終的にはWiFiネットワークを介してPCのrosmasterに接続します。
 
 ### Raspberry Pi用のUbuntu 18.04 LTS Serverのインストール
 
@@ -139,9 +118,9 @@ http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/
     ```
 
 
-### セットアップスクリプトをダウンロード
+### ROS MelodicとRoombaドライバのセットアップ
 
-1. GitHubからクローンする。
+1. GitHubからセットアップスクリプトをクローンする。
     ```
     cd ~
     mkdir git
@@ -151,17 +130,14 @@ http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/
     chmod 755 *.sh
     ```
 
-### ROS melodicのインストール
+1. ROS melodicをインストールする。
 
-1. 以下のコマンドを入力する。
     ```
     cd ~/git/RoombaControlls/ROS/scripts
     ./install-ros-melodic-rasppi-nogui.sh
     ```
 
-### RoombaのROSドライバのインストール
-
-1. 以下のコマンドを入力する。
+1. RoombaのROSドライバをインストールする。
     ```
     cd ~/git/RoombaControlls/ROS/scripts
     ./install-real-roomba-rasppi_3.sh
@@ -191,19 +167,7 @@ http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/
     ```
     ip address
     ```
-1. 環境変数設定を~/.bashrcに追記する。(PCのIPアドレスを192.168.100.100、Raspberry PiのIPアドレスを192.168.100.101とした場合)
-    ```
-    export ROS_MASTER_URI=http://192.168.100.100:11311
-    export ROS_HOSTNAME=192.168.100.101
-    ```
-1. 環境変数を反映する。
-    ```
-    source ~/.bashrc
-    ```
-
-### リモートPCからRaspberry Piにsshログイン
-
-1. リモートPCからRaspberry PiのIPアドレスに対してsshで接続する。
+1. リモートPCからRaspberry PiのIPアドレスに対してsshで接続できることを確認する。
     ```
     ssh ubuntu@192.168.100.101
     ```
@@ -255,7 +219,7 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     KERNEL=="ttyUSB*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", GROUP="dialout", MODE="0666", SYMLINK+="roomba"
     ```
 1. Raspberry PiからUSBシリアルケーブルを一度抜き、再度差し込む。
-1. /dev/roombaのリンク先を確認する。
+1. /dev/roombaのリンク先を確認する。  
 （実行例）
     ```
     $ ls -l /dev/roomba
@@ -293,7 +257,7 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
                         GND
     ```
 1. Roombaの電源を入れる。
-1. /dev/roombaのリンク先を確認する。
+1. /dev/roombaのリンク先を確認する。  
 （実行例）
     ```
     $ ls -l /dev/roomba
@@ -315,46 +279,9 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     ./scripts/create_udev_rules.sh
     ```
 
-### ROS masterの起動
-
-1. リモートPCでターミナルを立ち上げて、ros masterを動かす
-    ```
-    roscore
-    ```
-1. 以下のような表示になることを確認する。  
-    （実行例）
-    ```
-    ubuntu@ubuntu:~$ roscore
-    ... logging to /home/ocha/.ros/log/88e5c0d6-911b-11ec-b3a4-000c298ba638/roslaunch-ubuntu-4391.log
-    Checking log directory for disk usage. This may take a while.
-    Press Ctrl-C to interrupt
-    Done checking log file disk usage. Usage is <1GB.
-
-    started roslaunch server http://ubuntu:42671/
-    ros_comm version 1.14.12
-
-
-    SUMMARY
-    ========
-
-    PARAMETERS
-    * /rosdistro: melodic
-    * /rosversion: 1.14.12
-
-    NODES
-
-    auto-starting new master
-    process[master]: started with pid [4411]
-    ROS_MASTER_URI=http://ubuntu:11311/
-
-    setting /run_id to 88e5c0d6-911b-11ec-b3a4-000c298ba638
-    process[rosout-1]: started with pid [4422]
-    started core service [/rosout]
-    ```
-
 ### ROS driver for Roombaの起動
 
-1. Raspberry PiにsshログインしてRoombaのROSドライバを起動する。
+1. Raspberry PiにsshでログインしてRoombaのROSドライバを起動する。
     ```
     roslaunch ca_driver create_2.launch
     ```
@@ -407,13 +334,13 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
 
 ### rplidarノードの起動
 
-1. Raspberry Piにsshログインし、RPLiDARのノードを起動する。
+1. Raspberry Piにsshでログインし、RPLiDARのノードを起動する。
 
     ```
     roslaunch rplidar_ros rplidar.launch
     ```
 
-1. 正常に動けば以下のような表示がでる。
+1. 正常に動けば以下のような表示がでる。  
     （実行例）
     ```
     ubuntu@ubuntu:~$ roslaunch rplidar_ros rplidar.launch
@@ -456,9 +383,9 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     [ERROR] [1644735880.638251192]: Can not start scan: 80008002!
     ```
 
-### キーボード操作ツールの起動
+### Raspberry Pi単体でのRoomba操作テスト
 
-1. リモートPCでターミナルを立ち上げて以下のコマンドを入力する。
+1. Raspberry Piにsshでログインし、以下のコマンドを入力する。
     ```
     roslaunch ca_tools keyboard_teleop.launch
     ```
@@ -506,3 +433,92 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     currently:	speed 0.2	turn 1
     ```
 1. キーボードでRoombaをコントロールできるところまで確認する。
+1. 確認がおわったらすべてのノードをCtrl-Cで停止する。
+
+## リモートPCのセットアップ
+
+このPCでroscore, gazebo, Rviz等を動かし、Roombaを制御します。
+
+1. PCにUbuntu 18.04 LTS DesktopとROS Melodicをインストールする  
+https://github.com/docofab/RoombaControlls/blob/main/ROS/instructions/setup-gazebo-ubuntu.md
+1. IPアドレスを確認する。
+    ```
+    ip address
+    ```
+1. 環境変数設定を~/.bashrcに追記する。(PCのIPアドレスを192.168.100.100とした場合)
+    ```
+    export ROS_MASTER_URI=http://192.168.100.100:11311
+    export ROS_HOSTNAME=192.168.100.100
+    ```
+1. 環境変数を反映する。
+    ```
+    source ~/.bashrc
+    ```
+1. ros masterを動かす
+    ```
+    roscore
+    ```
+1. 以下のような表示になることを確認する。  
+    （実行例）
+    ```
+    ubuntu@ubuntu:~$ roscore
+    ... logging to /home/ocha/.ros/log/88e5c0d6-911b-11ec-b3a4-000c298ba638/roslaunch-ubuntu-4391.log
+    Checking log directory for disk usage. This may take a while.
+    Press Ctrl-C to interrupt
+    Done checking log file disk usage. Usage is <1GB.
+
+    started roslaunch server http://ubuntu:42671/
+    ros_comm version 1.14.12
+
+
+    SUMMARY
+    ========
+
+    PARAMETERS
+    * /rosdistro: melodic
+    * /rosversion: 1.14.12
+
+    NODES
+
+    auto-starting new master
+    process[master]: started with pid [4411]
+    ROS_MASTER_URI=http://ubuntu:11311/
+
+    setting /run_id to 88e5c0d6-911b-11ec-b3a4-000c298ba638
+    process[rosout-1]: started with pid [4422]
+    started core service [/rosout]
+    ```
+
+## Raspberry PiからリモートPCに接続する設定
+
+1. Raspberry Piにsshでログインする。
+1. 環境変数の設定を~/.bashrcに追記する。(PCのIPアドレスを192.168.100.100、Raspberry PiのIPアドレスを192.168.100.101とした場合)
+    ```
+    export ROS_MASTER_URI=http://192.168.100.100:11311
+    export ROS_HOSTNAME=192.168.100.101
+    ```
+1. 環境変数を反映する。
+    ```
+    source ~/.bashrc
+    ```
+1. Raspberry Piにsshでログインし、RoombaのROSドライバを起動する。
+    ```
+    roslaunch ca_driver create_2.launch
+    ```
+1. Raspberry Piにsshでログインし、RPLiDARのノードを起動する。
+    ```
+    roslaunch rplidar_ros rplidar.launch
+    ```
+
+## リモートPCからRoombaが操作できるかのテスト
+
+1. リモートPCで以下のコマンドを入力する。
+    ```
+    roslaunch ca_tools keyboard_teleop.launch
+    ```
+1. リモートPCのキーボードでRoombaが動くことを確認する。
+1. リモートPCで以下のコマンドを入力する。
+    ```
+    rqt
+    ```
+1. Roombaのトピックが流れてきていることを確認する。
