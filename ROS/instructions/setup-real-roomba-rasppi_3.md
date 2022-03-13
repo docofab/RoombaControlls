@@ -1,4 +1,4 @@
-# Roomba実機を動かす環境のセットアップ(Raspberry Pi 3 B+ + Remote PC)
+# Roomba実機を動かす環境のセットアップ(Raspberry Pi + Remote PC)
 
 * 参考サイト：https://demura.net/robot/hard/20456.html
 * 参考サイト：https://demura.net/education/17957.html
@@ -10,16 +10,22 @@
 flowchart TB
   subgraph PC
     direction TB
-    subgraph B1[roscore]
+    subgraph B2[roscore]
         direction TB
     end
-    subgraph B3[Rviz]
+    subgraph B3[keyboard teleop]
         direction TB
     end
-    subgraph B2[Gazebo]
+    subgraph B6[Rviz]
         direction TB
     end
-    subgraph B4[keyboard teleop]
+    subgraph B7[Gazebo]
+        direction TB
+    end
+    subgraph B4[rosbag]
+        direction TB
+    end
+    subgraph B5[bugfile]
         direction TB
     end
   end
@@ -32,8 +38,10 @@ flowchart TB
         direction TB
     end
   end
-B4 -- /create1/cmd_vel --> B2
-B4 -- /create1/cmd_vel --> C1
+B3 -- /create1/cmd_vel --> C1
+C2 -- /scan --> B4
+C1 -- /tf --> B4
+B4 --> B5
 PC <--> WiFi
 Roomba <--> WiFi
 ```
@@ -59,21 +67,26 @@ https://github.com/docofab/RoombaControlls/blob/main/ROS/instructions/setup-gaze
     source ~/.bashrc
     ```
 
-## Raspberry Pi 3のセットアップ
+## Raspberry Piのセットアップ
 
-このRaspberry PiにはRoombaのROSドライバノードとLiDARノードを動かします。WiFiネットワークを介してPCのrosmasterに接続します。
+このRaspberry PiではRoombaのROSドライバノードとLiDARノードを動かします。WiFiネットワークを介してPCのrosmasterに接続します。
 
-### Ubuntu 18.04 LTSのインストール
+### Raspberry Pi用のUbuntu 18.04 LTS Serverのインストール
 
-1. ubuntu-18.04.5-preinstalled-server-armhf+raspi3.img.xzをダウンロード
+1. 以下のサイトからRaspberry Pi用のUbuntu 18.04 LTS Serverをダウンロードする。
+http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/
+    * Raspberry Pi 3を使う場合  
+    [ubuntu-18.04.5-preinstalled-server-arm64+raspi3.img.xz](http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.5-preinstalled-server-arm64+raspi3.img.xz)をダウンロード
+    * Raspberry Pi 4を使う場合  
+    [ubuntu-18.04.5-preinstalled-server-arm64+raspi4.img.xz](http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.5-preinstalled-server-arm64+raspi4.img.xz)をダウンロード
 1. Raspberry Pi imagerでmicroSDカードに書き込む。
 1. microSDカード, USB Keyboard, HDMI displayをRaspberry Pi に取り付けて電源を入れる。
 1. OSが起動したらubuntu/ubuntuでログインする
 1. 初期パスワードの変更メッセージが表示されるのでパスワードを設定する。
 
-### swapの追加
+### swapの追加（Raspberry Pi 3の場合）
 
-1. メモリが1GBしかないので、swapを設定する。
+1. Raspberry Pi 3の場合はメモリが1GBしかないので、swapを設定する。
     ```
     sudo fallocate -l 8G /swapfile
     sudo chmod 600 /swapfile
@@ -486,4 +499,4 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
 
     currently:	speed 0.2	turn 1
     ```
-1. キーボードでRoombaをコントロールする。
+1. キーボードでRoombaをコントロールできるところまで確認する。
