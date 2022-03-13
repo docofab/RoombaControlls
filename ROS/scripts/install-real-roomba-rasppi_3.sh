@@ -42,13 +42,14 @@ echo "[Download the etc.]"
 cd ~/catkin_ws
 sudo apt install -y python3-vcstool
 vcs import src < src/create_autonomy/dependencies.repos
+sudo rosdep init
 rosdep update
 rosdep install --from-paths src -yi
 
-echo "[Raspberry Pi 4 Only.]"
+echo "[Removed viso2 for Raspberry Pi.]"
 rm -rf ~/catkin_ws/src/viso2
 
-echo "[Build the workspace for Raspberry Pi 4]"
+echo "[Build the workspace for Raspberry Pi]"
 cd ~/catkin_ws
 catkin build ca_driver -DCMAKE_BUILD_TYPE=Release -DARM_CROSS_COMPILATION=ON -j 1
 
