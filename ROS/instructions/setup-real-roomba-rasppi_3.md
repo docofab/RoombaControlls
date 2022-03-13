@@ -73,7 +73,7 @@ https://github.com/docofab/RoombaControlls/blob/main/ROS/instructions/setup-gaze
 
 ### Raspberry Pi用のUbuntu 18.04 LTS Serverのインストール
 
-1. 以下のサイトからRaspberry Pi用のUbuntu 18.04 LTS Serverをダウンロードする。
+1. 以下のサイトからRaspberry Pi用のUbuntu 18.04 LTS Serverをダウンロードする。   
 http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/
     * Raspberry Pi 3を使う場合  
     [ubuntu-18.04.5-preinstalled-server-arm64+raspi3.img.xz](http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.5-preinstalled-server-arm64+raspi3.img.xz)をダウンロード
@@ -112,19 +112,19 @@ http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/
 1. 以下のように設定する。WiFi_SSIDとWiFi_Passwordのところは各自の環境に合わせる。
     ```
     network:
-        version: 2
-        renderer: networkd
         ethernets:
             eth0:
                 dhcp4: true
                 optional: true
+        version: 2
+
         wifis:
             wlan0:
                 dhcp4: true
                 optional: true
                 access-points:
                     WiFi_SSID:
-                    password: WiFi_Password
+                        password: WiFi_Password
     ```
 
 1. ネットワークに反映する。
@@ -147,7 +147,7 @@ http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/
     mkdir git
     cd git
     git clone https://github.com/docofab/RoombaControlls.git
-    cd RoombaControlls/ROS
+    cd RoombaControlls/ROS/scripts
     chmod 755 *.sh
     ```
 
@@ -155,7 +155,7 @@ http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/
 
 1. 以下のコマンドを入力する。
     ```
-    cd ~/git/RoombaControlls/ROS
+    cd ~/git/RoombaControlls/ROS/scripts
     ./install-ros-melodic-rasppi-nogui.sh
     ```
 
@@ -163,20 +163,18 @@ http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/
 
 1. 以下のコマンドを入力する。
     ```
-    cd ~/git/RoombaControlls/ROS
+    cd ~/git/RoombaControlls/ROS/scripts
     ./install-real-roomba-rasppi_3.sh
     ```
 
 ### RPLIDAR ROS パッケージのインストール
 
 1. 新しいRPLIDAR ROS パッケージに置き換えたいので ros-melodic-rplidar-ros がインストールされていたらアンインストールする。
-
     ```
     sudo apt remove ros-melodic-rplidar-ros
     ```
 
 1. RPLIDAR ROS パッケージ rplidar_rosをクローンしてbuildする。
-
     ```
     cd ~/catkin_ws/src
     git clone https://github.com/Slamtec/rplidar_ros.git
@@ -308,6 +306,15 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     crw-rw-rw- 1 root dialout 188, 0 Jul  3 14:45 /dev/ttyUSB0
     ```
 
+### RPLiDARの接続
+
+1. RPLiDARを接続する
+1. udevの設定を行う。これで /dev/rpridar が割り当てられる。
+    ```
+    cd ~/catkin_ws/src/rplidar_ros
+    ./scripts/create_udev_rules.sh
+    ```
+
 ### ROS masterの起動
 
 1. リモートPCでターミナルを立ち上げて、ros masterを動かす
@@ -347,9 +354,8 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
 
 ### ROS driver for Roombaの起動
 
-1. リモートPCでターミナルを立ち上げて、sshでRaspberry PiにログインしてRoombaのROSドライバを起動する。
+1. Raspberry PiにsshログインしてRoombaのROSドライバを起動する。
     ```
-    ssh ubuntu@192.168.100.63
     roslaunch ca_driver create_2.launch
     ```
 
@@ -401,7 +407,7 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
 
 ### rplidarノードの起動
 
-1. リモートPCで新しいターミナルを開いて、Raspberry Piにログインし、RPLiDARのノードを起動する。
+1. Raspberry Piにsshログインし、RPLiDARのノードを起動する。
 
     ```
     roslaunch rplidar_ros rplidar.launch
