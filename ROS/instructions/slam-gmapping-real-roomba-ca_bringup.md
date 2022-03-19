@@ -54,7 +54,7 @@ Roomba <--> WiFi
 PC <--> WiFi
 ```
 
-## STEP1. Raspberry Pi Roomba実機環境の準備
+## STEP1. Roomba実機環境(Raspberry Pi)の準備
 
 1. Raspberry Piにモバイルバッテリをつないで起動する。
 1. Raspberry PiのUSBにRoombaとLiDARを接続する。
