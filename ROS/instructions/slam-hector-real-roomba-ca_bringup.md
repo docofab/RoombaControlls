@@ -1,4 +1,4 @@
-# Roombaの実機環境でのgmapping-SLAM
+# Roombaの実機環境でのhector-SLAM
 
 * 使用ドライバ
     * https://github.com/kanpapa/create_autonomy/tree/kanpapa-patch-1
@@ -36,7 +36,7 @@ flowchart TB
     subgraph B5[bugfile]
         direction TB
     end
-    subgraph B7[gmapping]
+    subgraph B7[hector]
         direction TB
     end
     subgraph B8[map]
@@ -104,48 +104,11 @@ PC <--> WiFi
     rostopic list
     ```
 
-## STEP3. トピックの記録
+## STEP3. hector-SLAMで地図をつくる
 
-1. Ubuntu PCでrosbagで記録する。
+1. hector-slamを起動する
     ```
-    rosbag record -a
-    ```
-1. Ubuntu PCでキーボードでルンバを動かして、地図情報を取得する。
-    ```
-    roslaunch ca_tools keyboard_teleop.launch
-    ```
-1. Ubuntu PCでbugデータを記録しているターミナルでCtrl-Cを入力し記録を停止する。
-
-## STEP4. gmapping-SLAMで地図をつくる
-
-### 方法１：rosbagファイルから作成する
-
-1. gmappingを起動する
-    ```
-    roslaunch ca_slam slam_gmapping2.launch
-    ```
-1. Rvizを起動する。
-    ```
-    rosrun rviz rviz
-    ```
-1. トピックを再生する
-    ```
-    rosbag play --clock 2022-03-19-10-44-20.bag
-    ```
-1. トピックの再生が終了したら、Ubuntu PCで新しいターミナルを起動して以下を入力する
-    ```
-    rosrun map_server map_saver -f mymap
-    ```
-1. カレントディレクトリに mymap.pgm と mymap.yaml というファイル名で地図情報が保存される。
-1. 地図が取得できたら、gmappingをctrl-cで停止する。
-
-### 方法２：リアルタイムで作成する
-
-STEP3のrosbagを保存せずにリアルタイムで作成することもできる。ただし正常に動作しない場合のデバックがやりにくい点に注意。
-
-1. gmappingを起動する
-    ```
-    roslaunch ca_slam slam_gmapping2.launch
+    roslaunch ca_hector default_mapping2.launch
     ```
 1. Rvizを起動する。
     ```
@@ -160,7 +123,3 @@ STEP3のrosbagを保存せずにリアルタイムで作成することもでき
     rosrun map_server map_saver -f mymap
     ```
 1. カレントディレクトリに mymap.pgm と mymap.yaml というファイル名で地図情報が保存される。
-1. 地図が取得できたら、gmappingをctrl-cで停止する。
-
-## 課題
-* Roombaのodom情報があまり正確でない。特に回転方向がずれるようなので、なるべく直進で取得すると良い。
