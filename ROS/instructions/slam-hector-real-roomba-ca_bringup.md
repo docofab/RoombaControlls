@@ -34,13 +34,7 @@ flowchart TB
     subgraph B6[Rviz]
         direction TB
     end
-    subgraph B4[rosbag]
-        direction TB
-    end
-    subgraph B5[bugfile]
-        direction TB
-    end
-    subgraph B7[hector]
+    subgraph B7[hector-slam]
         direction TB
     end
     subgraph B8[map]
@@ -48,14 +42,17 @@ flowchart TB
     end
   end
 B3 -- /create1/cmd_vel --> C3
-C2 -- /create1/rplidar/scan --> B4
-C2 -- /tf --> B4
-C3 -- /create1/rplidar/scan --> B7
+C2 -- /create1/rplidar/scan --> B7
 C3 -- /tf --> B7
-B4 --> B5
 B7 --> B8
 Roomba <--> WiFi
 PC <--> WiFi
+```
+
+* Navigation
+
+```
+TBD
 ```
 
 ## STEP1. Roomba実機環境(Raspberry Pi)の準備
