@@ -1,12 +1,16 @@
-# Roombaの実機環境でのhector-SLAM
+# Roombaの実機環境でのhector-SLAMとNavigation
 
 * 使用ドライバ
     * https://github.com/kanpapa/create_autonomy/tree/kanpapa-patch-1
 * テスト環境のIPアドレスは以下のようになっています。
     * Ubuntu PC 192.168.0.34
     * Raspberry Pi 192.168.0.63
+* 参考サイト
+    * [hector_slamと2D Navigationを組み合わせてRoombaを自律移動させる](https://daikimaekawa.github.io/ros/2014/04/20/Navigation2d)
 
 ## 構成図
+
+* SLAM
 
 ```mermaid
 flowchart TB
