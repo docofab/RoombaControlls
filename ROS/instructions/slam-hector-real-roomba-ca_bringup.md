@@ -123,3 +123,16 @@ PC <--> WiFi
     rosrun map_server map_saver -f mymap
     ```
 1. カレントディレクトリに mymap.pgm と mymap.yaml というファイル名で地図情報が保存される。
+
+## STEP4. Navigationをする
+
+1. Ubuntu PCで起動しているROSノードを停止する。
+1. Navigationを起動する。
+    ```
+    roslaunch ca_move_base navigate2.launch
+    ```
+1. Rvizを起動する。
+    ```
+    rosrun rviz rviz
+    ```
+1. Rvizの2D Nav Goalをクリックして目的地点と方向を指定する。
