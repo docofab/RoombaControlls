@@ -10,6 +10,18 @@
 
 ```mermaid
 flowchart TB
+  subgraph Roomba
+    direction TB
+    subgraph C1[roscore]
+        direction TB
+    end
+    subgraph C2[rplidar]
+        direction TB
+    end
+    subgraph C3[ca_driver]
+        direction TB
+    end
+  end
   subgraph PC
     direction TB
     subgraph B3[keyboard teleop]
@@ -18,34 +30,28 @@ flowchart TB
     subgraph B6[Rviz]
         direction TB
     end
-    subgraph B7[Gazebo]
-        direction TB
-    end
     subgraph B4[rosbag]
         direction TB
     end
     subgraph B5[bugfile]
         direction TB
     end
-  end
-  subgraph Roomba
-    direction TB
-    subgraph C2[rplidar]
+    subgraph B7[gmapping]
         direction TB
     end
-    subgraph C1[ca_driver]
-        direction TB
-    end
-    subgraph C3[roscore]
+    subgraph B8[map]
         direction TB
     end
   end
-B3 -- /create1/cmd_vel --> C1
-C2 -- /scan --> B4
-C1 -- /tf --> B4
+B3 -- /create1/cmd_vel --> C3
+C2 -- /create1/rplidar/scan --> B4
+C2 -- /tf --> B4
+C3 -- /create1/rplidar/scan --> B7
+C3 -- /tf --> B7
 B4 --> B5
-PC <--> WiFi
+B7 --> B8
 Roomba <--> WiFi
+PC <--> WiFi
 ```
 
 ## STEP1. Raspberry Pi Roomba実機環境の準備
