@@ -59,6 +59,11 @@ $ rostopic pub /create1/cmd_vel geometry_msgs/Twist '{linear: {x: 0.2}, angular:
 $ rostopic list
 ```
 
+## トピックの一覧をGUIで表示
+```
+$ rqt
+```
+
 ## 複数パッケージの起動
 
 ```
@@ -69,8 +74,28 @@ $ roslaunch <パッケージ名>　<Launchファイル名>
 $ roslaunch ca_gazebo create_empty_world.launch
 ```
 
-
-##  グラフを表示
+## Nodeとtopicを図で表示
 ```
 $ rqt_graph
 ```
+
+## tfの内容の表示
+```
+$ rosrun tf tf_echo turtle3 turtle1
+```
+
+## tfのフレーム表示
+```
+$ rosrun tf view_frames
+```
+
+## Ubuntu server for Raspberry Pi
+* TIMEZONEの設定
+```
+$ sudo timedatectl set-timezone Asia/Tokyo 
+```
+* 日本語キーボードの設定
+```
+sudo dpkg-reconfigure keyboard-configuration
+```
+
