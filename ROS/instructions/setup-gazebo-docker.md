@@ -128,7 +128,7 @@ Please submit a full bug report,
     
 1. 環境の設定を行う
 
-Windowsを使用する場合は、下の方に記載のWindowsで使用する場合の追加作業を行うこと
+　　* Windowsを使用する場合は、下の方に記載のWindowsで使用する場合の追加作業を行うこと
 
 1. run のスクリプトを実行
 
@@ -152,47 +152,47 @@ Windowsを使用する場合は、下の方に記載のWindowsで使用する場
 
 1. 終了、再起動
 
-- ターミナルを閉じれば終了。
-- 以下コマンドで再起動
+    - ターミナルを閉じれば終了。
+    - 以下コマンドで再起動
 
-```
-docker start ros-melodic-create
-```
+    ```
+    docker start ros-melodic-create
+    ```
 
 ## 3B. Windowsで使用する場合の追加作業
 
 1. VcXsrvのインストール
 
-- 詳細は検索すること
+    - 詳細は検索すること
 
 1. XLaunchの起動＆設定
 
-<img src="https://user-images.githubusercontent.com/36184922/159161402-8cc1045b-2bb9-4d48-b316-6f0465776c51.JPG" width="50%">
+    <img src="https://user-images.githubusercontent.com/36184922/159161402-8cc1045b-2bb9-4d48-b316-6f0465776c51.JPG" width="50%">
 
-<img src="https://user-images.githubusercontent.com/36184922/159161404-5e6f9910-01b1-4c8c-9e11-57b6fad75499.JPG" width="50%">
+    <img src="https://user-images.githubusercontent.com/36184922/159161404-5e6f9910-01b1-4c8c-9e11-57b6fad75499.JPG" width="50%">
 
-<img src="https://user-images.githubusercontent.com/36184922/159161410-4141f625-dac4-40d0-965b-9aeab1cd4b57.JPG" width="50%">
+    <img src="https://user-images.githubusercontent.com/36184922/159161410-4141f625-dac4-40d0-965b-9aeab1cd4b57.JPG" width="50%">
 
 1. DISPLAY環境変数の設定
 
-Windows上で、ipアドレスの確認
+    - Windows上で、ipアドレスの確認
 
-```
-powershell> ipconfig 
-```
+    ```
+    powershell> ipconfig 
+   ```
 
-```
-イーサネット アダプター vEthernet (WSL):                                                                                      
---                                                    
-IPv4 アドレス . . . . . . . . . . . .: 192.168.xx.y                             
---
-```
+    ```
+    イーサネット アダプター vEthernet (WSL):                                                                                      
+    --                                                    
+    IPv4 アドレス . . . . . . . . . . . .: 192.168.xx.y                             
+    --
+    ```
 
-WSLのshellでDISPLAYを設定する。
+    WSLのshellでDISPLAYを設定する。
 
-```
-export DISPLAY=192.168.xx.y:0
-```
+    ```
+    export DISPLAY=192.168.xx.y:0
+    ```
 
 ## 4. Gazeboシミュレーターの起動
 
