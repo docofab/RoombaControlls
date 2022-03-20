@@ -136,11 +136,11 @@ Please submit a full bug report,
     ./run-docker-container.bash
     ```
     
-    ※エラーが発生したら
+    注）GPUがないPCの場合、下記エラーとなることがあります。
     ```
     docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].  
     ```
-    
+    その場合は下記の行を削除してください。
     ```run-docker-image.bash
     docker run                                                                                                        
     　--
