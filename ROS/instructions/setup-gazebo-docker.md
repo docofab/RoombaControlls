@@ -53,11 +53,11 @@ exit
 
 * [Mac に Docker Desktop をインストール](https://docs.docker.jp/docker-for-mac/install.html)
 
-## 2. 既存イメージをpullする
+## 2A. 既存イメージをpullする
 @ref:[Docker上でGUIのROS1/ROS2を一瞬でセットアップする方法][5],
 [ROS/ROS2のGUIをWebブラウザ経由でお手軽に試せるDockerfileを公開しました][6]
 
-### docker pullによる方法
+## docker pull
 ``` bash
 docker pull tiryoh/ros-desktop-vnc
 ``` 
@@ -67,13 +67,7 @@ docker run -p 6080:80 --shm-size=512m tiryoh/ros-desktop-vnc:melodic
 ```
 
 
-
-### docker composeによる方法
-``` bash
-
-``` 
-
-## 3. アクセス確認
+## 3A. アクセス確認
 
 (デフォルトなら)ブラウザで[http://127.0.0.1:6080](http://127.0.0.1:6080) にアクセス
 
@@ -128,6 +122,66 @@ Please submit a full bug report,
     ```
 1. キーボードでシミュレータのRoombaがコントロールできることを確認する。
 
+## 2B. 用意したDockerFileを使用する
+
+1. Dockerファイルのリポジトリをクローンし、ファイルの場所に移動
+
+    ```
+    git clone https://github.com/sibafb/akiemon_dockerfiles.git
+    ```
+    
+    ```
+    cd ./akiemon_dockerfiles/dockerfiles/ros_melodic_create
+    ```
+ 
+1. ビルドのスクリプトを実行
+
+    ```
+    ./build-docker-image.bash
+    ```
+
+1. run のスクリプトを実行
+
+　  ```
+    ./run-docker-container.bash
+    ```
+    
+    ※エラーが発生したら
+    ```
+    docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].  
+    ```
+    
+    ```run-docker-image.bash
+    docker run                                                                                                        
+    　--
+      --gpus all \   ←削除
+      --  
+    ```
+    
+    ターミナルが起動する。
+
+1. 終了、再起動
+
+- ターミナルを閉じれば終了。
+- 以下コマンドで再起動
+
+```
+docker start ros-melodic-create
+```
+
+## 3B. Windowsで使用する場合の追加作業
+
+1. VcXsrvのインストール
+
+- 詳細は検索すること
+
+1. XLaunchの起動設定
+
+<img src="https://user-images.githubusercontent.com/36184922/159161402-8cc1045b-2bb9-4d48-b316-6f0465776c51.JPG" width="50%">
+
+<img src="https://user-images.githubusercontent.com/36184922/159161404-5e6f9910-01b1-4c8c-9e11-57b6fad75499.JPG" width="50%">
+
+<img src="https://user-images.githubusercontent.com/36184922/159161410-4141f625-dac4-40d0-965b-9aeab1cd4b57.JPG" width="50%">
 
 ## 参考サイト
 - ### DockerTips
