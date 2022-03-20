@@ -98,4 +98,8 @@ $ sudo timedatectl set-timezone Asia/Tokyo
 ```
 sudo dpkg-reconfigure keyboard-configuration
 ```
-
+* NTPの確認
+```
+systemctl status systemd-timesyncd.service
+systemctl is-enabled systemd-timesyncd.service
+```
