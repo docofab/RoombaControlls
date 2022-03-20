@@ -108,20 +108,6 @@ Please submit a full bug report,
     catkin build -DCMAKE_BUILD_TYPE=Release -j1
     ```
 
-### 3b. 
-
-## 4. Gazeboシミュレーターの起動
-
-1. 新たにターミナルを起動して以下のコマンドを入力する。
-    ```
-    roslaunch ca_gazebo create_empty_world.launch
-    ```
-1. もう一つターミナルを起動して以下のコマンドを入力する。
-    ```
-    roslaunch ca_tools keyboard_teleop.launch
-    ```
-1. キーボードでシミュレータのRoombaがコントロールできることを確認する。
-
 ## 2B. 用意したDockerFileを使用する
 
 1. Dockerファイルのリポジトリをクローンし、ファイルの場所に移動
@@ -139,6 +125,10 @@ Please submit a full bug report,
     ```
     ./build-docker-image.bash
     ```
+    
+1. 環境の設定を行う
+
+Windowsを使用する場合は、下の方に記載のWindowsで使用する場合の追加作業を行うこと
 
 1. run のスクリプトを実行
 
@@ -175,13 +165,46 @@ docker start ros-melodic-create
 
 - 詳細は検索すること
 
-1. XLaunchの起動設定
+1. XLaunchの起動＆設定
 
 <img src="https://user-images.githubusercontent.com/36184922/159161402-8cc1045b-2bb9-4d48-b316-6f0465776c51.JPG" width="50%">
 
 <img src="https://user-images.githubusercontent.com/36184922/159161404-5e6f9910-01b1-4c8c-9e11-57b6fad75499.JPG" width="50%">
 
 <img src="https://user-images.githubusercontent.com/36184922/159161410-4141f625-dac4-40d0-965b-9aeab1cd4b57.JPG" width="50%">
+
+1. DISPLAY環境変数の設定
+
+Windows上で、ipアドレスの確認
+
+```
+powershell> ipconfig 
+```
+
+```
+イーサネット アダプター vEthernet (WSL):                                                                                      
+--                                                    
+IPv4 アドレス . . . . . . . . . . . .: 192.168.xx.y                             
+--
+```
+
+WSLのshellでDISPLAYを設定する。
+
+```
+export DISPLAY=192.168.xx.y:0
+```
+
+## 4. Gazeboシミュレーターの起動
+
+1. 新たにターミナルを起動して以下のコマンドを入力する。
+    ```
+    roslaunch ca_gazebo create_empty_world.launch
+    ```
+1. もう一つターミナルを起動して以下のコマンドを入力する。
+    ```
+    roslaunch ca_tools keyboard_teleop.launch
+    ```
+1. キーボードでシミュレータのRoombaがコントロールできることを確認する。
 
 ## 参考サイト
 - ### DockerTips
