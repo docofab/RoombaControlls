@@ -134,6 +134,6 @@ TBD
     ```
 1. Rvizを起動する。
     ```
-    rosrun rviz rviz
+    roslaunch ca_tools rviz.launch
     ```
 1. Rvizの2D Nav Goalをクリックして目的地点と方向を指定する。
