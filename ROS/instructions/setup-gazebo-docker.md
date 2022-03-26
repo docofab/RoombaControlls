@@ -117,7 +117,7 @@ Please submit a full bug report,
     ```
     
     ```
-    cd ./akiemon_dockerfiles/dockerfiles/ros_melodic_create
+    cd ./akiemon_dockerfiles/dockerfiles/ros-melodic-create
     ```
  
 1. ビルドのスクリプトを実行
