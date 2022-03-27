@@ -126,7 +126,7 @@ PC <--> WiFi
     ```
 1. Rvizを起動する。
     ```
-    rosrun rviz rviz
+    roslaunch ca_tools rviz.launch
     ```
 1. トピックを再生する
     ```
@@ -149,7 +149,7 @@ STEP3のrosbagを保存せずにリアルタイムで作成することもでき
     ```
 1. Rvizを起動する。
     ```
-    rosrun rviz rviz
+    roslaunch ca_tools rviz.launch
     ```
 1. Ubuntu PCでキーボードでルンバを動かして、地図情報を取得する。
     ```
