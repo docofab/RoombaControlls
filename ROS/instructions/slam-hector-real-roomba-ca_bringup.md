@@ -86,8 +86,9 @@ TBD
     ※この設定がfalseだと、create1/odomとcreate1/base_footprintをつなぐtfが配信されない。
 1. ca_bringupを起動する。
     ```
-    roslaunch ca_bringup minimal2.launch
+    roslaunch ca_bringup minimal2.launch imu:=false
     ```
+    ※IMUを使わない場合はimu:=flaseを追加。使う場合は指定しなくてもよい。
 
 ## STEP2. Ubuntu PCとRoombaの接続設定
 
@@ -130,7 +131,8 @@ TBD
 1. Ubuntu PCで起動しているROSノードを停止する。
 1. Navigationを起動する。
     ```
-    roslaunch ca_move_base navigate2.launch
+    roslaunch ca_move_base navigate2.launch localization:=hector_mapping
+
     ```
 1. Rvizを起動する。
     ```
