@@ -132,7 +132,6 @@ TBD
 1. Navigationを起動する。
     ```
     roslaunch ca_move_base navigate2.launch localization:=hector_mapping
-
     ```
 1. Rvizを起動する。
     ```
