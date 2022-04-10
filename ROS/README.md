@@ -22,6 +22,11 @@
 - ## [move_tutorial][4]
   - 
 
+- ## [wp_navi][5]
+  - Waypoint navigation
+
+- ## [worlds][6]
+  - original worlds
 
 - ## Reference Links
 
@@ -38,6 +43,8 @@
 [2]:https://github.com/docofab/RoombaControlls/tree/main/ROS/scripts
 [3]:https://github.com/docofab/RoombaControlls/tree/main/ROS/tutorials
 [4]:https://github.com/docofab/RoombaControlls/tree/main/ROS/move_tutorials
+[5]:https://github.com/docofab/RoombaControlls/blob/main/ROS/wp_navi
+[6]:https://github.com/docofab/RoombaControlls/blob/main/ROS/worlds
 
 [101]:https://demura.net/robot/hard/20405.html
 [102]:https://demura.net/robot/hard/20101.html
