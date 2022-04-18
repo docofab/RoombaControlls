@@ -54,10 +54,8 @@
 1. GitHubからクローンする。
     ```
     cd ~
-    mkdir git
-    cd git
     git clone https://github.com/docofab/RoombaControlls.git
-    cd RoombaControlls/ROS
+    cd RoombaControlls/ROS/scripts
     chmod 755 *.sh
     ```
 
@@ -65,7 +63,7 @@
 
 1. 以下のコマンドを入力する。
     ```
-    cd ~/git/RoombaControlls/ROS
+    cd ~/RoombaControlls/ROS/scripts
     ./install-ros-melodic-rasppi.sh
     ```
 
@@ -91,7 +89,7 @@
 
 1. 以下のコマンドを入力する。
     ```
-    cd ~/git/RoombaControlls/ROS
+    cd ~/RoombaControlls/ROS/scripts
     ./install-gazebo-roomba-rasppi.sh
     ```
 
