@@ -18,8 +18,6 @@ https://www.ubuntulinux.jp/download/ja-remix
 
     ```
     cd
-    mkdir git
-    cd git
     git clone https://github.com/karaage0703/jetson-nano-tools.git
     ```
 
@@ -28,7 +26,7 @@ https://www.ubuntulinux.jp/download/ja-remix
 1. 以下のコマンドを入力する。
 
     ```
-    cd ~/git/jetson-nano-tools/
+    cd ~/jetson-nano-tools/
     chmod 755 install-ros-melodic.sh
     ./install-ros-melodic.sh
     ```
@@ -56,7 +54,7 @@ https://www.ubuntulinux.jp/download/ja-remix
 1. 以下のコマンドを入力する。
 
     ```
-    cd ~/git
+    cd ~
     git clone https://github.com/docofab/RoombaControlls.git
     cd RoombaControlls/ROS/scripts
     chmod 755 *.sh
