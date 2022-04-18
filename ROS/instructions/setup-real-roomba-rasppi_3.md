@@ -123,8 +123,6 @@ http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/
 1. GitHubからセットアップスクリプトをクローンする。
     ```
     cd ~
-    mkdir git
-    cd git
     git clone https://github.com/docofab/RoombaControlls.git
     cd RoombaControlls/ROS/scripts
     chmod 755 *.sh
@@ -133,13 +131,13 @@ http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/
 1. ROS melodicをインストールする。
 
     ```
-    cd ~/git/RoombaControlls/ROS/scripts
+    cd ~/RoombaControlls/ROS/scripts
     ./install-ros-melodic-rasppi-nogui.sh
     ```
 
 1. RoombaのROSドライバをインストールする。
     ```
-    cd ~/git/RoombaControlls/ROS/scripts
+    cd ~/RoombaControlls/ROS/scripts
     ./install-real-roomba-rasppi_3.sh
     ```
 
