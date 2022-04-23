@@ -47,7 +47,7 @@ https://www.ubuntulinux.jp/download/ja-remix
     ```
     rosrun turtlesim turtle_teleop_key
     ```
-1. turtle_teleop_keyを動かしたターミナルの画面上で、キーボードの入力を行うと亀が動くことを確認する。
+1. turtle_teleop_keyを動かしたターミナルの画面上で、カーソルキーの入力を行うと亀が動くことを確認する。
 
 ## Gazeboのインストール
 
