@@ -59,18 +59,18 @@ TBD
 
 1. Raspberry Piにモバイルバッテリをつないで起動する。
 1. Raspberry PiのUSBにRoombaとLiDARを接続する。
-1. Ubuntu PCにログインし、以下のコマンドでRaspberry PiのIPを探す。
+1. Ubuntu PCにログインし、以下のコマンドでRaspberry PiのIPを探す。(ネットワークアドレスが192.168.0.0/24だった場合の例)
     ```
-    nmap -sP 192.168.100.0/24
+    nmap -sP 192.168.0.0/24
     ```
 1. Ubuntu PCからRaspberry Piにログイン
     ```
-    ssh ubuntu@192.168.0.63
+    ssh ubuntu@192.168.0.2
     ```
 1. Raspberry Piの~/.bashrcに環境変数の設定をする。
     ```
-    export ROS_MASTER_URI=http://192.168.0.63:11311
-    export ROS_HOSTNAME=192.168.0.63
+    export ROS_MASTER_URI=http://192.168.0.2:11311
+    export ROS_HOSTNAME=192.168.0.2
     ```
 1. 環境変数を設定する。
     ```
@@ -88,13 +88,13 @@ TBD
     ```
     roslaunch ca_bringup minimal2.launch imu:=false
     ```
-    ※IMUを使わない場合はimu:=flaseを追加。使う場合は指定しなくてもよい。
+    ※IMUを使わない場合はimu:=falseを追加。使う場合は指定しなくてもよい。
 
 ## STEP2. Ubuntu PCとRoombaの接続設定
 
 1. Ubuntu PCの~/.bashrcに環境変数の設定をする。ROS_MASTERはRaspberry Piになる。
     ```
-    export ROS_MASTER_URI=http://192.168.0.63:11311
+    export ROS_MASTER_URI=http://192.168.0.2:11311
     export ROS_HOSTNAME=192.168.0.34
     ```
 1. 環境変数を設定する。
