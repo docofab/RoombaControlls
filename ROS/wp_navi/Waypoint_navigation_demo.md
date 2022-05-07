@@ -38,14 +38,14 @@
 
 1. 作成したリストをwp_navi2.pyに組み込む
     ```
-    $ roscd wp_navi/src
-    $ vi wp_navi2.py
+    roscd wp_navi/src
+    vi wp_navi2.py
     ```
 
 1. ウェイポイントナビゲーションを実行する。
     ```
-    $ roscd wp_navi/src
-    $ rosrun wp_navi wp_navi2.py
+    roscd wp_navi/src
+    rosrun wp_navi wp_navi2.py
     ```
 
 1. リスト通りにウェイポイントナビゲーションが行われる。
