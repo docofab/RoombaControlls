@@ -36,6 +36,7 @@ class WpNavi():
         self.goal.target_pose.header.stamp = rospy.Time.now()  # 現在時刻
 
         # ここに wp_goal_navi.py で出力されたリストを書き込む
+        # 2D Nav Goalで与えた座標(map座標系)、クォータニオン(x,y,z,w)
         way_points = [
             [(1.67217516899,-0.108617782593,0.0),(0.0,0.0,-0.706421072541,0.707791825518)],
             [(0.671614408493,-0.68189907074,0.0),(0.0,0.0,0.743972727,0.668209983075)],
@@ -46,12 +47,10 @@ class WpNavi():
         i = 0
         while not rospy.is_shutdown():
             # ROSではロボットの進行方向がx座標、左方向がy座標、上方向がz座標
-            #self.goal.target_pose.pose.position.x = way_point[i][0]
-            #self.goal.target_pose.pose.position.y = way_point[i][1]
-
             self.goal.target_pose.pose.position.x = way_points[i][0][0]
             self.goal.target_pose.pose.position.y = way_points[i][0][1]
             self.goal.target_pose.pose.position.z = way_points[i][0][2]
+            # クォータニオン(x,y,z,w)
             self.goal.target_pose.pose.orientation.x = way_points[i][1][0]
             self.goal.target_pose.pose.orientation.y = way_points[i][1][1]
             self.goal.target_pose.pose.orientation.z = way_points[i][1][2]
