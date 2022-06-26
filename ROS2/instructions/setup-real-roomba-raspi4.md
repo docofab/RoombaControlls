@@ -104,18 +104,19 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     ```
 1. 以下のように書き込む。
     ```
-    KERNEL=="ttyUSB*", ATTRS{idVendor}=="ベンダーID", ATTRS{idProduct}=="プロダクトID", GROUP="dialout", MODE="0666"
+    KERNEL=="ttyUSB*", ATTRS{idVendor}=="ベンダーID", ATTRS{idProduct}=="プロダクトID", GROUP="dialout", MODE="0666", SYMLINK+="roomba"
     ```
     今回の設定例
     ```
-    KERNEL=="ttyUSB*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", GROUP="dialout", MODE="0666"
+    KERNEL=="ttyUSB*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", GROUP="dialout", MODE="0666", SYMLINK+="roomba"
+    KERNEL=="ttyUSB*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", GROUP="dialout", MODE="0666", SYMLINK+="roomba"
     ```
 1. RoombaのUSBシリアルケーブルを一度抜き、再度差し込む。
 1. デバイスファイルを確認する。
     ```
     ls -l /dev/ttyUSB*
     ```
-1. udevの設定が行われ、パーミッションのotherがrwになっていることを確認する。  
+1. udevの設定が行われ、パーミッションのotherがrwになっていることとroombaのシンボリックリンクができていることを確認する。  
 （実行例）
     ```
     $ ls -l /dev/ttyUSB*
@@ -147,23 +148,13 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
                         GND
     ```
 1. Roombaの電源を入れる。
-1. シリアルUSBのデバイスのパーミッションのotherがrwになっていることを確認する。  
-（実行例）
-    ```
-    $ ls -l /dev/ttyUSB0
-    crw-rw-rw- 1 root dialout 188, 0 Jul  3 14:45 /dev/ttyUSB0
-    ```
-1. 以下のコマンドを入力して、/dev/roomba でアクセスできるようにする。
-    ```
-    cd /dev
-    sudo ln -s ttyUSB0 roomba
-    ls -l /dev/roomba 
-    ```
-1. 以下のように表示されることを確認する。  
+1. シリアルUSBのデバイスが以下のように表示されることを確認する。  
 （実行例）
     ```
     $ ls -l /dev/roomba
     lrwxrwxrwx 1 root root 7 Jul  3 14:57 /dev/roomba -> ttyUSB0
+    $ ls -l /dev/ttyUSB0
+    crw-rw-rw- 1 root dialout 188, 0 Jul  3 14:45 /dev/ttyUSB0
     ```
 
 ## Roombaを動かす
@@ -191,3 +182,10 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     $ ros2 topic pub /cmd_vel geometry_msgs/Twist '{linear: {x: 0.1}, angular: {z: 0.3}}'
     ```
 1. ルンバが少しずつ動き続けるのでCTRL-Cで中断する。
+
+## LiDERの起動
+1. もう一つターミナルを立ち上げて、LiDERのドライバを起動する。
+    ```
+    $ ros2 launch ydlidar_ros2_driver ydlidar_launch.py
+    ```
+ 
