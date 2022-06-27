@@ -1,6 +1,8 @@
 # Roomba実機をROS2 foxyで動かす環境のセットアップ(Raspberry Pi 4)
 
-## Ubuntu 20.04 Serverのインストール
+## Raspberry Piの初期設定
+
+### Ubuntu 20.04 Serverのインストール
 
 1. Raspberry pi imager でUbuntu 20.04 Server 64bitのSDカードを作成する。
 1. Raspberry pi にHDMI、キーボードをつけてSDカードをセットして電源を投入する。
@@ -13,13 +15,13 @@
     $ sudo vi 99-custom.yaml
     $ cat 99-custom.yaml
     network:
-        version: 2
-        wifis:
-            wlan0:
-                dhcp4: true
-                access-points:
-                    "SSID":
-                    password: "PASSWORD"
+      version: 2
+      wifis:
+        wlan0:
+          dhcp4: true
+          access-points:
+            "SSID":
+              password: "PASSWORD"
     $ sudo netplan apply
     $ sudo apt install openssh-server
     ```
@@ -27,64 +29,62 @@
     ```
     $ sudo dpkg-reconfigure keyboard-configuration
     ```
-
-## ROS2 foxyのインストール
-
-https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html
-
-## create_autonomyのインストール
-
-https://github.com/AutonomyLab/create_robot/tree/foxy
-
-
-途中で以下のエラーがでた場合の対処方法
-```
-Starting >>> create_description
---- stderr: create_msgs
-CMake Error at CMakeLists.txt:2 (project):
-  No CMAKE_CXX_COMPILER could be found.
-```
-
-この場合は、g++をインストールすると解消されました。
-```
-sudo apt install g++
-```
-
-## Raspberry Piの準備
-
-1. Raspberry Piの電源をモバイルバッテリーに接続し、ディスプレイ、キーボード、マウスを接続して起動する。
-1. デスクトップが表示されたらログインする。
-1. WiFiに接続し、割り当てられたIPアドレスを確認する。
-   ```
-   ip address
-   ```
-
-## Raspberry Piにsshログイン
-
-1. 別のPCからRaspberry PiのIPアドレスに対してsshで接続する。
-
-
-## Raspberry PiにシリアルUSBを接続
-
-Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使用する。
-
-1. Raspberry Pi 4とUSBシリアルでRoombaを接続すると、OSでUSBシリアルが認識されているか確認する。
+1. IPアドレスを確認して控えておく。
     ```
-    ls -l /dev/ttyUSB*
+    $ ip a
     ```
-1. 今回は/dev/ttyUSB0で認識したので、以下のように表示された。  
-（実行例）
+
+### ROS2 foxyのインストール
+
+1. 別のPCからRaspberry PiのIPアドレスに対してsshで接続する。設定作業はこのリモートPCから行う。
     ```
+    $ ssh ubuntu@192.168.100.45
+    ```
+1. ROS2 foxyのインストール
+
+    https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html
+
+1. create_autonomyのインストール
+
+    https://github.com/AutonomyLab/create_robot/tree/foxy
+
+
+    途中で以下のエラーがでた場合の対処方法
+    ```
+    Starting >>> create_description
+    --- stderr: create_msgs
+    CMake Error at CMakeLists.txt:2 (project):
+      No CMAKE_CXX_COMPILER could be found.
+    ```
+
+    この場合は、g++をインストールすると解消されました。
+    ```
+    $ sudo apt install g++
+    ```
+
+1. ROSドメインの設定
+
+    複数のPCを使うのでドメインを指定しておく。Raspberry PiとリモートPCの両方で行っておく。
+    ```
+    $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
+    $ source ~/.bashrc
+    $ env | fgrep ROS
+    ```
+
+### シリアルUSBの接続
+
+1. Raspberry Pi 4とUSBシリアルを接続し、OSで認識されているか確認する。今回は/dev/ttyUSB0で認識したので、以下のように表示された。  
+    ```
+    $ ls -l /dev/ttyUSB*
     crw-rw---- 1 root dialout 188, 0 May 28 00:28 /dev/ttyUSB0
     ```
-
-## udevの設定
+### udevの設定
 
 シリアルUSBデバイスをどのユーザからも読み書きできるように設定する。（毎回chmodでの設定が不要になるように）
 
 1. lsusbコマンドを入力する。
     ```
-    lsusb
+    $ lsusb
     ```
 1. シリアルUSBデバイスのベンダーIDとプロダクトIDをメモする。今回のシリアルUSBはFT232を使用している。  
 （実行例）
@@ -100,7 +100,7 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
 
 1. 以下のコマンドを実行する。
     ```
-    sudo vi /etc/udev/rules.d/77-roomba.rules
+    $ sudo vi /etc/udev/rules.d/77-roomba.rules
     ```
 1. 以下のように書き込む。
     ```
@@ -112,22 +112,41 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     KERNEL=="ttyUSB*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", GROUP="dialout", MODE="0666", SYMLINK+="roomba"
     ```
 1. RoombaのUSBシリアルケーブルを一度抜き、再度差し込む。
-1. デバイスファイルを確認する。
-    ```
-    ls -l /dev/ttyUSB*
-    ```
 1. udevの設定が行われ、パーミッションのotherがrwになっていることとroombaのシンボリックリンクができていることを確認する。  
-（実行例）
     ```
     $ ls -l /dev/ttyUSB*
     crw-rw-rw- 1 root dialout 188, 0 Jul  3 14:45 /dev/ttyUSB0
     ```
 
-## RoombaとシリアルUSBを接続する
 
-1. RoombaとシリアルUSBを接続する。
+## ルンバを動かすための準備
 
-    接続は以下の通り
+### Raspberry Piにログイン
+
+1. Raspberry Piの電源をモバイルバッテリーに接続する。
+1. Ubuntu PCからRaspberry Piにログインする。
+    ```
+    $ ssh ubuntu@192.168.0.63
+    ```
+    ipアドレスがわからない場合は以下のコマンドで目星を付ける。
+    ```
+    $ nmap -sP 192.168.100.0/24
+    ```
+
+### シリアルUSBの接続
+
+1. Raspberry Pi 4とUSBシリアルを接続する。
+1. シリアルUSBのデバイスが以下のように表示されることを確認する。  
+    ```
+    $ ls -l /dev/roomba
+    lrwxrwxrwx 1 root root 7 Jul  3 14:57 /dev/roomba -> ttyUSB0
+    $ ls -l /dev/ttyUSB0
+    crw-rw-rw- 1 root dialout 188, 0 Jul  3 14:45 /dev/ttyUSB0
+    ```
+
+### Roombaのシリアルポートと接続する
+
+1. RoombaのシリアルポートとUSBシリアルのシリアルポートを以下のように接続する
     ```
     FT232(5V)   Roomba
     GND ------- 6,7 GND
@@ -147,17 +166,8 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
                          |
                         GND
     ```
-1. Roombaの電源を入れる。
-1. シリアルUSBのデバイスが以下のように表示されることを確認する。  
-（実行例）
-    ```
-    $ ls -l /dev/roomba
-    lrwxrwxrwx 1 root root 7 Jul  3 14:57 /dev/roomba -> ttyUSB0
-    $ ls -l /dev/ttyUSB0
-    crw-rw-rw- 1 root dialout 188, 0 Jul  3 14:45 /dev/ttyUSB0
-    ```
 
-## Roombaを動かす
+### Roombaを動かす
 
 1. Roombaの電源を入れる
 1. 別にターミナルを１つ立ち上げて以下のコマンドを入力する。
@@ -165,7 +175,6 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     $ ros2 launch create_bringup create_2.launch
     ```
 1. 以下のような画面になることを確認する。正常に接続できるとRoombaから音が鳴る。  
-    （実行例）
     ```
     $ ros2 launch create_bringup create_2.launch
     [INFO] [launch]: All log files can be found below /home/ubuntu/.ros/log/2022-06-25-06-46-02-115705-ubuntu-2665
@@ -183,9 +192,29 @@ Roombaは5V, Raspberry PiのGPIOは3.3Vなので、USBシリアル変換を使�
     ```
 1. ルンバが少しずつ動き続けるのでCTRL-Cで中断する。
 
-## LiDERの起動
-1. もう一つターミナルを立ち上げて、LiDERのドライバを起動する。
+### LiDERの起動
+1. もう一つターミナルを立ち上げて、Raspberry PiにログインしてLiDERのドライバを起動する。
     ```
     $ ros2 launch ydlidar_ros2_driver ydlidar_launch.py
     ```
- 
+### Rviz2での確認
+1. すでにROS2 foxyをインストールしているリモートPCにログインする。
+1. ROSドメインを設定する。
+    ```
+    $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
+    $ source ~/.bashrc
+    $ env | fgrep ROS
+    ```
+1. トピックが流れているか確認する。
+    ```
+    $ ros2 topic list
+    ```
+1. Rviz2を起動する。
+    ```
+    $ rviz2
+    ```
+1. 左側のDisplaysのメニューでAddをクリックする。
+1. By display typeからLaserScanを選んでOKをクリックする。
+1. 追加されたLaserScanのTopicをえらび、Topicに/scanを設定する。Reliabilty PolicyをSystem Defaultにする。
+1. Global OptionsのFixed Frameをbase_linkにする。
+1. LiDARのスキャンデータが見えれば動作確認完了です。
