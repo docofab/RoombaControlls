@@ -117,7 +117,16 @@
     $ ls -l /dev/ttyUSB*
     crw-rw-rw- 1 root dialout 188, 0 Jul  3 14:45 /dev/ttyUSB0
     ```
-
+1. create_robotの設定ファイルを修正する。  
+~/create_ws/src/create_bringup/config/default.yamlのdev:が/dev/ttyUSB0となっているので、/dev/roombaに修正しておく。
+    ```
+    create_driver:
+      ros__parameters:
+        # The device path for the robot
+        #dev: "/dev/ttyUSB0"
+        dev: "/dev/roomba"
+               :
+    ```
 
 ## ルンバを動かすための準備
 
@@ -170,7 +179,7 @@
 ### Roombaを動かす
 
 1. Roombaの電源を入れる
-1. 別にターミナルを１つ立ち上げて以下のコマンドを入力する。
+1. 別にターミナルを１つ立ち上げて、Raspberry Piにログインし、以下のコマンドを入力する。
     ```
     $ ros2 launch create_bringup create_2.launch
     ```
@@ -192,8 +201,21 @@
     ```
 1. ルンバが少しずつ動き続けるのでCTRL-Cで中断する。
 
-### LiDERの起動
-1. もう一つターミナルを立ち上げて、Raspberry PiにログインしてLiDERのドライバを起動する。
+### Roombaをキーボードで操作
+1. 以下のコマンドを入力する。
+    ```
+    $ sudo apt install ros-foxy-teleop-twist-keyboard   (パッケージがインストールされていなかった場合)
+    $ ros2 run teleop_twist_keyboard teleop_twist_keyboard
+    ```
+
+### Roombaをジョイスティックで操作
+1. 以下のコマンドを入力する。(まだ未確認）
+    ```
+    $ ros2 launch create_bringup joy_teleop.launch [joy_config:=xbox360]
+    ```
+
+### LiDARの起動
+1. もう一つターミナルを立ち上げて、Raspberry PiにログインしてLiDARのドライバを起動する。
 - YDLiDAR X2の場合
     ```
     $ ros2 launch ydlidar_ros2_driver ydlidar_launch.py
