@@ -194,8 +194,13 @@
 
 ### LiDERの起動
 1. もう一つターミナルを立ち上げて、Raspberry PiにログインしてLiDERのドライバを起動する。
+- YDLiDAR X2の場合
     ```
     $ ros2 launch ydlidar_ros2_driver ydlidar_launch.py
+    ```
+- SLAMTEC RPLIDAR A1の場合
+    ```
+    $ ros2 launch sllidar_ros2 sllidar_launch.py
     ```
 ### Rviz2での確認
 1. すでにROS2 foxyをインストールしているリモートPCにログインする。
