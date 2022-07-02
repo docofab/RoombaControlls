@@ -79,11 +79,15 @@
         invalid_range_is_inf: false
     ```
 ## ROS2での動作確認
-1. YDLiDARドライバを動かす。
+1. YDLiDARのノードを動かす。Rvizも起動される。
     ```
-    $ ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
+    ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py 
+    ```
+    Rvizが不要であれば以下の手順でノードを動かす。
+    ```
+    ros2 launch ydlidar_ros2_driver ydlidar_launch.py 
     ```
 1. トピックリストで/scanが出ていることを確認する。
     ```
-    $ ros2 topic list 
+    ros2 topic list 
     ```
