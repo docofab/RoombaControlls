@@ -222,7 +222,7 @@
     ```
 - SLAMTEC RPLIDAR A1の場合
     ```
-    $ ros2 launch sllidar_ros2 sllidar_launch.py
+    $ ros2 launch sllidar_ros2 sllidar_launch.py serial_port:=/dev/rplidar
     ```
 ### Rviz2での確認
 1. すでにROS2 foxyをインストールしているリモートPCにログインする。
