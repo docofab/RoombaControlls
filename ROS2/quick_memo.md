@@ -25,3 +25,24 @@ $ rqt_graph
 ```
 $ ros2 run tf2_tools view_frames.py
 ```
+
+## 通信確認
+トピックの送信・受信確認
+```
+ros2 run demo_nodes_cpp talker
+
+ros2 run demo_nodes_cpp listener
+```
+マルチキャストUDPパケットの通信確認
+```
+ros2 multicast receive
+
+ros2 multicast send
+```
+
+## ROS2 daemon
+```
+ros2 daemon status
+ros2 daemon start
+ros2 daemon stop
+```
