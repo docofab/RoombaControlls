@@ -176,7 +176,9 @@
                         GND
     ```
 
-### Roombaを動かす
+## ルンバを動かす
+
+### create_driverノードの起動
 
 1. Roombaの電源を入れる
 1. 別にターミナルを１つ立ち上げて、Raspberry Piにログインし、以下のコマンドを入力する。
@@ -214,7 +216,7 @@
     $ ros2 launch create_bringup joy_teleop.launch [joy_config:=xbox360]
     ```
 
-### LiDARの起動
+## LiDARノードの起動
 1. もう一つターミナルを立ち上げて、Raspberry PiにログインしてLiDARのドライバを起動する。
 - YDLiDAR X2の場合
     ```
@@ -224,7 +226,7 @@
     ```
     $ ros2 launch sllidar_ros2 sllidar_launch.py serial_port:=/dev/rplidar
     ```
-### Rviz2での確認
+## Rviz2での確認
 1. すでにROS2 foxyをインストールしているリモートPCにログインする。
 1. ROSドメインを設定する。
     ```
@@ -245,3 +247,9 @@
 1. 追加されたLaserScanのTopicをえらび、Topicに/scanを設定する。Reliabilty PolicyをSystem Defaultにする。
 1. Global OptionsのFixed Frameをbase_linkにする。
 1. LiDARのスキャンデータが見えれば動作確認完了です。
+
+## SLAM
+- 以下実験中です。
+    ```
+    ros2 launch slam_toolbox online_async_launch.py
+    ```
