@@ -118,7 +118,7 @@
     crw-rw-rw- 1 root dialout 188, 0 Jul  3 14:45 /dev/ttyUSB0
     ```
 1. create_robotの設定ファイルを修正する。  
-~/create_ws/src/create_bringup/config/default.yamlのdev:が/dev/ttyUSB0となっているので、/dev/roombaに修正しておく。
+~/create_ws/src/create_robot/create_bringup/config/default.yamlのdev:が/dev/ttyUSB0となっているので、/dev/roombaに修正しておく。
     ```
     create_driver:
       ros__parameters:
