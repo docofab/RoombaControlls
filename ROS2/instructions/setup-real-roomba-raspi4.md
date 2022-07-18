@@ -1,4 +1,22 @@
-# Roomba実機をROS2 foxyで動かす環境のセットアップ(Raspberry Pi 4)
+# Roomba実機をROS2 foxyで動かす環境のセットアップ
+
+## リモートPCのセットアップ
+
+### Ubuntu 20.04 LTS Desktopのインストール
+
+通常通りインストール。日本語を使うのであれば[Ubuntu Desktop 日本語 Remix](https://www.ubuntulinux.jp/japanese)がお勧め。
+
+### ROS2 foxyのインストール
+```
+sudo apt install ros-foxy-desktop
+source /opt/ros/foxy/setup.bash
+```
+
+### turtlebot3のパッケージインストール
+```
+$ sudo apt install ros-foxy-turtlebot3-msgs
+$ sudo apt install ros-foxy-turtlebot3
+```
 
 ## Raspberry Piの初期設定
 
@@ -20,7 +38,7 @@
         wlan0:
           dhcp4: true
           access-points:
-            "SSID":
+            SSID:
               password: "PASSWORD"
     $ sudo netplan apply
     $ sudo apt install openssh-server
@@ -42,8 +60,13 @@
     ```
 1. ROS2 foxyのインストール
 
+    基本的にはこのサイト通りでインストールできます。
+
     https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html
 
+    Desktop InstallとROS-Base Installの2種類がありますが、Desktop Installは各種ツールが揃っているのでこちらを推奨します。  
+    慣れてきたらROS-Base Installでも良いかもしれない。
+    
 1. create_autonomyのインストール
 
     https://github.com/AutonomyLab/create_robot/tree/foxy
@@ -178,7 +201,9 @@
 
 ## ルンバを動かす
 
-### create_driverノードの起動
+### Raspberry Pi 4での操作
+
+#### create_driverノードの起動
 
 1. Roombaの電源を入れる
 1. 別にターミナルを１つ立ち上げて、Raspberry Piにログインし、以下のコマンドを入力する。
@@ -203,20 +228,7 @@
     ```
 1. ルンバが少しずつ動き続けるのでCTRL-Cで中断する。
 
-### Roombaをキーボードで操作
-1. 以下のコマンドを入力する。
-    ```
-    $ sudo apt install ros-foxy-teleop-twist-keyboard   (パッケージがインストールされていなかった場合)
-    $ ros2 run teleop_twist_keyboard teleop_twist_keyboard
-    ```
-
-### Roombaをジョイスティックで操作
-1. 以下のコマンドを入力する。(まだ未確認）
-    ```
-    $ ros2 launch create_bringup joy_teleop.launch [joy_config:=xbox360]
-    ```
-
-## LiDARノードの起動
+#### LiDARノードの起動
 1. もう一つターミナルを立ち上げて、Raspberry PiにログインしてLiDARのドライバを起動する。
 - YDLiDAR X2の場合
     ```
@@ -226,7 +238,18 @@
     ```
     $ ros2 launch sllidar_ros2 sllidar_launch.py serial_port:=/dev/rplidar
     ```
-## Rviz2での確認
+
+### リモートPCでの起動
+
+#### Roombaをキーボードで操作
+1. すでにROS2 foxyをインストールしているリモートPCにログインする。
+1. 以下のコマンドを入力する。細かい操作ができるturtlebot3用の操作パッケージを流用する。
+    ```
+    $ export TURTLEBOT3_MODEL=burger
+    $ ros2 run turtlebot3_teleop teleop_keyboard
+    ```
+
+#### Rviz2での確認
 1. すでにROS2 foxyをインストールしているリモートPCにログインする。
 1. ROSドメインを設定する。
     ```
@@ -252,4 +275,6 @@
 - 以下実験中です。
     ```
     ros2 launch slam_toolbox online_async_launch.py
+
+    ros2 run nav2_map_server map_saver_cli -f ~/map
     ```
