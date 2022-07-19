@@ -230,14 +230,14 @@ $ sudo apt install ros-foxy-turtlebot3
 
 #### LiDARノードの起動
 1. もう一つターミナルを立ち上げて、Raspberry PiにログインしてLiDARのドライバを起動する。
-- YDLiDAR X2の場合
-    ```
-    $ ros2 launch ydlidar_ros2_driver ydlidar_launch.py
-    ```
-- SLAMTEC RPLIDAR A1の場合
-    ```
-    $ ros2 launch sllidar_ros2 sllidar_launch.py serial_port:=/dev/rplidar
-    ```
+    - YDLiDAR X2の場合
+        ```
+        $ ros2 launch ydlidar_ros2_driver ydlidar_launch.py
+        ```
+    - SLAMTEC RPLIDAR A1の場合
+        ```
+        $ ros2 launch sllidar_ros2 sllidar_launch.py serial_port:=/dev/rplidar
+        ```
 1. 以下のような画面になることを確認する。LiDARが勢いよく回転を始めます。
     ```
     ubuntu@ubuntu:~$ ros2 launch ydlidar_ros2_driver ydlidar_launch.py
