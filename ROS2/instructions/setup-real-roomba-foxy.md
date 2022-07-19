@@ -238,11 +238,143 @@ $ sudo apt install ros-foxy-turtlebot3
     ```
     $ ros2 launch sllidar_ros2 sllidar_launch.py serial_port:=/dev/rplidar
     ```
+1. 以下のような画面になることを確認する。LiDARが勢いよく回転を始めます。
+    ```
+    ubuntu@ubuntu:~$ ros2 launch ydlidar_ros2_driver ydlidar_launch.py
+    [INFO] [launch]: All log files can be found below /home/ubuntu/.ros/log/2022-07-18-23-32-16-832154-ubuntu-1369
+    [INFO] [launch]: Default logging verbosity is set to INFO
+        :
+    [ydlidar_ros2_driver_node-1] YDLidar SDK initializing
+    [ydlidar_ros2_driver_node-1] YDLidar SDK has been initialized
+    [ydlidar_ros2_driver_node-1] [YDLIDAR]:SDK Version: 1.1.1
+    [static_transform_publisher-2] [INFO] [1658187137.609758419] [static_tf_pub_laser]: Spinning until killed publishing transform from 'base_link' to 'laser_frame'
+    [ydlidar_ros2_driver_node-1] LiDAR successfully connected
+    [ydlidar_ros2_driver_node-1] [YDLIDAR]:Lidar running correctly ! The health status: good
+    [ydlidar_ros2_driver_node-1] LiDAR init success, Elapsed time 640 ms
+    [ydlidar_ros2_driver_node-1] [CYdLidar] Successed to start scan mode, Elapsed time 1065 ms
+    [ydlidar_ros2_driver_node-1] [YDLIDAR] Calc Sample Rate: 3K
+    [ydlidar_ros2_driver_node-1] [YDLIDAR] Fixed Size: 720
+    [ydlidar_ros2_driver_node-1] [YDLIDAR] Sample Rate: 3K
+    [ydlidar_ros2_driver_node-1] [YDLIDAR] Calc Sample Rate: 3K
+    [ydlidar_ros2_driver_node-1] [YDLIDAR] Fixed Size: 720
+    [ydlidar_ros2_driver_node-1] [YDLIDAR] Sample Rate: 3K
+    [ydlidar_ros2_driver_node-1] [YDLIDAR]:Single Fixed Size: 250
+    [ydlidar_ros2_driver_node-1] [YDLIDAR]:Sample Rate: 3K
+    [ydlidar_ros2_driver_node-1] [YDLIDAR INFO] Single Channel Current Sampling Rate: 3K
+    [ydlidar_ros2_driver_node-1] [YDLIDAR INFO] Now YDLIDAR is scanning ......
+    ```
 
-### リモートPCでの起動
+
+### リモートPCでの操作
+
+1. ROS2 foxyをインストールしているリモートPCにログインする。
+1. ROSドメインを設定する。（初回だけ）
+    ```
+    $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
+    $ source ~/.bashrc
+    $ env | fgrep ROS
+    ```
+1. トピックが流れてきているか確認する。
+    ```
+    $ ros2 topic list 
+    /battery/capacity
+    /battery/charge
+    /battery/charge_ratio
+    /battery/charging_state
+    /battery/current
+    /battery/temperature
+    /battery/voltage
+    /bumper
+    /check_led
+    /clean_button
+    /cliff
+    /cmd_vel
+    /day_button
+    /debris_led
+    /define_song
+    /diagnostics
+    /dock
+    /dock_button
+    /dock_led
+    /hour_button
+    /ir_omni
+    /joint_states
+    /main_brush_motor
+    /minute_button
+    /mode
+    /odom
+    /parameter_events
+    /play_song
+    /power_led
+    /robot_description
+    /rosout
+    /scan
+    /set_ascii
+    /side_brush_motor
+    /spot_button
+    /spot_led
+    /tf
+    /tf_static
+    /undock
+    /vacuum_motor
+    /wheeldrop
+    /ydlidar_ros2_driver_node/transition_event
+    $
+    ```
+
+1. ノードの確認
+
+    ```
+    $ ros2 node list 
+    /create_driver
+    /launch_ros_1369
+    /robot_state_publisher
+    /static_tf_pub_laser
+    /ydlidar_ros2_driver_node
+    ocha@ubuntu:~$ 
+    ```
+
+1. サービスの確認
+
+    ```
+    $ ros2 service list 
+    /create_driver/describe_parameters
+    /create_driver/get_parameter_types
+    /create_driver/get_parameters
+    /create_driver/list_parameters
+    /create_driver/set_parameters
+    /create_driver/set_parameters_atomically
+    /launch_ros_1369/describe_parameters
+    /launch_ros_1369/get_parameter_types
+    /launch_ros_1369/get_parameters
+    /launch_ros_1369/list_parameters
+    /launch_ros_1369/set_parameters
+    /launch_ros_1369/set_parameters_atomically
+    /robot_state_publisher/describe_parameters
+    /robot_state_publisher/get_parameter_types
+    /robot_state_publisher/get_parameters
+    /robot_state_publisher/list_parameters
+    /robot_state_publisher/set_parameters
+    /robot_state_publisher/set_parameters_atomically
+    /start_scan
+    /static_tf_pub_laser/describe_parameters
+    /static_tf_pub_laser/get_parameter_types
+    /static_tf_pub_laser/get_parameters
+    /static_tf_pub_laser/list_parameters
+    /static_tf_pub_laser/set_parameters
+    /static_tf_pub_laser/set_parameters_atomically
+    /stop_scan
+    /ydlidar_ros2_driver_node/change_state
+    /ydlidar_ros2_driver_node/describe_parameters
+    /ydlidar_ros2_driver_node/get_parameter_types
+    /ydlidar_ros2_driver_node/get_parameters
+    /ydlidar_ros2_driver_node/list_parameters
+    /ydlidar_ros2_driver_node/set_parameters
+    /ydlidar_ros2_driver_node/set_parameters_atomically
+    $ 
+    ```
 
 #### Roombaをキーボードで操作
-1. すでにROS2 foxyをインストールしているリモートPCにログインする。
 1. 以下のコマンドを入力する。細かい操作ができるturtlebot3用の操作パッケージを流用する。
     ```
     $ export TURTLEBOT3_MODEL=burger
@@ -250,26 +382,18 @@ $ sudo apt install ros-foxy-turtlebot3
     ```
 
 #### Rviz2での確認
-1. すでにROS2 foxyをインストールしているリモートPCにログインする。
-1. ROSドメインを設定する。
-    ```
-    $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
-    $ source ~/.bashrc
-    $ env | fgrep ROS
-    ```
-1. トピックが流れているか確認する。
-    ```
-    $ ros2 topic list
-    ```
 1. Rviz2を起動する。
     ```
     $ rviz2
     ```
-1. 左側のDisplaysのメニューでAddをクリックする。
-1. By display typeからLaserScanを選んでOKをクリックする。
-1. 追加されたLaserScanのTopicをえらび、Topicに/scanを設定する。Reliabilty PolicyをSystem Defaultにする。
-1. Global OptionsのFixed Frameをbase_linkにする。
+1. Fileメニューでconfigファイルを指定します。
 1. LiDARのスキャンデータが見えれば動作確認完了です。
+
+- configファイルでは以下の点を設定しています。
+    - 左側のDisplaysのメニューでAddをクリックする。
+    - By display typeからLaserScanを選んでOKをクリックする。
+    - 追加されたLaserScanのTopicをえらび、Topicに/scanを設定する。Reliabilty PolicyをSystem Defaultにする。
+    - Global OptionsのFixed Frameをodomにする。
 
 ## SLAM
 - 以下実験中です。
