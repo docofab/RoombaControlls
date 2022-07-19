@@ -4,12 +4,12 @@
 
 ### Ubuntu 20.04 LTS Desktopのインストール
 
-通常通りインストール。日本語を使うのであれば[Ubuntu Desktop 日本語 Remix](https://www.ubuntulinux.jp/japanese)がお勧め。
+通常通りインストール。日本語を使うのであれば[Ubuntu Desktop 20.04 LTS 日本語 Remix](https://www.ubuntulinux.jp/japanese)がお勧め。
 
 ### ROS2 foxyのインストール
 ```
-sudo apt install ros-foxy-desktop
-source /opt/ros/foxy/setup.bash
+$ sudo apt install ros-foxy-desktop
+$ source /opt/ros/foxy/setup.bash
 ```
 
 ### turtlebot3のパッケージインストール
@@ -20,9 +20,9 @@ $ sudo apt install ros-foxy-turtlebot3
 
 ## Raspberry Piの初期設定
 
-### Ubuntu 20.04 Serverのインストール
+### Ubuntu 20.04 LTS Serverのインストール
 
-1. Raspberry pi imager でUbuntu 20.04 Server 64bitのSDカードを作成する。
+1. Raspberry pi imager で[Ubuntu 20.04 LTS Raspberry Pi Generic (64-bit ARM) preinstalled server image](https://cdimage.ubuntu.com/releases/20.04/release/)のSDカードを作成する。
 1. Raspberry pi にHDMI、キーボードをつけてSDカードをセットして電源を投入する。
 1. 立ち上がったらログインする。英語キーボード配列なので注意。
     - 初期アカウントは　ubuntu/ubuntu
@@ -240,7 +240,7 @@ $ sudo apt install ros-foxy-turtlebot3
         ```
 1. 以下のような画面になることを確認する。LiDARが勢いよく回転を始めます。
     ```
-    ubuntu@ubuntu:~$ ros2 launch ydlidar_ros2_driver ydlidar_launch.py
+    $ ros2 launch ydlidar_ros2_driver ydlidar_launch.py
     [INFO] [launch]: All log files can be found below /home/ubuntu/.ros/log/2022-07-18-23-32-16-832154-ubuntu-1369
     [INFO] [launch]: Default logging verbosity is set to INFO
         :
@@ -331,7 +331,7 @@ $ sudo apt install ros-foxy-turtlebot3
     /robot_state_publisher
     /static_tf_pub_laser
     /ydlidar_ros2_driver_node
-    ocha@ubuntu:~$ 
+    $ 
     ```
 
 1. サービスの確認
@@ -391,8 +391,9 @@ $ sudo apt install ros-foxy-turtlebot3
 
 - configファイルでは以下の点を設定しています。
     - 左側のDisplaysのメニューでAddをクリックする。
-    - By display typeからLaserScanを選んでOKをクリックする。
-    - 追加されたLaserScanのTopicをえらび、Topicに/scanを設定する。Reliabilty PolicyをSystem Defaultにする。
+    - By display typeからLaserScanを選んでOKをクリックし、追加されたLaserScanのTopicをえらび、Topicに/scanを設定する。TopicのReliabilty PolicyをBest Effortにする。Size(m)を0.03にする。
+    - By display typeからMapを選んでOKをクリックし、追加されたmapのTopicをえらび、Topicに/mapを設定する。TopicのReliabilty PolicyをBest Effortにする。
+    - By display typeからTFを選んでOKをクリックする。
     - Global OptionsのFixed Frameをodomにする。
 
 ## SLAM
@@ -402,3 +403,5 @@ $ sudo apt install ros-foxy-turtlebot3
 
     ros2 run nav2_map_server map_saver_cli -f ~/map
     ```
+
+## Nav2
