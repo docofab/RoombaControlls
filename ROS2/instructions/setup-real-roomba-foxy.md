@@ -2,21 +2,30 @@
 
 ## リモートPCのセットアップ
 
-### Ubuntu 20.04 LTS Desktopのインストール
+1. Ubuntu 20.04 LTS Desktopのインストール
 
 通常通りインストール。日本語を使うのであれば[Ubuntu Desktop 20.04 LTS 日本語 Remix](https://www.ubuntulinux.jp/japanese)がお勧め。
 
-### ROS2 foxyのインストール
+1. ROS2 foxyのインストール
 ```
 $ sudo apt install ros-foxy-desktop
 $ source /opt/ros/foxy/setup.bash
 ```
 
-### turtlebot3のパッケージインストール
+1. turtlebot3のパッケージインストール
 ```
 $ sudo apt install ros-foxy-turtlebot3-msgs
 $ sudo apt install ros-foxy-turtlebot3
 ```
+
+1. ROSドメインの設定
+
+    ルンバ用のドメインを指定しておく。
+    ```
+    $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
+    $ source ~/.bashrc
+    $ env | fgrep ROS
+    ```
 
 ## Raspberry Piの初期設定
 
@@ -87,7 +96,7 @@ $ sudo apt install ros-foxy-turtlebot3
 
 1. ROSドメインの設定
 
-    複数のPCを使うのでドメインを指定しておく。Raspberry PiとリモートPCの両方で行っておく。
+    複数のPCを使うのでドメインを指定しておく。
     ```
     $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
     $ source ~/.bashrc
@@ -264,7 +273,6 @@ $ sudo apt install ros-foxy-turtlebot3
     [ydlidar_ros2_driver_node-1] [YDLIDAR INFO] Now YDLIDAR is scanning ......
     ```
 
-
 ### リモートPCでの操作
 
 1. ROS2 foxyをインストールしているリモートPCにログインする。
@@ -399,9 +407,14 @@ $ sudo apt install ros-foxy-turtlebot3
 ## SLAM
 - 以下実験中です。
     ```
-    ros2 launch slam_toolbox online_async_launch.py
+    $ ros2 launch slam_toolbox online_async_launch.py
 
-    ros2 run nav2_map_server map_saver_cli -f ~/map
+    $ ros2 run nav2_map_server map_saver_cli -f ~/map
     ```
 
 ## Nav2
+- 以下実験中です。turtlebot3用の操作パッケージを流用する。
+    ```
+    $ export TURTLEBOT3_MODEL=burger
+    $ ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=$HOME/map.yaml
+    ```
