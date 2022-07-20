@@ -4,19 +4,19 @@
 
 1. Ubuntu 20.04 LTS Desktopのインストール
 
-通常通りインストール。日本語を使うのであれば[Ubuntu Desktop 20.04 LTS 日本語 Remix](https://www.ubuntulinux.jp/japanese)がお勧め。
+    通常通りインストール。日本語を使うのであれば[Ubuntu Desktop 20.04 LTS 日本語 Remix](https://www.ubuntulinux.jp/japanese)がお勧め。
 
 1. ROS2 foxyのインストール
-```
-$ sudo apt install ros-foxy-desktop
-$ source /opt/ros/foxy/setup.bash
-```
+    ```
+    $ sudo apt install ros-foxy-desktop
+    $ source /opt/ros/foxy/setup.bash
+    ```
 
 1. turtlebot3のパッケージインストール
-```
-$ sudo apt install ros-foxy-turtlebot3-msgs
-$ sudo apt install ros-foxy-turtlebot3
-```
+    ```
+    $ sudo apt install ros-foxy-turtlebot3-msgs
+    $ sudo apt install ros-foxy-turtlebot3
+    ```
 
 1. ROSドメインの設定
 
