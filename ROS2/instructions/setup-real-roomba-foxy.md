@@ -2,6 +2,8 @@
 
 ## 構成図
 
+* SLAM
+
 ```mermaid
 flowchart TB
   subgraph PC
@@ -267,14 +269,9 @@ PC <--> WiFi
     [create_driver-1] [INFO] [1656139564.121519229] [create_driver]: [CREATE] Battery level 30.45 %
     [create_driver-1] [INFO] [1656139564.156253846] [create_driver]: [CREATE] Ready.
     ```
-1. もう一つターミナルを立ち上げて以下のコマンドを入力する。
-    ```
-    $ ros2 topic pub /cmd_vel geometry_msgs/Twist '{linear: {x: 0.1}, angular: {z: 0.3}}'
-    ```
-1. ルンバが少しずつ動き続けるのでCTRL-Cで中断する。
 
 #### LiDARノードの起動
-1. もう一つターミナルを立ち上げて、Raspberry PiにログインしてLiDARのドライバを起動する。
+1. 新規にターミナルを立ち上げて、Raspberry PiにログインしてLiDARのドライバを起動する。
     - YDLiDAR X2の場合
         ```
         $ ros2 launch ydlidar_ros2_driver ydlidar_launch.py
@@ -308,6 +305,15 @@ PC <--> WiFi
     [ydlidar_ros2_driver_node-1] [YDLIDAR INFO] Single Channel Current Sampling Rate: 3K
     [ydlidar_ros2_driver_node-1] [YDLIDAR INFO] Now YDLIDAR is scanning ......
     ```
+
+#### ルンバ単体での動作確認方法
+
+1. 新規にターミナルを立ち上げて以下のコマンドを入力する。
+    ```
+    $ ros2 topic pub /cmd_vel geometry_msgs/Twist '{linear: {x: 0.1}, angular: {z: 0.3}}'
+    ```
+1. ルンバが少しずつ動き続けるのでCTRL-Cで中断する。
+
 
 ### リモートPCでの操作
 
@@ -430,8 +436,8 @@ PC <--> WiFi
     ```
     $ rviz2
     ```
-1. Fileメニューでconfigファイルを指定します。
-1. LiDARのスキャンデータが見えれば動作確認完了です。
+1. FileメニューのOpen Configで、[ros2_roomba_slam.rviz](/rviz2/ros2_roomba_slam.rviz)を指定します。
+1. Global OptionsのFixed Frameをbase_frameにして、ルンバの位置を示すTFデータとLiDARのスキャンデータが見えれば問題ありません。
 
 - configファイルでは以下の点を設定しています。
     - 左側のDisplaysのメニューでAddをクリックする。
@@ -441,16 +447,30 @@ PC <--> WiFi
     - Global OptionsのFixed Frameをodomにする。
 
 ## SLAM
-- 以下実験中です。
+1. ルンバをBringupしておきます。
+1. 以下のコマンドを入力します。
     ```
     $ ros2 launch slam_toolbox online_async_launch.py
-
+    ```
+1. キーボードで操作してmapをつくります。ゆっくり動かすのがコツです。
+    ```
+    $ export TURTLEBOT3_MODEL=burger
+    $ ros2 run turtlebot3_teleop teleop_keyboard
+    ```
+1. mapができたら以下のコマンドで保存します。
+    ```
     $ ros2 run nav2_map_server map_saver_cli -f ~/map
     ```
+1. Ubuntuのファイルアプリで~/map.pgmをクリックすると作成できたmapが表示されます。
 
 ## Nav2
-- 以下実験中です。turtlebot3用の操作パッケージを流用する。
+1. ルンバをBringupしておきます。
+1. SLAMで作成したmapをホームディレクトリに用意します。
+1. Nav2を起動します。turtlebot3用のNav2パッケージを流用します。
     ```
     $ export TURTLEBOT3_MODEL=burger
     $ ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=$HOME/map.yaml
     ```
+1. Rviz2の2D Pose Estimateで現在のルンバの位置を設定します。
+1. 2D Goal Poseでルンバの目的地を設定します。
+1. ルンバが目的地まで走行します。
