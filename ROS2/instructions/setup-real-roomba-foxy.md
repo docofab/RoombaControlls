@@ -1,5 +1,41 @@
 # Roomba実機をROS2 foxyで動かす環境のセットアップ
 
+## 構成図
+
+```mermaid
+flowchart TB
+  subgraph PC
+    direction TB
+    subgraph B3[turtlebot3_teleop]
+        direction TB
+    end
+    subgraph B6[Rviz2]
+        direction TB
+    end
+    subgraph B7[slam-toolbox]
+        direction TB
+    end
+    subgraph B8[map]
+        direction TB
+    end
+  end
+  subgraph Roomba
+    direction TB
+    subgraph C2[ydlidar_ros2_driver_node]
+        direction TB
+    end
+    subgraph C3[create_driver]
+        direction TB
+    end
+  end
+B3 -- /cmd_vel --> C3
+C2 -- /scan --> B7
+C3 -- /tf --> B7
+B7 --> B8
+Roomba <--> WiFi
+PC <--> WiFi
+```
+
 ## リモートPCのセットアップ
 
 1. Ubuntu 20.04 LTS Desktopのインストール
