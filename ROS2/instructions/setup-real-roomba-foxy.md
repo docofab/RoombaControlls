@@ -318,6 +318,10 @@ PC <--> WiFi
 ### リモートPCでの操作
 
 1. ROS2 foxyをインストールしているリモートPCにログインする。
+1. VMwareの場合は以下の環境変数を~/.bashrcに設定します。(RvizやGazeboがOpenGL2系のため。)
+    ```
+    export SVGA_VGPU10=0
+    ```
 1. ROSドメインを設定する。（初回だけ）
     ```
     $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
@@ -466,11 +470,11 @@ PC <--> WiFi
 ## Nav2
 1. ルンバをBringupしておきます。
 1. SLAMで作成したmapをホームディレクトリに用意します。
-1. Nav2を起動します。turtlebot3用のNav2パッケージを流用します。
+1. Turtlebot3用のNav2パッケージを使用します。
     ```
     $ export TURTLEBOT3_MODEL=burger
     $ ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True map:=$HOME/map.yaml
     ```
-1. Rviz2の2D Pose Estimateで現在のルンバの位置を設定します。
-1. 2D Goal Poseでルンバの目的地を設定します。
+1. Rviz2が起動するので、2D Pose Estimateで現在のルンバの位置と向きを設定します。
+1. 2D Goal Poseでルンバの目的地と向きを設定します。
 1. ルンバが目的地まで走行します。
