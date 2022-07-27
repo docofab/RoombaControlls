@@ -96,48 +96,48 @@ exit
 ## 4. ROS2環境の設定
 
 1. ~/.bashrcに以下のように追加する。
-```
-source /opt/ros/foxy/setup.bash
-```
+    ```
+    source /opt/ros/foxy/setup.bash
+    ```
 1. 以下のコマンドで確認
-```
-source ~/.bashrc
-ros2 topic list
-```
+    ```
+    source ~/.bashrc
+    ros2 topic list
+    ```
 1. これでFoxyの環境ができました。
 
 ## 5. Gazeboシミュレーターの起動
 
 1. 以下のパッケージをインストールする
-```
-sudo apt update
-sudo apt -y install ros-foxy-gazebo-ros-pkgs
-sudo apt -y install ros-foxy-dynamixel-sdk
-sudo apt -y install ros-foxy-turtlebot3-msgs
-sudo apt -y install ros-foxy-turtlebot3
-```
+    ```
+    sudo apt update
+    sudo apt -y install ros-foxy-gazebo-ros-pkgs
+    sudo apt -y install ros-foxy-dynamixel-sdk
+    sudo apt -y install ros-foxy-turtlebot3-msgs
+    sudo apt -y install ros-foxy-turtlebot3
+    ```
 1. turtlebot3のシミュレーション環境を設定する。
-```
-mkdir -p ~/colcon_ws/src
-cd ~/colcon_ws/src/
-git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
-cd ~/colcon_ws && colcon build --symlink-install
-```
+    ```
+    mkdir -p ~/colcon_ws/src
+    cd ~/colcon_ws/src/
+    git clone -b foxy-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+    cd ~/colcon_ws && colcon build --symlink-install
+    ```
 1. bashrcを設定する。
-```
-echo "source ~/colcon_ws/install/local_setup.bash" >> ~/.bashrc
-source ~/.bashrc
-```
+    ```
+    echo "source ~/colcon_ws/install/local_setup.bash" >> ~/.bashrc
+    source ~/.bashrc
+    ```
 
 1. 新たにターミナルを起動して以下のコマンドを入力する。
-```
-$ export TURTLEBOT3_MODEL=burger
-$ ros2 launch turtlebot3_gazebo empty_world.launch.py
-```
+    ```
+    $ export TURTLEBOT3_MODEL=burger
+    $ ros2 launch turtlebot3_gazebo empty_world.launch.py
+    ```
 1. もう一つターミナルを起動して以下のコマンドを入力する。
-```
-$ ros2 run turtlebot3_teleop teleop_keyboard
-```
+    ```
+    $ ros2 run turtlebot3_teleop teleop_keyboard
+    ```
 1. キーボードでシミュレータのRoombaがコントロールできることを確認する。
 
 
@@ -192,17 +192,17 @@ $ ros2 run turtlebot3_teleop teleop_keyboard
 
     VcXsrv windows xserver の項目にチェックが入っていない場合はチェックを入れてください。
 
-1. xhost: command not foundと表示される場合
-例
-```
-./run-docker-container.bash: line 11: xhost: command not found
-```
+1. xhost: command not foundと表示される場合  
+    例
+    ```
+    ./run-docker-container.bash: line 11: xhost: command not found
+    ```
 
-x11-xserver-utilsをインストールしてください。
+    x11-xserver-utilsをインストールしてください。
 
-```
-sudo apt install x11-xserver-utils
-```
+    ```
+    sudo apt install x11-xserver-utils
+    ```
 
 ## 参考サイト
 - ### DockerTips
@@ -225,11 +225,12 @@ sudo apt install x11-xserver-utils
 [6]:https://memoteki.net/archives/2955
 [7]:https://github.com/Tiryoh/docker-ros-desktop-vnc
 
-- ### CreateAutonomy
-  - [HARD2021: Gazeboシミュレータでルンバを動かそう！][8]
 
 [8]:https://demura.net/robot/hard/20405.html
 
-ロボットプログラミングⅡ-2021：ROS2演習8 – Happy Miniをプログラムで動かそう！（Python）
+ロボットプログラミングⅡ-2021：ROS2演習8 – Happy Miniをプログラムで動かそう！（Python）   
 https://demura.net/education/lecture/21781.html
+
+Robotis e-manual turtlebot3   
+https://emanual.robotis.com/docs/en/platform/turtlebot3/overview/
 
