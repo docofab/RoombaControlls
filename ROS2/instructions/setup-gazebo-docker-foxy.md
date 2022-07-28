@@ -158,13 +158,7 @@ exit
 
     WSLのshellでDISPLAYを設定する。
     ```
-    export DISPLAY="`grep nameserver /etc/resolv.conf | sed 's/nameserver //'`:0"
-    ```
-
-1. DISPLAY環境変数を確認する
-
-    ```
-    printenv DISPLAY
+    export DISPLAY=`hostname`.mshome.net:0.0
     ```
 
 ## トラブルシューティング
