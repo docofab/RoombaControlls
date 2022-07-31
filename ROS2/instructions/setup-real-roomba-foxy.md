@@ -46,23 +46,23 @@ PC <--> WiFi
 
 1. ROS2 foxyのインストール
     ```
-    $ sudo apt install ros-foxy-desktop
-    $ source /opt/ros/foxy/setup.bash
+    sudo apt install ros-foxy-desktop
+    source /opt/ros/foxy/setup.bash
     ```
 
 1. turtlebot3のパッケージインストール
     ```
-    $ sudo apt install ros-foxy-turtlebot3-msgs
-    $ sudo apt install ros-foxy-turtlebot3
+    sudo apt install ros-foxy-turtlebot3-msgs
+    sudo apt install ros-foxy-turtlebot3
     ```
 
 1. ROSドメインの設定
 
     ルンバ用のドメインを指定しておく。
     ```
-    $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
-    $ source ~/.bashrc
-    $ env | fgrep ROS
+    echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
+    source ~/.bashrc
+    env | fgrep ROS
     ```
 
 ## Raspberry Piの初期設定
@@ -113,8 +113,10 @@ PC <--> WiFi
 
     Desktop InstallとROS-Base Installの2種類がありますが、Desktop Installは各種ツールが揃っているのでこちらを推奨します。  
     慣れてきたらROS-Base Installでも良いかもしれない。
-    
+
 1. create_autonomyのインストール
+
+    基本的にはREADME.mdのInstallの手順通りでインストールできます。
 
     https://github.com/AutonomyLab/create_robot/tree/foxy
 
@@ -148,6 +150,7 @@ PC <--> WiFi
     $ ls -l /dev/ttyUSB*
     crw-rw---- 1 root dialout 188, 0 May 28 00:28 /dev/ttyUSB0
     ```
+
 ### udevの設定
 
 シリアルUSBデバイスをどのユーザからも読み書きできるように設定する。（毎回chmodでの設定が不要になるように）
@@ -205,11 +208,11 @@ PC <--> WiFi
 1. Raspberry Piの電源をモバイルバッテリーに接続する。
 1. Ubuntu PCからRaspberry Piにログインする。
     ```
-    $ ssh ubuntu@192.168.0.63
+    ssh ubuntu@192.168.0.63
     ```
     ipアドレスがわからない場合は以下のコマンドで目星を付ける。
     ```
-    $ nmap -sP 192.168.100.0/24
+    nmap -sP 192.168.100.0/24
     ```
 
 ### シリアルUSBの接続
@@ -271,6 +274,7 @@ PC <--> WiFi
     ```
 
 #### LiDARノードの起動
+
 1. 新規にターミナルを立ち上げて、Raspberry PiにログインしてLiDARのドライバを起動する。
     - YDLiDAR X2の場合
         ```
@@ -429,6 +433,7 @@ PC <--> WiFi
     ```
 
 #### Roombaをキーボードで操作
+
 1. 以下のコマンドを入力する。細かい操作ができるturtlebot3用の操作パッケージを流用する。
     ```
     $ export TURTLEBOT3_MODEL=burger
@@ -436,6 +441,7 @@ PC <--> WiFi
     ```
 
 #### Rviz2での確認
+
 1. Rviz2を起動する。
     ```
     $ rviz2
@@ -451,6 +457,7 @@ PC <--> WiFi
     - Global OptionsのFixed Frameをodomにする。
 
 ## SLAM
+
 1. ルンバをBringupしておきます。
 1. 以下のコマンドを入力します。
     ```
@@ -468,6 +475,7 @@ PC <--> WiFi
 1. Ubuntuのファイルアプリで~/map.pgmをクリックすると作成できたmapが表示されます。
 
 ## Nav2
+
 1. ルンバをBringupしておきます。
 1. SLAMで作成したmapをホームディレクトリに用意します。
 1. Turtlebot3用のNav2パッケージを使用します。
