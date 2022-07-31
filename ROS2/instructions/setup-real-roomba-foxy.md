@@ -107,14 +107,16 @@ PC <--> WiFi
     ```
 1. ROS2 foxyのインストール
 
-    基本的にはこのサイト通りでインストールできます。
+    基本的にはこのサイト通りでインストールできます。必ずROS2 foxyの動作確認まで行ってください。
 
     https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html
 
     Desktop InstallとROS-Base Installの2種類がありますが、Desktop Installは各種ツールが揃っているのでこちらを推奨します。  
     慣れてきたらROS-Base Installでも良いかもしれない。
-    
+
 1. create_autonomyのインストール
+
+    基本的にはREADME.mdのInstallの手順通りでインストールできます。
 
     https://github.com/AutonomyLab/create_robot/tree/foxy
 
@@ -132,10 +134,12 @@ PC <--> WiFi
     $ sudo apt install g++
     ```
 
-1. ROSドメインの設定
+1. ~/.bashrcの設定
 
-    複数のPCを使うのでドメインを指定しておく。
+    毎回入力するのは大変なので、~/.bashrcを設定しておきます。ドメインは100としました。
     ```
+    $ echo 'source /opt/ros/foxy/setup.bash' >> ~/.bashrc
+    $ echo 'source ~/create_ws/install/setup.bash' >> ~/.bashrc  
     $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
     $ source ~/.bashrc
     $ env | fgrep ROS
@@ -148,6 +152,7 @@ PC <--> WiFi
     $ ls -l /dev/ttyUSB*
     crw-rw---- 1 root dialout 188, 0 May 28 00:28 /dev/ttyUSB0
     ```
+
 ### udevの設定
 
 シリアルUSBデバイスをどのユーザからも読み書きできるように設定する。（毎回chmodでの設定が不要になるように）
@@ -179,13 +184,14 @@ PC <--> WiFi
     今回の設定例
     ```
     KERNEL=="ttyUSB*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", GROUP="dialout", MODE="0666", SYMLINK+="roomba"
-    KERNEL=="ttyUSB*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", GROUP="dialout", MODE="0666", SYMLINK+="roomba"
     ```
 1. RoombaのUSBシリアルケーブルを一度抜き、再度差し込む。
 1. udevの設定が行われ、パーミッションのotherがrwになっていることとroombaのシンボリックリンクができていることを確認する。  
     ```
     $ ls -l /dev/ttyUSB*
-    crw-rw-rw- 1 root dialout 188, 0 Jul  3 14:45 /dev/ttyUSB0
+    crw-rw-rw- 1 root dialout 188, 0 Jul 31 03:19 /dev/ttyUSB0
+    $ ls -l /dev/roomba
+    lrwxrwxrwx 1 root root 7 Jul 31 03:19 /dev/roomba -> ttyUSB0
     ```
 1. create_robotの設定ファイルを修正する。  
 ~/create_ws/src/create_robot/create_bringup/config/default.yamlのdev:が/dev/ttyUSB0となっているので、/dev/roombaに修正しておく。
@@ -205,9 +211,9 @@ PC <--> WiFi
 1. Raspberry Piの電源をモバイルバッテリーに接続する。
 1. Ubuntu PCからRaspberry Piにログインする。
     ```
-    $ ssh ubuntu@192.168.0.63
+    $ ssh ubuntu@192.168.100.63
     ```
-    ipアドレスがわからない場合は以下のコマンドで目星を付ける。
+    IPアドレスがわからない場合は以下のコマンドで目星を付ける。192.168.100.0/24のところはWiFiのネットワークに合わせてください。
     ```
     $ nmap -sP 192.168.100.0/24
     ```
@@ -271,6 +277,7 @@ PC <--> WiFi
     ```
 
 #### LiDARノードの起動
+
 1. 新規にターミナルを立ち上げて、Raspberry PiにログインしてLiDARのドライバを起動する。
     - YDLiDAR X2の場合
         ```
@@ -429,6 +436,7 @@ PC <--> WiFi
     ```
 
 #### Roombaをキーボードで操作
+
 1. 以下のコマンドを入力する。細かい操作ができるturtlebot3用の操作パッケージを流用する。
     ```
     $ export TURTLEBOT3_MODEL=burger
@@ -436,6 +444,7 @@ PC <--> WiFi
     ```
 
 #### Rviz2での確認
+
 1. Rviz2を起動する。
     ```
     $ rviz2
@@ -451,6 +460,7 @@ PC <--> WiFi
     - Global OptionsのFixed Frameをodomにする。
 
 ## SLAM
+
 1. ルンバをBringupしておきます。
 1. 以下のコマンドを入力します。
     ```
@@ -468,6 +478,7 @@ PC <--> WiFi
 1. Ubuntuのファイルアプリで~/map.pgmをクリックすると作成できたmapが表示されます。
 
 ## Nav2
+
 1. ルンバをBringupしておきます。
 1. SLAMで作成したmapをホームディレクトリに用意します。
 1. Turtlebot3用のNav2パッケージを使用します。
