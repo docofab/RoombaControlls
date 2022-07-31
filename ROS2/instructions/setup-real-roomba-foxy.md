@@ -46,23 +46,23 @@ PC <--> WiFi
 
 1. ROS2 foxyのインストール
     ```
-    sudo apt install ros-foxy-desktop
-    source /opt/ros/foxy/setup.bash
+    $ sudo apt install ros-foxy-desktop
+    $ source /opt/ros/foxy/setup.bash
     ```
 
 1. turtlebot3のパッケージインストール
     ```
-    sudo apt install ros-foxy-turtlebot3-msgs
-    sudo apt install ros-foxy-turtlebot3
+    $ sudo apt install ros-foxy-turtlebot3-msgs
+    $ sudo apt install ros-foxy-turtlebot3
     ```
 
 1. ROSドメインの設定
 
     ルンバ用のドメインを指定しておく。
     ```
-    echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
-    source ~/.bashrc
-    env | fgrep ROS
+    $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
+    $ source ~/.bashrc
+    $ env | fgrep ROS
     ```
 
 ## Raspberry Piの初期設定
@@ -107,7 +107,7 @@ PC <--> WiFi
     ```
 1. ROS2 foxyのインストール
 
-    基本的にはこのサイト通りでインストールできます。
+    基本的にはこのサイト通りでインストールできます。必ずROS2 foxyの動作確認まで行ってください。
 
     https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html
 
@@ -134,10 +134,12 @@ PC <--> WiFi
     $ sudo apt install g++
     ```
 
-1. ROSドメインの設定
+1. ~/.bashrcの設定
 
-    複数のPCを使うのでドメインを指定しておく。
+    毎回入力するのは大変なので、~/.bashrcを設定しておきます。ドメインは100としました。
     ```
+    $ echo 'source /opt/ros/foxy/setup.bash' >> ~/.bashrc
+    $ echo 'source ~/create_ws/install/setup.bash' >> ~/.bashrc  
     $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
     $ source ~/.bashrc
     $ env | fgrep ROS
@@ -182,13 +184,14 @@ PC <--> WiFi
     今回の設定例
     ```
     KERNEL=="ttyUSB*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", GROUP="dialout", MODE="0666", SYMLINK+="roomba"
-    KERNEL=="ttyUSB*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", GROUP="dialout", MODE="0666", SYMLINK+="roomba"
     ```
 1. RoombaのUSBシリアルケーブルを一度抜き、再度差し込む。
 1. udevの設定が行われ、パーミッションのotherがrwになっていることとroombaのシンボリックリンクができていることを確認する。  
     ```
     $ ls -l /dev/ttyUSB*
-    crw-rw-rw- 1 root dialout 188, 0 Jul  3 14:45 /dev/ttyUSB0
+    crw-rw-rw- 1 root dialout 188, 0 Jul 31 03:19 /dev/ttyUSB0
+    $ ls -l /dev/roomba
+    lrwxrwxrwx 1 root root 7 Jul 31 03:19 /dev/roomba -> ttyUSB0
     ```
 1. create_robotの設定ファイルを修正する。  
 ~/create_ws/src/create_robot/create_bringup/config/default.yamlのdev:が/dev/ttyUSB0となっているので、/dev/roombaに修正しておく。
@@ -208,11 +211,11 @@ PC <--> WiFi
 1. Raspberry Piの電源をモバイルバッテリーに接続する。
 1. Ubuntu PCからRaspberry Piにログインする。
     ```
-    ssh ubuntu@192.168.0.63
+    $ ssh ubuntu@192.168.100.63
     ```
-    ipアドレスがわからない場合は以下のコマンドで目星を付ける。
+    $ ipアドレスがわからない場合は以下のコマンドで目星を付ける。192.168.100.0/24のところはWiFiのネットワークに合わせてください。
     ```
-    nmap -sP 192.168.100.0/24
+    $ nmap -sP 192.168.100.0/24
     ```
 
 ### シリアルUSBの接続
