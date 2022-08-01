@@ -38,6 +38,10 @@ Roomba <--> WiFi
 PC <--> WiFi
 ```
 
+* Nav2
+
+    TBD
+
 ## リモートPCのセットアップ
 
 1. Ubuntu 20.04 LTS Desktopのインストール
@@ -56,13 +60,19 @@ PC <--> WiFi
     $ sudo apt install ros-foxy-turtlebot3
     ```
 
-1. ROSドメインの設定
+1. ~/.bashrcの設定
 
-    ルンバ用のドメインを指定しておく。
+    毎回入力するのは大変なので、~/.bashrcを設定しておきます。ドメインは100としました。
     ```
+    $ echo 'source /opt/ros/foxy/setup.bash' >> ~/.bashrc
     $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
     $ source ~/.bashrc
     $ env | fgrep ROS
+    ```
+
+1. VMwareの場合は以下の環境変数を~/.bashrcに設定します。(RvizやGazeboがOpenGL2系のため。)
+    ```
+    export SVGA_VGPU10=0
     ```
 
 ## Raspberry Piの初期設定
@@ -324,17 +334,7 @@ PC <--> WiFi
 
 ### リモートPCでの操作
 
-1. ROS2 foxyをインストールしているリモートPCにログインする。
-1. VMwareの場合は以下の環境変数を~/.bashrcに設定します。(RvizやGazeboがOpenGL2系のため。)
-    ```
-    export SVGA_VGPU10=0
-    ```
-1. ROSドメインを設定する。（初回だけ）
-    ```
-    $ echo 'export ROS_DOMAIN_ID=100' >> ~/.bashrc
-    $ source ~/.bashrc
-    $ env | fgrep ROS
-    ```
+1. セットアップしたリモートPCにログインする。
 1. トピックが流れてきているか確認する。
     ```
     $ ros2 topic list 
