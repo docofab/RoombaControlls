@@ -1,4 +1,4 @@
-# よくつかうコマンド一覧
+# ROS2でよくつかうコマンド一覧
 
 ## ノードの一覧を見る
 ```
@@ -45,4 +45,12 @@ ros2 multicast send
 ros2 daemon status
 ros2 daemon start
 ros2 daemon stop
+```
+
+# rosbag
+
+```
+ros2 bag record <topic_name>
+ros2 bag info <bag_file>
+ros2 bag play <bag_file>
 ```
