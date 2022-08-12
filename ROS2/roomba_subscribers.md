@@ -50,12 +50,12 @@ $ ros2 topic pub --once /set_ascii std_msgs/UInt8MultiArray "data: [49,50,51,52]
 
 ## define_song
 
-曲の登録を行います。4曲まで登録できます。
+曲の登録を行います。4曲まで登録できます。  
 
-song: (0 - 3) 登録する曲の番号
-length: (1 – 16) 曲の中の音符の数に応じた、曲の長さ。
-notes: (31 – 127) MIDIの音番号
-durations: 1音の長さを秒単位で指定します。この値を64倍してルンバのOIに渡しています。
+song: (0 - 3) 登録する曲の番号  
+length: (1 – 16) 曲の中の音符の数に応じた、曲の長さ。  
+notes: (31 – 127) MIDIの音番号  
+durations: 1音の長さを秒単位で指定します。この値を64倍してルンバのOIに渡しています。  
 
 ```
 $ ros2 topic pub --once /define_song create_msgs/DefineSong "{song: 0,length: 9,notes: [55,55,55,51,58,55,51,58,55],durations: [0.5,0.5,0.5,0.375,0.125,0.5,0.375,0.125,1.0]}"
