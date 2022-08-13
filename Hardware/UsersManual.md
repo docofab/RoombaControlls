@@ -20,7 +20,8 @@
 
 ### 電源ボタンによる確認方法
 
-1. ルンバのシリアルポートにターミナルを接続します。通信速度は115200bps, Data: 8bit, Parity:none, Stop: 1bit, Flow: Noneにします。
+1. ルンバのシリアルポートにUSBシリアルを接続します。
+1. ターミナルソフトを起動し、通信速度を115200bps, Data: 8bit, Parity:none, Stop: 1bit, Flow: Noneにします。
 2. 電源を投入すると以下のようなメッセージがターミナルに表示されます。
 
     ```
@@ -45,8 +46,9 @@
     ```
     send $07
     ```
-1. ルンバのシリアルポートにターミナルを接続します。通信速度は115200bps, Data: 8bit, Parity:none, Stop: 1bit, Flow: Noneにします。
-1. TeraTeamを起動し、コントロール->マクロでreset.ttlを指定します。
+1. ルンバのシリアルポートにUSBシリアルを接続します。
+1. TeraTeamを起動し、通信速度を115200bps, Data: 8bit, Parity:none, Stop: 1bit, Flow: Noneにします。
+1. TeraTeamのコントロール->マクロでreset.ttlを指定します。
 1. 以下のようなメッセージがターミナルに表示されます。
 
     ```
