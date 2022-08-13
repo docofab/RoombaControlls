@@ -15,3 +15,51 @@
 
 ## エラーの時
 - エラーアイコンが点滅したときは、http://www.irobot-jp.com/support/ を参照のこと。
+
+## ファームウェアのバージョン確認
+
+### 電源ボタンによる確認方法
+
+1. ルンバのシリアルポートにターミナルを接続します。通信速度は115200bps, Data: 8bit, Parity:none, Stop: 1bit, Flow: Noneにします。
+2. 電源を投入すると以下のようなメッセージがターミナルに表示されます。
+
+    ```
+    key-wakeup
+    slept for 0 minutes 14 seconds
+    
+    2015-08-24-1648-L
+    r3-robot/tags/release-3.5.x-tags/release-3.5.4:6058 CLEAN
+    
+    bootloader id: 470E 6360 83EB FFFF
+    assembly: 3.5-lite-batt
+    revision: 2
+    flash version: 10
+    flash info crc passed: 1
+    
+    battery-current-zero 262
+    ```
+
+### TeraTermでRESETコマンド送信による確認方法
+
+1. reset.ttlというファイルを作成し、以下の内容で保存します。
+    ```
+    send $07
+    ```
+1. ルンバのシリアルポートにターミナルを接続します。通信速度は115200bps, Data: 8bit, Parity:none, Stop: 1bit, Flow: Noneにします。
+1. TeraTeamを起動し、コントロール->マクロでreset.ttlを指定します。
+1. 以下のようなメッセージがターミナルに表示されます。
+
+    ```
+    bl-start
+    STR730
+    bootloader id: #x470E6360 83EBFFFF
+    bootloader info rev: #xF000
+    bootloader rev: #x0001
+    2007-05-14-1715-L
+    Roomba by iRobot!
+    str730
+    2015-08-24-1648-L
+    battery-current-zero 261
+    bbox vars restored!
+    languages: japanese (13)
+    ```
