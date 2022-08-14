@@ -126,17 +126,17 @@ exit
 1. bashrcを設定する。
     ```
     echo "source ~/colcon_ws/install/local_setup.bash" >> ~/.bashrc
+    echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc
     source ~/.bashrc
     ```
 
 1. 新たにターミナルを起動して以下のコマンドを入力する。
     ```
-    $ export TURTLEBOT3_MODEL=burger
-    $ ros2 launch turtlebot3_gazebo empty_world.launch.py
+    ros2 launch turtlebot3_gazebo empty_world.launch.py
     ```
-1. もう一つターミナルを起動して以下のコマンドを入力する。
+1. もう一つターミナルを起動（右クリックで画面分割ができる）して以下のコマンドを入力する。
     ```
-    $ ros2 run turtlebot3_teleop teleop_keyboard
+    ros2 run turtlebot3_teleop teleop_keyboard
     ```
 1. キーボードでシミュレータのRoombaがコントロールできることを確認する。
 
