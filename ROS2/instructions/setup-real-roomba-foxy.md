@@ -104,6 +104,15 @@ PC <--> WiFi
     ```
     $ sudo dpkg-reconfigure keyboard-configuration
     ```
+    コンソール上にウィザードが表示されるので、以下の順番で選択する
+    ```
+    Generic 105-key (Intl) PC
+    Japanese
+    Japanese
+    The default for the keyboard layout
+    No compose key
+    No
+    ```
 1. IPアドレスを確認して控えておく。
     ```
     $ ip a
