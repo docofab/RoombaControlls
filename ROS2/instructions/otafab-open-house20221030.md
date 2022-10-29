@@ -4,8 +4,14 @@
 
 - Roomba 側マイコン Raspberry Pi 4 4GB Ubuntu 20.04
 - ホストPC ThinkPad X1 VMWare Ubuntu 20.04
-- おおたFabのWiFiでは通信ができないので小型ルーターを使用する。PCとRaspberry Piはこれに接続する。
+- おおたFabのWiFiではPC-PC間の通信ができないので小型ルーターを使用する。PCとRaspberry Piはこれに接続する。
 - DualShock4はUSBマイクロ-USB-C変換ケーブルを持っていないので、今回はWindowsPCに接続する。
+- USBカメラ
+- モバイルバッテリー
+- USB-C---USB-Aケーブル (RaspPi4--バッテリー)
+- USB-C---USB-Aケーブル（YDLiDAR--RaspPi4)
+- USBシリアルケーブル（ルンバ--RaspPi4）
+- USB-Micro--USB-Aケーブル（DualShock--PC）
 
 ## デモ１ DualShockリモコンでの操作
 
