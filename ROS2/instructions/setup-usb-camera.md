@@ -9,7 +9,7 @@ A ROS 2 camera driver using Video4Linux2 (V4L2).
 
 1. 以下の手順でros2_v4l2_cameraをインストールします。
     ```
-    apt-get install ros-foxy-v4l2-camera 
+    sudo apt install ros-foxy-v4l2-camera 
     ```
 
 ## v4l2_camera_nodeの起動
