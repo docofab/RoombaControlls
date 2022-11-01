@@ -49,6 +49,9 @@ PC <--> WiFi
     通常通りインストール。日本語を使うのであれば[Ubuntu Desktop 20.04 LTS 日本語 Remix](https://www.ubuntulinux.jp/japanese)がお勧め。
 
 1. ROS2 foxyのインストール
+
+    [ROS2 Foxyの公式マニュアル](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)に従ってインストールしてください。  
+    Desktop Installを行うことで、ROS本体とRViz等のツール、デモプログラム、チュートリアルがインストールされます。
     ```
     $ sudo apt install ros-foxy-desktop
     $ source /opt/ros/foxy/setup.bash
