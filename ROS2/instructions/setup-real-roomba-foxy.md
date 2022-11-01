@@ -50,7 +50,7 @@ PC <--> WiFi
 
 1. ROS2 foxyのインストール
 
-    [ROS2 Foxyの公式マニュアル](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html)に従ってインストールしてください。  
+    [ROS2 Foxyの公式インストールガイド](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html#install-ros-2-packages)に従ってインストールしてください。  
     Desktop Installを行うことで、ROS本体とRViz等のツール、デモプログラム、チュートリアルがインストールされます。
     ```
     $ sudo apt install ros-foxy-desktop
