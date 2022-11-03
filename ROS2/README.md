@@ -9,7 +9,7 @@
   - [setup-rprlidar-a1-driver.md](instructions/setup-rprlidar-a1-driver.md) SLAMTEC RPLIDAR A1をROS2 Foxyで動かす手順
   - [setup-usb-camera.md](instructions/setup-usb-camera.md) USBカメラをROS2 Foxyで動かす手順
   - [setup-ydlidar-x2-driver.md](instructions/setup-ydlidar-x2-driver.md) YDLiDAR X2 をROS2 Foxyで動かす手順
-  - [おおたfabオープンハウスデモ](instructions/otafab-open-house20221030.md) 2022/10/30に開催されたおおたfabオープンハウスのデモマニュアル
+  - [otafab-open-house20221030.md](instructions/otafab-open-house20221030.md) 2022/10/30に開催されたおおたfabオープンハウスのデモマニュアル
 
 ## move_tutorial
   - [move4k_ros2.py](move_tutorial/move4k_ros2.py)
