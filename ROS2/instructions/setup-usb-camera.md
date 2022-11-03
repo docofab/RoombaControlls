@@ -27,3 +27,7 @@ A ROS 2 camera driver using Video4Linux2 (V4L2).
     ros2 run rqt_image_view rqt_image_view
     ```
 1. Rviz2でもAdd→Image→Topic /image_rawを設定で表示されます。
+
+## 補足
+1. VMwareでのUSBカメラの利用について  
+VMwareでのUSBカメラが動かない場合は、VMwareの設定でUSB3.1にすると動く場合があります。
