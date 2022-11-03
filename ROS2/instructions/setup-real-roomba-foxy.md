@@ -478,6 +478,14 @@ PC <--> WiFi
     ```
     $ ros2 run nav2_map_server map_saver_cli -f ~/map
     ```
+    まれに保存するときに以下のようなエラーがでることがあります。
+    ```
+    [ERROR] [1667462998.835674421] [map_saver]: Failed to save the map: timeout
+    ```
+    この場合は以下のようにタイムアウトが長くなるようにパラメタを追加してください。
+    ```
+    $ ros2 run nav2_map_server map_saver_cli -f ~/map --ros-args -p save_map_timeout:=10000
+    ```
 1. Ubuntuのファイルアプリで~/map.pgmをクリックすると作成できたmapが表示されます。
 
 ## Nav2
