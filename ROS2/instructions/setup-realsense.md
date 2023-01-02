@@ -7,8 +7,7 @@
 * [Firmware update](https://dev.intelrealsense.com/docs/firmware-updates)
 
 ## ファームウェアのアップデート
-Recommended Firmware  
-D400 	5.14.0.0 or later
+Recommended Firmware D400 5.14.0.0 or later
 
 以下のものを用意する。
 * Intel.RealSense.FW.Update.exe
@@ -113,9 +112,12 @@ Connected devices:
 C:\Users\XXXXX\Downloads\Signed_Image_UVC_5_14_0_0>
 ```
 
-## 動作確認 
-以下のものを用意する。
-* Intel.RealSense.Viewer.exe 
+## Windowsでの動作確認 
+以下の実行ファイルをダウンロードして実行する。
+
+* Intel.RealSense.Viewer.exe
+
+(注意) PCとRealSenseを接続するときのUSBケーブルはUSB3.2対応のものを使う。対応していないとUSB2.1になってしまう。(Viewerの画面で確認できる)
 
 ## Ubuntu 20.04へのlibrealsenseのインストール
 
@@ -128,18 +130,20 @@ https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linu
 
 ## realsense-rosのインストール
 
-ROS2 Wrapper for Intel® RealSense™ Devices を使う。
+ここではfoxyを使っています。
 
-以下のInstallation Instructionsに従う。  
+ROS2 Wrapper for Intel® RealSense™ Devices を使います。
+
+以下のInstallation Instructionsに従ってインストールします。  
 https://github.com/IntelRealSense/realsense-ros
 
-Step 1: Install the ROS2 distribution
-Step 2: Install the latest Intel® RealSense™ SDK 2.0
-Step 3: Install Intel® RealSense™ ROS2 wrapper from sources
+* Step 1: Install the ROS2 distribution
+* Step 2: Install the latest Intel® RealSense™ SDK 2.0
+* Step 3: Install Intel® RealSense™ ROS2 wrapper from sources
 
-### RealSenseのノードの起動方法
+### RealSenseのROS2ノードの起動方法
 
-D435i でpointcloud, gyro, acclを有効にした場合
+D435i でpointcloud, gyro, acclを有効にする場合
 
 ```
 ros2 launch realsense2_camera rs_launch.py pointcloud.enable:=true enable_gyro:=true enable_accel:=true
