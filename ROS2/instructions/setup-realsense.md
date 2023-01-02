@@ -110,3 +110,40 @@ C:\Users\XXXXX\Downloads\Signed_Image_UVC_5_14_0_0>
 以下のものを用意する。
 * Intel.RealSense.Viewer.exe 
 
+## Ubuntu 20.04へのlibrealsenseのインストール
+
+以下のドキュメントに従う。  
+https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md
+
+* インストール後に、realsense-viewerが動作すればOK
+* PCはパッケージインストールでOK
+* Raspberry Pi 4はビルドが必要。
+
+## realsense-rosのインストール
+
+ROS2 Wrapper for Intel® RealSense™ Devices を使う。
+
+以下のInstallation Instructionsに従う。  
+https://github.com/IntelRealSense/realsense-ros
+
+Step 1: Install the ROS2 distribution
+Step 2: Install the latest Intel® RealSense™ SDK 2.0
+Step 3: Install Intel® RealSense™ ROS2 wrapper from sources
+
+### RealSenseのノードの起動方法
+
+D435i でpointcloud, gyro, acclを有効にした場合
+
+```
+ros2 launch realsense2_camera rs_launch.py pointcloud.enable:=true enable_gyro:=true enable_accel:=true
+```
+
+### Rviz2での確認
+RealSenseノードが起動できたらRviz2で状態を確認する。  
+src/realsense-ros/realsense2_camera/launch/default.rvizがあるのでrviz2を起動して、File -> Open Configで読み込んでも良い。
+
+主な設定は以下の通り
+* Fixed Frameをcamera_depth_optical_frameにする。
+* Add ImageでTopicを/camera/color/image_raw に設定
+* Add ImageでTopicを/camera/depth/image_rect_rawに設定
+* Add PointCloud2でTopicを/camera/depth/color/pointsに設定
