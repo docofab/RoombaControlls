@@ -14,7 +14,14 @@ D400 	5.14.0.0 or later
 * Intel.RealSense.FW.Update.exe
 * Signed_Image_UVC_5_14_0_0.bin
 
-コマンドラインから実行する。
+Windowsのコマンドラインから実行する。
+
+```
+Intel.RealSense.FW.Update.exe -f Signed_Image_UVC_5_14_0_0.bin
+```
+
+以下実行例。
+
 ```
 C:\Users\XXXXX\Downloads\Signed_Image_UVC_5_14_0_0>dir
  ドライブ C のボリューム ラベルは Windows です
@@ -117,7 +124,7 @@ https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linu
 
 * インストール後に、realsense-viewerが動作すればOK
 * PCはパッケージインストールでOK
-* Raspberry Pi 4はビルドが必要。
+* Raspberry Pi 4はビルドが必要。(まだ未検証)
 
 ## realsense-rosのインストール
 
