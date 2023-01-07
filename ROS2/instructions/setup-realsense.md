@@ -128,7 +128,9 @@ https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linu
 * PCはパッケージインストールでOK
 * Raspberry Pi 4はビルドが必要。(まだ未検証)
 
-## realsense-rosのインストール
+## RealSenseをROS2で使う
+
+### realsense-rosのインストール
 
 ここではfoxyを使っています。
 
@@ -158,3 +160,30 @@ src/realsense-ros/realsense2_camera/launch/default.rvizがあるのでrviz2を�
 * Add ImageでTopicを/camera/color/image_raw に設定
 * Add ImageでTopicを/camera/depth/image_rect_rawに設定
 * Add PointCloud2でTopicを/camera/depth/color/pointsに設定
+
+## 書籍「AIロボット入門」の内容を試す
+
+USBカメラを使っているところをRealSenseで試しました。Remapすることで問題なく動きました。
+
+### 5.5.1 特徴検出
+
+* Cannyエッジ検出
+```
+ros2 launch realsense2_camera rs_launch.py
+
+ros2 run opencv_ros2 canny_edge_detection --ros-args --remap image_raw:=camera/color/image_raw
+```
+![rqt_graph](/ROS2/instructions/images/realsense_rosgraph_5_5_1.png)
+
+### 5.5.2 Haar 特徴量ベースのカスケード分類器
+
+* 顔検出
+
+```
+ros2 launch realsense2_camera rs_launch.py
+
+ros2 run opencv_ros2 face_detection --ros-args --remap image_raw:=camera/color/image_raw
+```
+![rqt_graph](/ROS2/instructions/images/realsense_rosgraph_5_5_2.png)
+
+
