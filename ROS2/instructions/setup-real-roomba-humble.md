@@ -129,7 +129,7 @@ Roombaにはシリアルポートが搭載されており、インターフェ�
 1. 立ち上がったらログインする。英語キーボード配列なので注意。
     - 初期アカウントは　ubuntu/ubuntu
     - 初回ログイン時にパスワード変更が入る。
-1. WiFiのセットアップとsshdのセットアップ
+1. WiFiのセットアップを行う。wifis: 以降の記述を追記し、WIFI-SSIDとPASSWORDはWiFi環境に合わせて書き換える。
     ```
     $ sudo vi /etc/netplan/50-cloud-init.yaml
     $ cat 50-cloud-init.yaml
@@ -200,21 +200,23 @@ Roombaにはシリアルポートが搭載されており、インターフェ�
 
 1. create_autonomyのインストール
 
-    基本的にはREADME.mdのInstallの手順通りでインストールできます。  
+    基本的にはREADME.mdのInstallの手順通りでインストールできます。create_robotはhumble branchを指定します。    
     https://github.com/AutonomyLab/create_robot/tree/humble
     ```
+    $ sudo apt install build-essential cmake libboost-system-dev libboost-thread-dev
     $ sudo apt install python3-rosdep python3-colcon-common-extensions
     $ cd ~
     $ mkdir -p create_ws/src
     $ cd create_ws
     $ cd ~/create_ws/src
-    $ git clone https://github.com/autonomylab/create_robot.git
+    $ git clone -b humble https://github.com/autonomylab/create_robot.git
     $ git clone https://github.com/AutonomyLab/libcreate.git
     $ cd ~/create_ws
     $ rosdep update
     $ rosdep install --from-paths src -i
     $ cd ~/create_ws
-    $ colcon build
+    $ colcon build --symlink-install
+    $ source ~/create_ws/install/setup.bash
     $ sudo usermod -a -G dialout $USER
     ```
     ここで一度ログアウトし、再びログインするとユーザグループ設定が反映されます。
@@ -452,15 +454,19 @@ Roombaにはシリアルポートが搭載されており、インターフェ�
     $ ros2 run turtlebot3_teleop teleop_keyboard
     ```
 
-## SLAMおよびNavigation2の動作確認
+## SLAMおよびNav2の動作確認
 
-自律走行を行うためには、LiDARというセンサーが必要です。ここでは[YDLiDAR X2](https://www.ydlidar.com/products/view/6.html)を使用した例を示します。
+自律走行を行うためには、LiDARセンサーが必要です。ここでは[YDLiDAR X2](https://www.ydlidar.com/products/view/6.html)を使用した例を示します。  
+SLAMやNavigationについては以下を参照してください。
+
+* [Slam Toolbox](https://github.com/SteveMacenski/slam_toolbox)
+* [Navigation2](https://navigation.ros.org/)
 
 ### LiDARの準備
 
 #### LiDARのROS2ドライバのインストール
 
-YDLiDAR X2の場合の例は以下を参照。その他のLiDARを使用する場合はメーカーサイトを参照してください。  
+YDLiDAR X2の場合の例は以下を参照。その他はLiDARのメーカーサイトを参照してください。  
 [/ROS2/instructions/setup-ydlidar-x2-driver.md](/ROS2/instructions/setup-ydlidar-x2-driver.md)
 
 
@@ -555,3 +561,11 @@ YDLiDAR X2の場合の例は以下を参照。その他のLiDARを使用する�
 1. Rviz2が起動するので、2D Pose Estimateで現在のルンバの位置と向きを設定します。
 1. 2D Goal Poseでルンバの目的地と向きを設定します。
 1. ルンバが目的地まで走行します。
+
+#### Rviz2が起動したときに、SLAMで作成したmapが表示されない場合  
+以下のissueを参考にして、パラメタファイルを修正してください。  
+https://github.com/ROBOTIS-GIT/turtlebot3/issues/884  
+
+修正するファイル： /opt/ros/humble/share/turtlebot3_navigation2/param/burger.yaml  
+修正前： robot_model_type: "differential"  
+修正後： robot_model_type: "nav2_amcl::DifferentialMotionModel"
