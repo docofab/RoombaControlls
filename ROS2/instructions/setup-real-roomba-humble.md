@@ -125,7 +125,7 @@ Roombaにはシリアルポートが搭載されており、インターフェ�
 1. インストールするOSはOther general-purpose OSから、Ubuntu Server 22.04.03 LTS (64-bit)を選択して、microSDカードに書き込みます。
 
 ### Raspberry Pi 4の環境設定
-1. Raspberry pi にHDMI、キーボードをつけて作成したSDカードをセットして電源を投入する。
+1. Raspberry pi にHDMIモニタ、USBキーボードを接続し、作成したmicroSDカードをセットして電源を投入する。
 1. 立ち上がったらログインする。英語キーボード配列なので注意。
     - 初期アカウントは　ubuntu/ubuntu
     - 初回ログイン時にパスワード変更が入る。
@@ -134,13 +134,17 @@ Roombaにはシリアルポートが搭載されており、インターフェ�
     $ sudo vi /etc/netplan/50-cloud-init.yaml
     $ cat 50-cloud-init.yaml
     network:
+      ethernets:
+        eth0:
+          dhcp4: true
+          optional: true
       version: 2
       wifis:
         wlan0:
           dhcp4: true
           access-points:
-            SSID:
-              password: "PASSWORD"
+            WIFI-SSID:
+              password: PASSWORD
     $ sudo netplan apply
     ```
 1. 日本語キーボード対応
