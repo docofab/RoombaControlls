@@ -11,6 +11,7 @@
   - [setup-ydlidar-x2-driver.md](instructions/setup-ydlidar-x2-driver.md) YDLiDAR X2 をROS2 Foxyで動かす手順
   - [otafab-open-house20221030.md](instructions/otafab-open-house20221030.md) 2022/10/30に開催されたおおたfabオープンハウスのデモマニュアル
   - [setup-realsense.md](instructions/setup-realsense.md) Intel RealSenseを動かす手順（作成中）
+  - [setup-real-roomba-humble.md](instructions/setup-real-roomba-humble.md) Roomba実機をROS2 Humbleで動かす環境のセットアップ
 
 ## move_tutorial
   - [move4k_ros2.py](move_tutorial/move4k_ros2.py)
