@@ -1,8 +1,8 @@
 # RoombaControlls
 ルンバのApiを使ってArduinoやROSで動かしてみようというリポジトリです。
 
-* [ROS2 Foxyを使ってRoombaを動かしてみようというサブプロジェクト](/ROS2)
-* [ROS Melodicを使ってRoombaを動かしてみようというサブプロジェクト](/ROS)
+* [ROS2を使ってRoombaを動かしてみようというサブプロジェクト](/ROS2)
+* [ROSを使ってRoombaを動かしてみようというサブプロジェクト](/ROS)
 * [Arduinoを使ってRoombaを動かしてみようというサブプロジェクト](/Arduino)
 * [ルンバのハードウェアについて](/Hardware)
 
