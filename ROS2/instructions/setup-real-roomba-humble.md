@@ -1,6 +1,6 @@
 # Roomba実機をROS2 Humbleで動かす環境のセットアップ
 
-![roomba-robot](/ROS2/instructions/images/roomba-robot-humble.jpg) 
+![roomba-robot](images/roomba-robot-humble.jpg) 
 
 ## 構成図
 
@@ -84,7 +84,7 @@ Roombaにはシリアルポートが搭載されており、インターフェ�
                         GND
     ```
 1. 簡易的な接続方法としてRoombaのシリアルポートのコネクタの穴にブレッドボード用のワイヤーを差し込むことで接続できる。 
-![serial-port](/ROS2/instructions/images/roomba-serial-connection.png) 
+![serial-port](images/roomba-serial-connection.png) 
 
 
 ## リモートPCのセットアップ
@@ -569,3 +569,13 @@ https://github.com/ROBOTIS-GIT/turtlebot3/issues/884
 修正するファイル： /opt/ros/humble/share/turtlebot3_navigation2/param/burger.yaml  
 修正前： robot_model_type: "differential"  
 修正後： robot_model_type: "nav2_amcl::DifferentialMotionModel"
+
+## 参考資料
+### SLAMを実行中の各種画面
+* Rviz2
+![Rviz2](images/roomba-rviz2-slam-humble.png) 
+* rqt_graph
+![rqt_graph](images/roomba-rqt_graph-humble.png)
+* ros2 run tf2_tools view_frames
+![view_frames](images/roomba-view_frames-humble.png)
+[PDF](images/roomba-view_frames_2024-01-13_16.45.29.pdf)
